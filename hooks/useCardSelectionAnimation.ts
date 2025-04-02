@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Animated, Dimensions } from 'react-native';
-import { animationPresets } from '@/styles/theme';
+import { animation } from '@/styles/theme';
 
 export const useCardSelectionAnimation = (onCardPositioned?: () => void) => {
   const instructionOpacity = useRef(new Animated.Value(0)).current;
@@ -12,7 +12,7 @@ export const useCardSelectionAnimation = (onCardPositioned?: () => void) => {
   const showInstruction = () => {
     return Animated.timing(instructionOpacity, {
       toValue: 1,
-      ...animationPresets.fadeIn,
+      ...animation.timing.fadeIn,
     });
   };
 
@@ -35,7 +35,7 @@ export const useCardSelectionAnimation = (onCardPositioned?: () => void) => {
     Animated.parallel([
       Animated.timing(instructionOpacity, {
         toValue: 0,
-        ...animationPresets.fadeOut,
+        ...animation.timing.fadeOut,
       }),
       Animated.timing(stackOpacity, {
         toValue: 0,
@@ -45,7 +45,6 @@ export const useCardSelectionAnimation = (onCardPositioned?: () => void) => {
     ]).start(() => {
       // Calculate target position for the selected card
       const screenWidth = Dimensions.get("window").width;
-      const screenHeight = Dimensions.get("window").height;
 
       const targetSlot = drawnSlotPositions[currentRound] || {
         x: screenWidth / 2,
@@ -61,11 +60,11 @@ export const useCardSelectionAnimation = (onCardPositioned?: () => void) => {
         Animated.parallel([
           Animated.timing(selectedCardPosition, {
             toValue: { x: targetX, y: targetY },
-            ...animationPresets.move,
+            ...animation.timing.move,
           }),
           Animated.timing(selectedCardScale, {
             toValue: 0.9,
-            ...animationPresets.move,
+            ...animation.timing.move,
           }),
         ]),
       ]).start(() => {

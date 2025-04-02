@@ -1,6 +1,5 @@
-import { initializeApp, getApps, getApp } from '@react-native-firebase/app';
+import { initializeApp, getApps } from '@react-native-firebase/app';
 import { getAuth, signInAnonymously as firebaseSignInAnonymously, signOut as firebaseSignOut } from '@react-native-firebase/auth';
-import analytics from '@react-native-firebase/analytics';
 import { bugsnagService } from "./bugsnag";
 
 type FirebaseAppOptions = Parameters<typeof initializeApp>[0];

@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  ActivityIndicator,
   useColorScheme,
 } from "react-native";
 import TarotCard from "@/components/TarotCard";

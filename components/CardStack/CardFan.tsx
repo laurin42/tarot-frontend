@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import { View, Animated, Pressable } from "react-native";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { layoutPatterns, globalStyles } from "@/styles/globalStyles";
-import { styles } from "@/styles/styles";
+import { layoutStyles, componentStyles } from "@/styles/styles";
 import OptimizedTarotCard from "../OptimizedTarotCard";
 
 interface CardFanProps {
@@ -35,12 +34,12 @@ const CardFan = memo(
     onCardSelect,
   }: CardFanProps) => {
     return (
-      <View style={layoutPatterns.cardFan}>
+      <View style={layoutStyles.cardFan}>
         {cards.map((card, index) => (
           <Animated.View
             key={`${currentRound}-${index}`}
             style={[
-              styles.animatedCard,
+              componentStyles.animatedCard,
               {
                 zIndex: cards.length - index,
                 transform:
@@ -67,7 +66,7 @@ const CardFan = memo(
             ]}
           >
             <Pressable
-              style={[globalStyles.cardBase, styles.cardPressable]}
+              style={[componentStyles.cardBase, componentStyles.cardPressable]}
               onPress={() => onCardSelect(card)}
             >
               <OptimizedTarotCard
@@ -87,5 +86,7 @@ const CardFan = memo(
     );
   }
 );
+
+CardFan.displayName = "CardFan";
 
 export default CardFan;

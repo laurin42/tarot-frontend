@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
-import { commonStyles, globalTextStyles } from "@/styles/tarotTheme";
+import { componentStyles, textStyles } from "@/styles";
 
 interface SummaryPanelProps {
   loading: boolean;
@@ -22,19 +22,19 @@ const SummaryPanel: React.FC<SummaryPanelProps> = ({
   }
 
   if (error) {
-    return <Text style={globalTextStyles.errorText}>{error}</Text>;
+    return <Text style={textStyles.errorText}>{error}</Text>;
   }
 
   return (
-    <View style={commonStyles.summaryContainer}>
-      <Text style={globalTextStyles.summaryText}>{summary}</Text>
+    <View style={componentStyles.summaryContainer}>
+      <Text style={textStyles.summaryText}>{summary}</Text>
 
       {showButton && (
         <TouchableOpacity
-          style={commonStyles.buttonFullWidth}
+          style={componentStyles.buttonFullWidth}
           onPress={onButtonPress}
         >
-          <Text style={globalTextStyles.buttonText}>Neue Legung beginnen</Text>
+          <Text style={textStyles.buttonText}>Neue Legung beginnen</Text>
         </TouchableOpacity>
       )}
     </View>

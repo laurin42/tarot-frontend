@@ -1,9 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform, SafeAreaView } from "react-native";
-import { IconSymbol } from "@/components/ui/IconSymbol";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import DailyCardIcon from "../../components/icons/DailyCardIcon";
 import ThreeCardsIcon from "../../components/icons/ThreeCardsIcon";
 import ProfileIcon from "../../components/icons/ProfileIcon";

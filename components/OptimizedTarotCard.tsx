@@ -96,19 +96,23 @@ export default function OptimizedTarotCard({
 
   return (
     <View style={[styles.container, style]}>
-      <Image
-        style={styles.image}
-        source={
-          isShown
-            ? imageUri
-              ? { uri: imageUri }
-              : imageSource
-            : require("@/assets/images/tarot_cards/Card_back.png")
-        }
-        placeholder={isShown ? blurhash : undefined}
-        contentFit="contain"
-        transition={200}
-      />
+      {isLoading ? (
+        <Text>Loading...</Text>
+      ) : (
+        <Image
+          style={styles.image}
+          source={
+            isShown
+              ? imageUri
+                ? { uri: imageUri }
+                : imageSource
+              : require("@/assets/images/tarot_cards/Card_back.png")
+          }
+          placeholder={isShown ? blurhash : undefined}
+          contentFit="contain"
+          transition={200}
+        />
+      )}
       {isShown && name && (
         <View style={styles.nameContainer}>
           <Text style={styles.nameText}>{name}</Text>

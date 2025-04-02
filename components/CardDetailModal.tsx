@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Modal, Text, ScrollView, TouchableOpacity } from "react-native";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { commonStyles, globalTextStyles } from "@/styles/tarotTheme";
+import { componentStyles, textStyles, layoutStyles } from "@/styles";
 
 interface CardDetailModalProps {
   isVisible: boolean;
@@ -18,21 +18,21 @@ const CardDetailModal: React.FC<CardDetailModalProps> = ({
 
   return (
     <Modal
-      visible={isVisible}
+      visible={isVisible && card !== null}
       transparent={true}
       animationType="fade"
       onRequestClose={onClose}
     >
-      <View style={commonStyles.modalOverlay}>
-        <View style={commonStyles.modalContent}>
-          <Text style={globalTextStyles.modalTitle}>{card.name}</Text>
+      <View style={layoutStyles.modalOverlay}>
+        <View style={componentStyles.modalContent}>
+          <Text style={textStyles.modalTitle}>{card.name}</Text>
 
           <ScrollView
             style={{ width: "100%", maxHeight: "80%", marginBottom: 0 }}
             contentContainerStyle={{ paddingBottom: 8 }}
             showsVerticalScrollIndicator={true}
           >
-            <Text style={globalTextStyles.modalText}>{card.explanation}</Text>
+            <Text style={textStyles.modalText}>{card.explanation}</Text>
           </ScrollView>
 
           <TouchableOpacity
@@ -49,7 +49,7 @@ const CardDetailModal: React.FC<CardDetailModalProps> = ({
             }}
             onPress={onClose}
           >
-            <Text style={globalTextStyles.buttonText}>Schließen</Text>
+            <Text style={textStyles.buttonText}>Schließen</Text>
           </TouchableOpacity>
         </View>
       </View>

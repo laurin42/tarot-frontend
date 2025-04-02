@@ -1,8 +1,7 @@
 import React, { memo } from "react";
 import { View } from "react-native";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { globalStyles } from "@/styles/globalStyles";
-import { styles } from "@/styles/styles";
+import { layoutStyles } from "@/styles/styles";
 import { useCardStackLogic } from "./useCardStackLogic";
 import CardFan from "./CardFan";
 import CardInstruction from "./CardInstruction";
@@ -38,11 +37,11 @@ const CardStackView = memo((props: CardStackViewProps) => {
   } = cardAnimation;
 
   return (
-    <View style={globalStyles.centeredContainer}>
+    <View style={layoutStyles.centeredContainer}>
       {/* Mystical glow background */}
-      <View style={globalStyles.mysticalGlowContainer} />
+      <View style={layoutStyles.mysticalGlowContainer} />
 
-      <View style={styles.gamePlayArea}>
+      <View style={layoutStyles.gamePlayArea}>
         {/* Instruction floating indicator */}
         {showInstruction && <CardInstruction opacity={instructionOpacity} />}
 
@@ -67,5 +66,7 @@ const CardStackView = memo((props: CardStackViewProps) => {
     </View>
   );
 });
+
+CardStackView.displayName = "CardStackView";
 
 export default CardStackView;

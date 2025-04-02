@@ -43,7 +43,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     async function loadUserData() {
       try {
-        const userData = await storage.getItem("userData");
+        const userData = await AsyncStorage.getItem("userData");
         if (userData) {
           setUser(JSON.parse(userData));
         }

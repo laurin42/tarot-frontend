@@ -4,8 +4,8 @@ import { ExpoRoot } from "expo-router";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Import korrektes Firebase
-import { firebase, auth, signInAnonymously } from "@/services/firebase";
+import firebase from "@react-native-firebase/app";
+import auth from "@react-native-firebase/auth";
 import { bugsnagService } from "@/services/bugsnag";
 
 function App(): JSX.Element {

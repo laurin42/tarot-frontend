@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import { Animated, Dimensions } from 'react-native';
 
 interface CardFanConfig {
@@ -21,25 +21,7 @@ export const useCardFanAnimation = ({
   const rotations = useRef(new Array(cardCount).fill(0).map(() => new Animated.Value(0))).current;
   const scales = useRef(new Array(cardCount).fill(0).map(() => new Animated.Value(0.8))).current;
 
-  // Trigger animation on both sessionStarted and currentRound changes
-  useEffect(() => {
-    if (sessionStarted) {
-      // Reset to initial positions
-      translateY.forEach(anim => anim.setValue(1000));
-      translateX.forEach(anim => anim.setValue(0));
-      rotations.forEach(anim => anim.setValue(0));
-      scales.forEach(anim => anim.setValue(0.8));
-
-      // Start animation with a slight delay
-      const timer = setTimeout(() => {
-        animateToFan().start();
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentRound, sessionStarted]); // Watch both values
-
-  const animateToFan = () => {
+  const animateToFan = useCallback(() => {
     const { width: screenWidth } = Dimensions.get('window');
     const centerX = screenWidth / 2;
     const radius = cardDimensions.width * 1.5;
@@ -80,7 +62,25 @@ export const useCardFanAnimation = ({
     });
 
     return Animated.stagger(50, animations);
-  };
+  }, [cardCount, spreadAngle, cardDimensions, translateX, translateY, rotations, scales]);
+
+  // Trigger animation on both sessionStarted and currentRound changes
+  useEffect(() => {
+    if (sessionStarted) {
+      // Reset to initial positions
+      translateY.forEach(anim => anim.setValue(1000));
+      translateX.forEach(anim => anim.setValue(0));
+      rotations.forEach(anim => anim.setValue(0));
+      scales.forEach(anim => anim.setValue(0.8));
+
+      // Start animation with a slight delay
+      const timer = setTimeout(() => {
+        animateToFan().start();
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [currentRound, sessionStarted, animateToFan, rotations, scales, translateX, translateY]); // Now it works correctly
 
   return {
     translateY,

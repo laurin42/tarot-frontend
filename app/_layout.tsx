@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
-import "../global.css";
 import { UserProvider } from "../context/UserContext";
 import { AuthProvider, useAuth } from "../context/AuthContext";
 import { DynamicRouteService, DynamicRoute } from "../services/dynamicRoutes";
@@ -29,7 +28,6 @@ import { LoadingScreen } from "../components/ui/LoadingScreen";
 import { initializeSplashScreen } from "../utils/splashScreen";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useState } from "react";
-import { Stack } from "expo-router";
 import { Text, View } from "react-native";
 import { assetManager, AssetPriority } from "../utils/assetPreloader";
 import { tarotDeckOptimizer } from "../utils/tarotDeckOptimizer";
@@ -64,7 +62,7 @@ function RootLayoutNav(): JSX.Element {
   // Registriere alle ausstehenden Routen
   useEffect(() => {
     try {
-      const pendingRoutes: ReadonlyArray<DynamicRoute> =
+      const pendingRoutes: readonly DynamicRoute[] =
         DynamicRouteService.getPendingRoutes();
 
       if (pendingRoutes.length > 0) {

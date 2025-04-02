@@ -6,8 +6,12 @@ import { useScrollEndDetection } from "@/hooks/useScrollEndDetection";
 import TarotCardWithLabel from "@/components/TarotCardWithLabel";
 import CardDetailModal from "@/components/CardDetailModal";
 import SummaryPanel from "@/components/SummaryPanel";
-import { commonStyles, globalTextStyles } from "@/styles/tarotTheme";
-import { glowEffects } from "@/styles/theme";
+import {
+  componentStyles,
+  textStyles,
+  layoutStyles,
+  glowEffects,
+} from "@/styles";
 
 interface SummaryViewProps {
   cards: ISelectedAndShownCard[];
@@ -34,12 +38,12 @@ const SummaryView: React.FC<SummaryViewProps> = ({ cards, onDismiss }) => {
 
   // Erstelle einen zusammengesetzten Style mit StyleSheet.flatten
   const titleStyle = StyleSheet.flatten([
-    globalTextStyles.title,
+    textStyles.title,
     Platform.OS === "ios" ? glowEffects.text : {},
   ]);
 
   return (
-    <View style={commonStyles.container}>
+    <View style={layoutStyles.container}>
       <ScrollView
         ref={summaryScrollViewRef}
         style={{ flex: 1, width: "100%" }}
@@ -48,7 +52,7 @@ const SummaryView: React.FC<SummaryViewProps> = ({ cards, onDismiss }) => {
       >
         <Text style={titleStyle}>Deine Kartenlegung</Text>
 
-        <View style={commonStyles.cardsContainer}>
+        <View style={componentStyles.cardsContainer}>
           {cards.map((card, index) => (
             <TarotCardWithLabel
               key={index}

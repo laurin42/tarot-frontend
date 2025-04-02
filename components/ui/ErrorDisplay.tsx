@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import { devStyles } from "../../styles/devStyles";
+import { devStyles } from "@/styles/styles";
 import { useRouter } from "expo-router";
 import { APP_ROUTES } from "../../constants/routes";
 import { toValidRoute } from "../../types/navigation";

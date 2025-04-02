@@ -3,7 +3,7 @@ import { View, Pressable, Text } from "react-native";
 import { useRouter } from "expo-router";
 import { bugsnagService } from "../../services/bugsnag";
 import { navigateToCustomPath } from "../../services/dynamicRoutes";
-import { devStyles } from "../../styles/devStyles";
+import { devStyles } from "@/styles/styles";
 import { DYNAMIC_ROUTES } from "../../constants/routes";
 
 export function DevMenu(): JSX.Element | null {

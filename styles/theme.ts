@@ -1,41 +1,52 @@
 import { Platform, Easing, Dimensions } from "react-native";
 
+// Get device dimensions for responsive styling
 const { width, height } = Dimensions.get("window");
 
-// Zentrale Farbpalette
+// Main color palette
 export const colors = {
-  // Primärfarben
-  primary: "#8B5CF6", // Hauptfarbe (Lila)
+  // Primary colors
+  primary: "#8B5CF6", // Main color (purple)
   primaryLight: "#A78BFA",
   primaryDark: "#7C3AED",
   
-  // Hintergrundfarben
-  background: "#111827", // Dunkler Hintergrund
+  // Background colors
+  background: "#111827", // Dark background
   backgroundLight: "rgba(31, 41, 55, 0.95)",
   backgroundDarker: "rgba(31, 41, 55, 0.98)",
   backgroundOverlay: "rgba(0, 0, 0, 0.85)",
   
-  // Textfarben
+  // Text colors
   text: "#FFFFFF",
   textSecondary: "#F3F4F6",
   textMuted: "#9CA3AF",
   
-  // Akzentfarben
+  // Accent colors
   orange: "rgba(249, 115, 22, 0.9)",
   orangeLight: "rgba(249, 115, 22, 0.7)",
   gold: "#FFD700",
   error: "#EF4444",
   success: "#6EE7B7",
   
-  // Hinzufügen der fehlenden Farbe
+  // Glow colors
   purpleGlow: "rgba(139, 92, 246, 0.4)",
 
-  // Rahmenfarben
+  // Border colors
   border: "rgba(139, 92, 246, 0.3)",
   borderLight: "rgba(139, 92, 246, 0.2)",
 };
 
-// Glow-Effekte mit verschiedenen Intensitäten
+// Spacing scale for consistent layout
+export const spacing = {
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32,
+  xxl: 48,
+};
+
+// Shadow/glow effects with different intensities - optimized for each platform
 export const glowEffects = {
   strong: {
     ...Platform.select({
@@ -47,6 +58,9 @@ export const glowEffects = {
       },
       android: {
         elevation: 15,
+      },
+      web: {
+        boxShadow: `0 0 20px ${colors.purpleGlow}`,
       },
     }),
   },
@@ -61,6 +75,9 @@ export const glowEffects = {
       android: {
         elevation: 10,
       },
+      web: {
+        boxShadow: `0 0 15px ${colors.purpleGlow}`,
+      },
     }),
   },
   subtle: {
@@ -73,6 +90,9 @@ export const glowEffects = {
       },
       android: {
         elevation: 5,
+      },
+      web: {
+        boxShadow: `0 0 10px ${colors.purpleGlow}`,
       },
     }),
   },
@@ -93,11 +113,14 @@ export const glowEffects = {
         elevation: 20,
         backgroundColor: "rgba(255,215,0,0.05)",
       },
+      web: {
+        boxShadow: `0 0 20px rgba(255,215,0,0.8)`,
+      },
     }),
   },
 };
 
-// Wiederverwendbare Rahmeneffekte
+// Reusable border styles
 export const borderEffects = {
   standard: {
     borderWidth: 1,
@@ -115,18 +138,23 @@ export const borderEffects = {
   },
 };
 
-// Typografie-Stile
+// Typography system
 export const typography = {
   header: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: "bold" as const,
     color: colors.primaryLight,
   },
   title: {
     fontSize: 28,
-    fontWeight: "bold",
+    fontWeight: "bold" as const,
     color: colors.primaryLight,
-    textAlign: "center",
+    textAlign: "center" as const,
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: "600" as const,
+    color: colors.primaryLight,
   },
   body: {
     fontSize: 17,
@@ -135,83 +163,118 @@ export const typography = {
   },
   button: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "bold" as const,
     color: colors.text,
   },
   caption: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: "bold" as const,
+    color: colors.textMuted,
+  },
+  small: {
+    fontSize: 12,
     color: colors.textMuted,
   },
 };
 
-// Animation Presets
-export const animationPresets = {
-  fadeIn: {
-    duration: 800,
-    useNativeDriver: true,
+// Animation presets
+export const animation = {
+  timing: {
+    fadeIn: {
+      duration: 800,
+      useNativeDriver: true,
+    },
+    fadeOut: {
+      duration: 500,
+      useNativeDriver: true,
+    },
+    move: {
+      duration: 700,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    },
+    quick: {
+      duration: 300,
+      useNativeDriver: true,
+    },
   },
-  fadeOut: {
-    duration: 500,
-    useNativeDriver: true,
-  },
-  move: {
-    duration: 700,
-    easing: Easing.out(Easing.cubic),
-    useNativeDriver: true,
+  spring: {
+    gentle: {
+      damping: 15,
+      stiffness: 120,
+      mass: 1,
+      useNativeDriver: true,
+    },
+    bounce: {
+      damping: 10,
+      stiffness: 180,
+      mass: 1,
+      useNativeDriver: true,
+    },
   },
 };
 
-// Abstandswerte
-export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 16,
-  lg: 24,
-  xl: 32,
-};
-
-// Komponentengrößen
+// Component sizes - using responsive dimensions
 export const sizes = {
-  cardWidth: width * 0.6,
-  cardHeight: width * 0.6 * 1.6, // Standard Kartenverhältnis
+  cardSmall: {
+    width: width * 0.3,
+    height: width * 0.3 * 1.6,
+  },
+  cardMedium: {
+    width: width * 0.45,
+    height: width * 0.45 * 1.6,
+  },
+  cardLarge: {
+    width: width * 0.6,
+    height: width * 0.6 * 1.6,
+  },
   buttonHeight: 48,
+  inputHeight: 56,
   indicatorHeight: 40,
   modalWidth: "90%",
   modalMaxHeight: "85%",
+  iconSmall: 20,
+  iconMedium: 24,
+  iconLarge: 32,
 };
 
-export const card = {
-  backgroundColor: colors.background,
-  borderRadius: 16,
-  padding: 16,
-  boxShadow: "0 0 20px rgba(139, 92, 246, 0.8)",
+// Z-index values for consistent layering
+export const zIndex = {
+  base: 1,
+  card: 10,
+  modal: 50,
+  overlay: 40,
+  tooltip: 30,
+  navigation: 20,
+  devTools: 1000,
 };
 
-export const cardMedium = {
-  backgroundColor: colors.background,
-  borderRadius: 12,
-  padding: 12,
-  boxShadow: "0 0 15px rgba(139, 92, 246, 0.5)",
+// Device-specific metrics
+export const device = {
+  width,
+  height,
+  isSmallDevice: width < 375,
+  isLargeDevice: width >= 768,
 };
 
-export const cardSmall = {
-  backgroundColor: colors.background,
-  borderRadius: 8,
-  padding: 8,
-  boxShadow: "0 0 10px rgba(139, 92, 246, 0.3)",
-};
-
-export const title = {
-  fontSize: 24,
-  fontWeight: "bold",
-  color: colors.text,
-  textShadow: "0 0 10px rgba(139, 92, 246, 0.8)",
-};
-
-export const goldCard = {
-  backgroundColor: colors.background,
-  borderRadius: 16,
-  padding: 16,
-  boxShadow: "0 0 20px rgba(234, 179, 8, 0.8)",
+// Default card styles used throughout the app
+export const cardStyles = {
+  standard: {
+    backgroundColor: colors.background,
+    padding: 16,
+    ...glowEffects.medium,
+    ...borderEffects.standard,
+  },
+  medium: {
+    backgroundColor: colors.background,
+    padding: 12,
+    ...glowEffects.subtle,
+    ...borderEffects.standard,
+  },
+  small: {
+    backgroundColor: colors.background,
+    padding: 8,
+    ...glowEffects.subtle,
+    ...borderEffects.subtle,
+  },
 };

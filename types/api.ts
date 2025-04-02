@@ -30,3 +30,7 @@ export interface ReadingSummaryResponse {
   position: number;
   createdAt: string;
 }
+
+export interface CardResponse {
+  card: ISelectedAndShownCard;
+}

@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   ActivityIndicator,
-  Platform,
 } from "react-native";
 import * as AppleAuthentication from "expo-apple-authentication";
 import * as WebBrowser from "expo-web-browser";
@@ -271,13 +270,17 @@ export default function AuthScreen() {
       </TouchableOpacity>
 
       {isAppleAuthAvailable && (
-        <AppleAuthentication.AppleAuthenticationButton
-          buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
-          buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
-          cornerRadius={5}
-          style={styles.appleButton}
+        <TouchableOpacity
+          style={[styles.appleButton, isAppleLoading && styles.buttonDisabled]}
           onPress={handleAppleAuth}
-        />
+          disabled={isAppleLoading}
+        >
+          {isAppleLoading ? (
+            <ActivityIndicator color="#FFFFFF" />
+          ) : (
+            <Text style={styles.buttonText}>Mit Apple fortfahren</Text>
+          )}
+        </TouchableOpacity>
       )}
 
       <View style={styles.separatorContainer}>

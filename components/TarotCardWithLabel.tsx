@@ -3,8 +3,7 @@ import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import OptimizedTarotCard from "@/components/OptimizedTarotCard";
 import { Shadow } from "react-native-shadow-2";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { commonStyles, globalTextStyles } from "@/styles/tarotTheme";
-import { colors } from "@/styles/theme";
+import { componentStyles, textStyles, colors } from "@/styles";
 
 interface TarotCardWithLabelProps {
   card: ISelectedAndShownCard;
@@ -35,11 +34,9 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
   };
 
   return (
-    <View style={commonStyles.cardWrapper}>
+    <View style={componentStyles.cardWrapper}>
       {/* Position Label */}
-      <Text style={globalTextStyles.cardLabel}>
-        ({getPositionLabel(index)})
-      </Text>
+      <Text style={textStyles.cardLabel}>({getPositionLabel(index)})</Text>
 
       {/* Tarot Card Image */}
       <View
@@ -83,7 +80,7 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
         }}
       >
         <Text
-          style={globalTextStyles.cardName}
+          style={textStyles.cardName}
           numberOfLines={2}
           ellipsizeMode="tail"
         >

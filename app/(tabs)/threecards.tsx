@@ -5,8 +5,8 @@ import DrawnCardsDisplay from "@/components/DrawnCardsDisplay";
 import { getRandomDrawnCards } from "@/utils/tarotCardPool";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
 import SummaryView from "@/components/SummaryView";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { saveDrawnCards } from "@/utils/tarotCardUtils";
+import { gameStyles, layoutStyles } from "@/styles/styles";
 
 export default function Index() {
   const { width, height } = Dimensions.get("window");
@@ -24,13 +24,11 @@ export default function Index() {
     { x: width / 2, y: 120 }, // Position für dritte Karte
   ];
 
-  const [cardsDrawn, setCardsDrawn] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [selectedCards, setSelectedCards] = useState<ISelectedAndShownCard[]>(
     []
   );
-  const [showSummary, setShowSummary] = useState(false);
+
   const [currentRound, setCurrentRound] = useState(0);
   const [predeterminedCards, setPredeterminedCards] = useState<
     ISelectedAndShownCard[]
@@ -48,12 +46,9 @@ export default function Index() {
     }
   }, [sessionStarted]);
 
-  const handleAnimationComplete = () => {
-    setCardsDrawn(true);
-  };
+  const handleAnimationComplete = () => {};
 
   const handleCardSelect = (selectedCard: ISelectedAndShownCard) => {
-    setSelectedCard(selectedCard.name);
     setSelectedCards((prev) => [...prev, selectedCard]);
   };
 
@@ -64,7 +59,6 @@ export default function Index() {
 
     // Kurze Verzögerung für weichen Übergang
     setTimeout(() => {
-      setSelectedCard(null);
       setCurrentRound((prev) => prev + 1);
 
       // Zurücksetzen der drawnCardOpacity für den nächsten Fade-In
@@ -73,7 +67,6 @@ export default function Index() {
   };
 
   const handleDismissSummary = () => {
-    setShowSummary(false);
     setSessionStarted(false);
     setSelectedCards([]);
     setCurrentRound(0);
@@ -94,19 +87,18 @@ export default function Index() {
   };
 
   return (
-    <View className="flex-1 relative bg-gray-900">
+    <View style={gameStyles.bgGray900}>
       {!sessionStarted ? (
         <Pressable
-          className="absolute self-center bg-orange-600/90 px-4 py-4 rounded-lg z-50"
-          style={{ bottom: height * 0.05 }}
+          style={[gameStyles.startButton, { bottom: height * 0.05 }]}
           onPress={handleStartSession}
         >
-          <Text className="text-white text-base font-bold">Start</Text>
+          <Text style={gameStyles.startButtonText}>Start</Text>
         </Pressable>
       ) : (
         <>
           {currentRound < 3 ? (
-            <View className="flex-1 items-center justify-center">
+            <View style={layoutStyles.flexCenter}>
               <CardStackView
                 onAnimationComplete={handleAnimationComplete}
                 onCardSelect={handleCardSelect}
@@ -138,7 +130,7 @@ export default function Index() {
           )}
 
           {currentRound === 3 ? (
-            <View className="absolute inset-0 z-50">
+            <View style={layoutStyles.fullscreenAbsolute}>
               <SummaryView
                 cards={selectedCards}
                 onDismiss={handleDismissSummary}
