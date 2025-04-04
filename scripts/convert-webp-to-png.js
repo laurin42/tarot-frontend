@@ -1,3 +1,10 @@
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Get the current directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const sharp = require('sharp');
 const fs = require('fs-extra');
 const path = require('path');

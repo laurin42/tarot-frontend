@@ -35,7 +35,6 @@
         "buildType": "apk"
       },
       "ios": {
-        "buildType": "archive"
       }
     }
   },

@@ -1,0 +1,751 @@
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384421
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384651
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384651
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384651
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384651
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384421
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384651
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384421
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384651
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384421
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: recursivelyTraversePassiveMountEffects@1:384313
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: commitPassiveMountOnFiber@1:384633
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: flushPassiveEffects@1:392113
+04-04 06:22:36.463  3117  3142 E AndroidRuntime: anonymous@1:391938
+04-04 06:22:36.463  3117  3142 E AndroidRuntime:
+04-04 06:22:36.463  3117  3142 E AndroidRuntime:        at com.facebook.react.modules.core.ExceptionsManagerModule.reportException(ExceptionsManagerModule.kt:52)
+04-04 06:22:36.463  3117  3142 E AndroidRuntime:        at java.lang.reflect.Method.invoke(Native Method)
+04-04 06:22:36.463  3117  3142 E AndroidRuntime:        at com.facebook.react.bridge.JavaMethodWrapper.invoke(JavaMethodWrapper.java:372)        
+04-04 06:22:36.463  3117  3142 E AndroidRuntime:        at com.facebook.react.bridge.JavaModuleWrapper.invoke(JavaModuleWrapper.java:146)        
+04-04 06:22:36.463  3117  3142 E AndroidRuntime:        at com.facebook.jni.NativeRunnable.run(Native Method)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at android.os.Handler.handleCallback(Handler.java:959)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at android.os.Handler.dispatchMessage(Handler.java:100)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at com.facebook.react.bridge.queue.MessageQueueThreadHandler.dispatchMessage(MessageQueueThreadHandler.java:27)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at android.os.Looper.loopOnce(Looper.java:232)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at android.os.Looper.loop(Looper.java:317)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at com.facebook.react.bridge.queue.MessageQueueThreadImpl.lambda$startNewBackgroundThread$2(MessageQueueThreadImpl.java:217)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at com.facebook.react.bridge.queue.MessageQueueThreadImpl$$ExternalSyntheticLambda1.run(D8$$SyntheticClass:0)
+04-04 06:22:36.464  3117  3142 E AndroidRuntime:        at java.lang.Thread.run(Thread.java:1012)
+04-04 06:22:36.479   673  2874 W ActivityTaskManager:   Force finishing activity com.laurin.tarot/.MainActivity
+04-04 06:22:36.489  1074  1135 V WindowManagerShell: Transition requested (#28): android.os.BinderProxy@a718e87 TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 16, debugId = 28 }
+04-04 06:22:36.498  3117  3141 E ReactNativeJS: 'Error preloading critical assets:', { [Error: Cannot load null or undefined font source: { "Montserrat": undefined }. Expected asset of type `FontSource` for fontFamily of name: "Montserrat"] code: 'ERR_FONT_SOURCE' }
+04-04 06:22:36.525  1495  1495 D VRI[QuickstepLauncher]: visibilityChanged oldVisibility=false newVisibility=true
+04-04 06:22:36.531  1074  1135 W Looper  : Slow dispatch took 42ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda1@f3101b4 m=0
+04-04 06:22:36.533   673   727 I ActivityManager: Showing crash dialog for package com.laurin.tarot u0
+04-04 06:22:36.548   432   432 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+04-04 06:22:36.596  1495  1495 D BaseDepthController: mSurface is not valid
+04-04 06:22:36.654  1495  1495 D BaseDepthController: setSurface:
+04-04 06:22:36.654  1495  1495 D BaseDepthController:   mWaitingOnSurfaceValidity: true
+04-04 06:22:36.654  1495  1495 D BaseDepthController:   mSurface: Surface(name=com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher)/@0x83b1780
+04-04 06:22:36.683  1074  1135 W Looper  : Slow delivery took 46ms wmshell.main h=android.os.Handler c=com.android.wm.shell.common.DisplayInsetsController$PerDisplay$DisplayWindowInsetsControllerImpl$$ExternalSyntheticLambda3@b9ac1dd m=0
+04-04 06:22:36.918   673   727 W Looper  : Slow dispatch took 373ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.ErrorDialogController$$ExternalSyntheticLambda5@3120915 m=0
+04-04 06:22:36.919   673   727 W Looper  : Slow delivery took 301ms android.ui h=com.android.server.wm.DisplayPolicy$PolicyHandler c=com.android.server.wm.DisplayPolicy$$ExternalSyntheticLambda12@8b0742a m=0
+04-04 06:22:36.937   673   727 D CoreBackPreview: Window{c0bcb5d u0 Application Error: com.laurin.tarot}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.WindowOnBackInvokedDispatcher$OnBackInvokedCallbackWrapper@b0ffb8, mPriority=0, mIsAnimationCallback=false}    
+04-04 06:22:36.988   673   729 W ActivityTaskManager: Activity top resumed state loss timeout for ActivityRecord{77ce357 u0 com.laurin.tarot/.MainActivity t26 f}}
+04-04 06:22:37.009  1495  1495 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=16, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10000100 cmp=com.android.launcher3/.uioverrides.QuickstepLauncher }
+04-04 06:22:37.034   673   729 W ActivityTaskManager: Activity pause timeout for ActivityRecord{77ce357 u0 com.laurin.tarot/.MainActivity t26 f}}
+04-04 06:22:37.080  1495  1495 D StatsLog: LAUNCHER_ONRESUME
+04-04 06:22:37.092  1074  1135 W Looper  : Drained
+04-04 06:22:37.102  1074  1769 V WindowManagerShell: onTransitionReady(transaction=2890512991503)
+04-04 06:22:37.103  1074  1135 V WindowManagerShell: onTransitionReady (#28) android.os.BinderProxy@a718e87: {id=28 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@30df09e} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x5e41152 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@473c77f} m=CLOSE f=NONE leash=Surface(name=Task=26)/@0x6ce8c23 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0xab68520 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}]}
+04-04 06:22:37.104  1074  1135 V WindowManagerShell: Playing animation for (#28) android.os.BinderProxy@a718e87@0
+04-04 06:22:37.104  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@faf8f8c
+04-04 06:22:37.109  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@dc4f6d5
+04-04 06:22:37.110  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@dd02eea
+04-04 06:22:37.111  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@2eb75db     
+04-04 06:22:37.121  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@e8c1878
+04-04 06:22:37.122  1074  1135 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+04-04 06:22:37.122  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@dfa4fb6
+04-04 06:22:37.127  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@4a194b7
+04-04 06:22:37.128  1074  1135 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=28 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@30df09e} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0x5e41152 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@473c77f} m=CLOSE f=NONE leash=Surface(name=Task=26)/@0x6ce8c23 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0xab68520 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}]}
+04-04 06:22:37.129  1074  1135 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2ba06c9, appThread = android.app.IApplicationThread$Stub$Proxy@fbc51ce, debugName = QuickstepLaunchHome }}
+04-04 06:22:37.130  1074  1135 D RemoteTransitionHandler: Found filterPair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2ba06c9, appThread = android.app.IApplicationThread$Stub$Proxy@fbc51ce, debugName = QuickstepLaunchHome }}
+04-04 06:22:37.130  1074  1135 V WindowManagerShell:  Delegate animation for (#28) to RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2ba06c9, appThread = android.app.IApplicationThread$Stub$Proxy@fbc51ce, debugName = QuickstepLaunchHome }
+04-04 06:22:37.195  1495  2547 E FrameEvents: addRelease: Did not find frame.
+04-04 06:22:37.179     0     0 I logd    : logdr: UID=2000 GID=2000 PID=3154 b tail=0 logMask=99 pid=0 start=0ns deadline=0ns
+04-04 06:22:37.300  3117  3136 W om.laurin.tarot: Long monitor contention with owner mqt_js (3141) at android.os.Message android.os.MessageQueue.next()(MessageQueue.java:384) waiters=0 in boolean android.os.MessageQueue.enqueueMessage(android.os.Message, long) for 174ms
+04-04 06:22:37.530  3117  3149 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[MainActivity]#0) as ready
+04-04 06:22:37.615  3117  3149 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[MainActivity]#1) as ready
+04-04 06:22:37.698  1495  1495 I Choreographer: Skipped 30 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:37.857   673   725 V WindowManager: Sent Transition (#28) createdAt=04-04 06:22:36.480 via request=TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 16, debugId = 28 }
+04-04 06:22:37.859   673   725 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+04-04 06:22:37.862   673   725 V WindowManager:     info={id=28 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[
+04-04 06:22:37.862   673   725 V WindowManager:         {WCT{RemoteToken{be78f4a Task{eeeda93 #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=1)/@0xeb173f2 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},
+04-04 06:22:37.862   673   725 V WindowManager:         {WCT{RemoteToken{8b1f861 Task{9bb7e44 #26 type=standard A=10148:com.laurin.tarot}}} m=CLOSE f=NONE leash=Surface(name=Task=26)/@0x4ae12e5 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},
+04-04 06:22:37.862   673   725 V WindowManager:         {null m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0xd2eceba sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}
+04-04 06:22:37.862   673   725 V WindowManager:     ]}
+04-04 06:22:37.866  3117  3117 I Choreographer: Skipped 84 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:37.892   673  1209 W system_server: Long monitor contention with owner android.display (729) at void com.android.server.wm.ActivityRecord$1.run()(ActivityRecord.java:1053) waiters=0 in void com.android.server.wm.WindowManagerService.finishDrawingWindow(com.android.server.wm.Session, android.view.IWindow, android.view.SurfaceControl$Transaction, int) for 822ms
+04-04 06:22:37.894   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=2
+04-04 06:22:37.894   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:37.923  1495  1818 D EGL_emulation: app_time_stats: avg=670.45ms min=101.37ms max=3335.69ms count=6
+04-04 06:22:37.939  3117  3127 I HWUI    : Davey! duration=1259ms; Flags=1, FrameTimelineVsyncId=52772, IntendedVsync=817442118704, Vsync=817442118704, InputEventId=0, HandleInputStart=817444133100, AnimationStart=817444178700, PerformTraversalsStart=817451122800, DrawStart=817454867300, FrameDeadline=817458785370, FrameInterval=817444113900, FrameStartTime=16666666, SyncQueued=817457981900, SyncStart=817458786700, IssueDrawCommandsStart=817460644900, SwapBuffers=817970792800, FrameCompleted=818702922000, DequeueBufferDuration=148900, QueueBufferDuration=916700, GpuCompleted=818702922000, SwapBuffersCompleted=818614714800, DisplayPresentTime=16960825855817, CommandSubmissionCompleted=817970792800,
+04-04 06:22:37.956   673  1449 W system_server: Long monitor contention with owner android.display (729) at void com.android.server.wm.ActivityRecord$1.run()(ActivityRecord.java:1053) waiters=2 in void com.android.server.wm.ActivityClientController.activityResumed(android.os.IBinder, boolean) for 780ms
+04-04 06:22:37.979   673  1494 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[tarot]#6) as ready
+04-04 06:22:37.990  1074  1135 V WindowManagerShell:  animated by com.android.wm.shell.transition.RemoteTransitionHandler@4a194b7
+04-04 06:22:37.991  1074  1135 W Looper  : Slow dispatch took 888ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@9b94f95 m=0
+04-04 06:22:37.991  1074  1135 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#28) android.os.BinderProxy@a718e87@0
+04-04 06:22:38.013   673  1494 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[tarot]#7) as ready
+04-04 06:22:38.034  1074  1074 W ndroid.systemui: Long monitor contention with owner SysUiBg (1186) at boolean android.os.MessageQueue.enqueueMessage(android.os.Message, long)(MessageQueue.java:695) waiters=0 in android.os.Message android.os.MessageQueue.next() for 192ms
+04-04 06:22:38.041   673   725 V WindowManager: Finish Transition (#28): created at 04-04 06:22:36.480 collect-started=1.031ms request-sent=1.224ms started=48.889ms ready=581.776ms sent=614.894ms finished=1555.215ms
+04-04 06:22:38.170  1074  1135 V WindowManagerShell: Track 0 became idle
+04-04 06:22:38.171  1074  1135 V WindowManagerShell: All active transition animations finished
+04-04 06:22:38.171  1074  1135 W Looper  : Slow delivery took 141ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.RemoteTransitionHandler$1$$ExternalSyntheticLambda0@1075c9b m=0
+04-04 06:22:38.172  1074  1135 W Looper  : Slow dispatch took 180ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.RemoteTransitionHandler$1$$ExternalSyntheticLambda0@1075c9b m=0
+04-04 06:22:38.178  1074  1135 W Looper  : Drained
+04-04 06:22:38.265  3117  3117 D VRI[MainActivity]: visibilityChanged oldVisibility=true newVisibility=false
+04-04 06:22:38.319  1074  1135 W Looper  : Slow dispatch took 98ms wmshell.main h=android.os.Handler c=com.android.wm.shell.common.ShellExecutor$$ExternalSyntheticLambda0@dac5011 m=0
+04-04 06:22:38.386  1495  1495 I Choreographer: Skipped 34 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:38.622  1495  1818 D EGL_emulation: app_time_stats: avg=811.28ms min=616.08ms max=1006.48ms count=2
+04-04 06:22:38.650  3117  3117 E unknown:ReactNative: Tried to remove non-existent frame callback
+04-04 06:22:38.664  3117  3117 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@2ca7a8d
+04-04 06:22:38.665   673  1132 D CoreBackPreview: Window{7ddd1d3 u0 com.laurin.tarot/com.laurin.tarot.MainActivity}: Setting back callback null  
+04-04 06:22:38.686   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=3
+04-04 06:22:38.687   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:38.778   673  1249 W InputManager-JNI: Input channel object '7ddd1d3 com.laurin.tarot/com.laurin.tarot.MainActivity (client)' was disposed without first being removed with the input manager!
+04-04 06:22:38.839   673  1449 W InputManager-JNI: Input channel object 'd143ab0 Splash Screen com.laurin.tarot (client)' was disposed without first being removed with the input manager!
+04-04 06:22:38.887  3117  3117 I Choreographer: Skipped 31 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:38.938   370   427 I netd    : tetherGetStats() -> {[]} <176.53ms>
+04-04 06:22:38.939   673  1132 D ConnectivityService: requestNetwork for uid/pid:10148/3117 activeRequest: null callbackRequest: 90 [NetworkRequest [ REQUEST id=91, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ]] callback flags: 0 order: 2147483647 isUidTracked: false
+04-04 06:22:38.969   673   949 D OemPaidWifiNetworkFactory: got request NetworkRequest [ REQUEST id=91, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ]       
+04-04 06:22:38.973   673   960 D ConnectivityService: NetReassign [91 : null → 101] [c 1] [a 1] [i 31]
+04-04 06:22:38.976  1074  1135 W Looper  : Slow delivery took 87ms wmshell.main h=android.os.Handler c=android.window.TaskOrganizer$1$$ExternalSyntheticLambda5@4752777 m=0
+04-04 06:22:39.012   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=4
+04-04 06:22:39.014   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:39.092   673   730 W system_server: Long monitor contention with owner binder:673_C (1449) at void com.android.server.wm.ActivityClientController.activityDestroyed(android.os.IBinder)(ActivityClientController.java:303) waiters=0 in void com.android.server.wm.InputMonitor$UpdateInputWindows.run() for 244ms
+04-04 06:22:39.238  1495  1505 I HWUI    : Davey! duration=1032ms; Flags=0, FrameTimelineVsyncId=52900, IntendedVsync=818158785342, Vsync=818658785322, InputEventId=0, HandleInputStart=818793969500, AnimationStart=818794085700, PerformTraversalsStart=818800948800, DrawStart=818928323100, FrameDeadline=818642118656, FrameInterval=818666663500, FrameStartTime=16666666, SyncQueued=818928536600, SyncStart=819385325700, IssueDrawCommandsStart=819387565200, SwapBuffers=819523941300, FrameCompleted=819647961600, DequeueBufferDuration=82000, QueueBufferDuration=22040000, GpuCompleted=819647961600, SwapBuffersCompleted=819623837900, DisplayPresentTime=0, CommandSubmissionCompleted=819523941300,
+04-04 06:22:39.241  1495  1495 W FrameTracker: Missed App frame:UNKNOWN: 74, 52900, 1465052558, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME>
+04-04 06:22:39.243  1495  1495 W FrameTracker: Missed SF frame:UNKNOWN: 74, 52900, 1465052558, CUJ=J<LAUNCHER_APP_CLOSE_TO_HOME>
+04-04 06:22:39.306  3117  3159 W om.laurin.tarot: Long monitor contention with owner DefaultDispatcher-worker-1 (3137) at void com.bumptech.glide.RequestManager.track(com.bumptech.glide.request.target.Target, com.bumptech.glide.request.Request)(RequestManager.java:689) waiters=1 in com.bumptech.glide.request.RequestOptions com.bumptech.glide.RequestManager.getDefaultRequestOptions() for 264ms
+04-04 06:22:39.325   673  1449 W WindowManager: Failed looking up window session=Session{95bcfd7 1074:u0a10122} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6311 com.android.server.wm.WindowManagerService.relayoutWindowInner:2328 com.android.server.wm.WindowManagerService.relayoutWindow:2293
+04-04 06:22:39.339   673   949 D MultiInternetWifiNetworkFactory: got request NetworkRequest [ REQUEST id=91, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ] 
+04-04 06:22:39.415  1495  1505 I HWUI    : Davey! duration=1263ms; Flags=0, FrameTimelineVsyncId=52916, IntendedVsync=818808785316, Vsync=819375451960, InputEventId=0, HandleInputStart=819451595500, AnimationStart=819451680500, PerformTraversalsStart=819456385900, DrawStart=819456816700, FrameDeadline=819692118614, FrameInterval=819386410500, FrameStartTime=16666666, SyncQueued=819458424700, SyncStart=819624414400, IssueDrawCommandsStart=819629972800, SwapBuffers=819634916800, FrameCompleted=820238462100, DequeueBufferDuration=444418800, QueueBufferDuration=286500, GpuCompleted=819793708600, SwapBuffersCompleted=820238462100, DisplayPresentTime=0, CommandSubmissionCompleted=819634916800,
+04-04 06:22:39.416  1495  1523 V PerfettoTrigger: Not triggering com.android.telemetry.interaction-jank-monitor-9 - not enough time since last trigger
+04-04 06:22:39.463   673   949 D WifiNetworkFactory: got request NetworkRequest [ REQUEST id=91, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ]
+04-04 06:22:39.465   673   949 D UntrustedWifiNetworkFactory: got request NetworkRequest [ REQUEST id=91, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ]     
+04-04 06:22:39.508  1495  1495 I TopTaskTracker: onTaskRemoved: taskId=26
+04-04 06:22:39.509  1495  1495 I TopTaskTracker: onTaskRemoved: taskId=26
+04-04 06:22:39.521   673  1249 W ActivityTaskManager: takeTaskSnapshot: taskId=26 not found or not visible
+04-04 06:22:39.578  1074  1165 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@ff0e4bb
+04-04 06:22:39.579   673  1449 W WindowManager: Failed looking up window session=Session{95bcfd7 1074:u0a10122} callers=com.android.server.wm.WindowManagerService.windowForClientLocked:6311 com.android.server.wm.Session.setOnBackInvokedCallbackInfo:1020 android.view.IWindowSession$Stub.onTransact:1199
+04-04 06:22:39.579   673  1449 I WindowManager: setOnBackInvokedCallback(): No window state for package:com.android.systemui
+04-04 06:22:39.615   673  1249 W WindowManager: Failed looking up window session=Session{95bcfd7 1074:u0a10122} callers=com.android.server.wm.WindowManagerService.removeClientToken:2058 com.android.server.wm.Session.remove:274 android.view.IWindowSession$Stub.onTransact:685
+04-04 06:22:39.679  1074  1165 W FrameTracker: Missed App frame:UNKNOWN: 10, 52947, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.711  1074  1165 W FrameTracker: Missed SF frame:UNKNOWN: 10, 52947, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.712  1074  1165 W FrameTracker: Missing HWUI jank callback for vsyncId: 52947, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.734  1074  1165 W FrameTracker: Missed App frame:UNKNOWN: 74, 52954, 696635134, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.734  1074  1165 W FrameTracker: Missed SF frame:UNKNOWN: 74, 52954, 696635134, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.734  1074  1165 W FrameTracker: Missed App frame:UNKNOWN: 74, 52975, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.735  1074  1165 W FrameTracker: Missed SF frame:UNKNOWN: 74, 52975, 0, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.735  1074  1165 W FrameTracker: Missing HWUI jank callback for vsyncId: 52975, CUJ=J<SPLASHSCREEN_EXIT_ANIM>
+04-04 06:22:39.748  1074  1144 V PerfettoTrigger: Triggering /system/bin/trigger_perfetto com.android.telemetry.interaction-jank-monitor-39      
+04-04 06:22:40.195  3117  3141 I ReactNativeJNI: Memory warning (pressure level: TRIM_MEMORY_BACKGROUND) received by JS VM, running a GC
+04-04 06:22:40.226  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.226  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_magician
+04-04 06:22:40.226  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.233  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.233  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_king_of_cups
+04-04 06:22:40.233  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.242  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.242  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_empress
+04-04 06:22:40.242  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.254  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.254  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_cups
+04-04 06:22:40.254  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.261  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.261  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_two_cups
+04-04 06:22:40.261  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.271  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.271  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_queen_of_cups
+04-04 06:22:40.271  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.288  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.288  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_cups
+04-04 06:22:40.288  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.290  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.290  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_fool
+04-04 06:22:40.290  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.302  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.302  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_pentacles
+04-04 06:22:40.302  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.307  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.307  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_cups
+04-04 06:22:40.307  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.319  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.319  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_cups
+04-04 06:22:40.319  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.328  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.328  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_high_priestess
+04-04 06:22:40.328  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.339  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.339  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_cups
+04-04 06:22:40.339  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.348  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.348  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_cups
+04-04 06:22:40.348  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.370  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.370  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_pents
+04-04 06:22:40.370  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.374  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.374  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_pents
+04-04 06:22:40.374  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.384  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.384  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_cups
+04-04 06:22:40.384  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.405  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.405  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_cups
+04-04 06:22:40.405  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.411  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.411  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_cups
+04-04 06:22:40.411  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.421  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.421  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_pents
+04-04 06:22:40.421  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.423  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.423  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_pents
+04-04 06:22:40.423  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.436  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.436  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_cups
+04-04 06:22:40.436  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.441  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.441  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_pentacles
+04-04 06:22:40.441  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.445  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.445  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_pents
+04-04 06:22:40.445  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.451  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.451  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_pents
+04-04 06:22:40.451  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.455  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.455  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ace_of_pentacles
+04-04 06:22:40.455  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.462  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.462  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_pents
+04-04 06:22:40.462  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.470  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.470  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_pents
+04-04 06:22:40.470  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.476  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.476  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_fool
+04-04 06:22:40.476  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.486  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.486  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_empress
+04-04 06:22:40.486  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.490  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.490  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_king_of_cups
+04-04 06:22:40.490  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.492  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.492  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_magician
+04-04 06:22:40.492  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.495  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.495  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_pentacles
+04-04 06:22:40.495  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.512  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.512  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_pentacles
+04-04 06:22:40.512  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.517  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.517  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_high_priestess
+04-04 06:22:40.517  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.526  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.526  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_two_cups
+04-04 06:22:40.526  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.539  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.539  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_queen_of_cups
+04-04 06:22:40.539  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.544  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.544  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_cups
+04-04 06:22:40.544  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.557  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.557  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_cups
+04-04 06:22:40.557  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.562  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.562  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_cups
+04-04 06:22:40.562  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.569  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.569  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_cups
+04-04 06:22:40.569  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.589  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.589  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_cups
+04-04 06:22:40.589  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.597  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.597  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_cups
+04-04 06:22:40.597  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.602  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.602  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_cups
+04-04 06:22:40.602  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.612  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.612  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_cups
+04-04 06:22:40.612  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.617  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.617  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_cups
+04-04 06:22:40.617  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.620  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.620  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_cups
+04-04 06:22:40.620  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.636  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.636  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_pents
+04-04 06:22:40.636  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.657  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.657  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_pents
+04-04 06:22:40.657  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.663  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.663  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_pents
+04-04 06:22:40.663  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.670  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.670  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_pents
+04-04 06:22:40.670  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.688  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.688  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_pents
+04-04 06:22:40.688  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.703  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.703  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_pents
+04-04 06:22:40.703  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.713  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.713  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_pents
+04-04 06:22:40.713  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.717  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.717  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_pents
+04-04 06:22:40.717  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.719  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:40.719  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ace_of_pentacles
+04-04 06:22:40.719  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:40.771  3117  3176 D ProfileInstaller: Installing profile for com.laurin.tarot
+04-04 06:22:40.827   673  1132 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_ORIENTATION_OVERRIDE
+04-04 06:22:40.829   673  1132 V GrammaticalInflectionUtils: AttributionSource: AttributionSource { uid = 10148, packageName = null, attributionTag = null, token = android.os.Binder@9dacd97, deviceId = 0, next = null } does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+04-04 06:22:40.830   673  1132 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_RESIZEABLE_ACTIVITY_OVERRIDES
+04-04 06:22:40.831  1495  1818 D EGL_emulation: app_time_stats: avg=881.38ms min=170.07ms max=1592.69ms count=2
+04-04 06:22:40.831   673  1132 W OptProp : Cannot read opt property android.window.PROPERTY_COMPAT_ALLOW_MIN_ASPECT_RATIO_OVERRIDE
+04-04 06:22:40.844   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=5
+04-04 06:22:40.845   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:40.881   673  1132 V SplashScreenExceptionList: SplashScreen checking exception for package com.laurin.tarot (target sdk:34) -> false
+04-04 06:22:40.899   673  1132 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.laurin.tarot/.MainActivity bnds=[216,932][432,1247]} with LAUNCH_SINGLE_TASK from uid 10120 (BAL_ALLOW_VISIBLE_WINDOW) result code=0 
+04-04 06:22:40.900  1495  1495 D StatsLog: LAUNCHER_APP_LAUNCH_TAP
+04-04 06:22:40.918  1074  1135 V WindowManagerShell: Transition requested (#29): android.os.BinderProxy@965bd4e TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=27 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.laurin.tarot/.MainActivity } baseActivity=ComponentInfo{com.laurin.tarot/com.laurin.tarot.MainActivity} topActivity=ComponentInfo{com.laurin.tarot/com.laurin.tarot.MainActivity} origActivity=null realActivity=ComponentInfo{com.laurin.tarot/com.laurin.tarot.MainActivity} numActivities=1 lastActiveTime=821896 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.window.IWindowContainerToken$Stub$Proxy@8538e6f} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 136 - 0, 0) topActivityInfo=ActivityInfo{9d3a77c com.laurin.tarot.MainActivity} launchCookies=[android.os.BinderProxy@20e4805] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2340 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2e4605a, appThread = android.app.IApplicationThread$Stub$Proxy@34a28b, debugName = QuickstepLaunch }, displayChange = null, flags = 0, debugId = 29 }
+04-04 06:22:40.918  1495  1495 W SplitSelectStateCtor: Missing session instanceIds
+04-04 06:22:40.919  1495  1495 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+04-04 06:22:40.919  1074  1135 V WindowManagerShell: RemoteTransition directly requested for (#29) android.os.BinderProxy@965bd4e: RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2e4605a, appThread = android.app.IApplicationThread$Stub$Proxy@34a28b, debugName = QuickstepLaunch }
+04-04 06:22:40.930  1074  1166 D SplashScreenView: Build android.window.SplashScreenView{fc8dc67 V.E...... ......ID 0,0-0,0}
+04-04 06:22:40.930  1074  1166 D SplashScreenView: Icon: view: android.widget.ImageView{a576a14 V.ED..... ......I. 0,0-0,0 #1020504 android:id/splashscreen_icon_view} drawable: com.android.wm.shell.startingsurface.SplashscreenIconDrawableFactory$ImmobileIconDrawable@90272bd size: 504      
+04-04 06:22:40.930  1074  1166 D SplashScreenView: Branding: view: android.view.View{2ea0b2 G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+04-04 06:22:40.971   673  1449 D CoreBackPreview: Window{7206c32 u0 Splash Screen com.laurin.tarot}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@ce28b00, mPriority=0, mIsAnimationCallback=false}
+04-04 06:22:40.984   370   427 I netd    : tetherGetStats() -> {[]} <1.38ms>
+04-04 06:22:40.989  1074  1135 W Looper  : Slow dispatch took 71ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda1@70de7ac m=0
+04-04 06:22:41.005  1074  1135 W Looper  : Drained
+04-04 06:22:41.076   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=6
+04-04 06:22:41.079   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:41.080   421   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+04-04 06:22:41.080   432   432 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+04-04 06:22:41.122  1495  1495 I TopTaskTracker: onTaskMovedToFront: (moved taskInfo to front) taskId=27, baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.laurin.tarot/.MainActivity }
+04-04 06:22:41.133   673  1449 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+04-04 06:22:41.195   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=7
+04-04 06:22:41.195   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:41.195   421   531 D AudioFlinger: mixer(0x7bfabb03f8e0) throttle end: throttle time(22)
+04-04 06:22:41.224   673   727 W Looper  : Slow dispatch took 4290ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:41.265   673   725 V WindowManager: Sent Transition (#29) createdAt=04-04 06:22:40.834 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=27 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.laurin.tarot/.MainActivity } baseActivity=ComponentInfo{com.laurin.tarot/com.laurin.tarot.MainActivity} topActivity=ComponentInfo{com.laurin.tarot/com.laurin.tarot.MainActivity} origActivity=null realActivity=ComponentInfo{com.laurin.tarot/com.laurin.tarot.MainActivity} numActivities=1 lastActiveTime=821896 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{bb54f8a Task{d7c3ba6 #27 type=standard A=10148:com.laurin.tarot}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 136 - 0, 0) topActivityInfo=ActivityInfo{92b19fb com.laurin.tarot.MainActivity} launchCookies=[android.os.BinderProxy@c66ba18] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false topActivityEligibleForLetterboxEducation= falseisLetterboxEducationEnabled= false isLetterboxDoubleTapEnabled= false topActivityEligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=1080 topActivityLetterboxHeight=2340 isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatControlState=hidden freeformCameraCompatMode=inactive}}}, pipTask = null, remoteTransition = RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@b00bc71, appThread = android.app.IApplicationThread$Stub$Proxy@920da56, debugName = QuickstepLaunch }, displayChange = null, flags = 0, debugId = 29 }
+04-04 06:22:41.265   673   725 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+04-04 06:22:41.265   673   725 V WindowManager:     info={id=29 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+04-04 06:22:41.265   673   725 V WindowManager:         {WCT{RemoteToken{bb54f8a Task{d7c3ba6 #27 type=standard A=10148:com.laurin.tarot}}} m=OPEN f=NONE leash=Surface(name=Task=27)/@0x665572c sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},
+04-04 06:22:41.265   673   725 V WindowManager:         {WCT{RemoteToken{be78f4a Task{eeeda93 #1 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xeb173f2 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1}
+04-04 06:22:41.265   673   725 V WindowManager:     ]}
+04-04 06:22:41.297  1074  1090 V WindowManagerShell: onTransitionReady(transaction=2890512991543)
+04-04 06:22:41.311   421   531 D AudioFlinger: mixer(0x7bfabb03f8e0) throttle end: throttle time(19)
+04-04 06:22:41.321   673  1249 D CoreBackPreview: Window{a65197e u0 com.laurin.tarot/com.laurin.tarot.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@a075ad7, mPriority=0, mIsAnimationCallback=false}
+04-04 06:22:41.334  1074  1135 W Looper  : Slow delivery took 53ms wmshell.main h=android.os.Handler c=com.android.wm.shell.common.ShellExecutor$$ExternalSyntheticLambda0@6338044 m=0
+04-04 06:22:41.337  1074  1135 W Looper  : Slow dispatch took 38ms wmshell.main h=android.os.Handler c=com.android.wm.shell.common.ShellExecutor$$ExternalSyntheticLambda0@6338044 m=0
+04-04 06:22:41.339  1074  1135 V WindowManagerShell: onTransitionReady (#29) android.os.BinderProxy@965bd4e: {id=29 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@d9a852d} m=OPEN f=NONE leash=Surface(name=Task=27)/@0xa47d298 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@d2c9a62} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=1)/@0xc4f2af1 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1}]}
+04-04 06:22:41.346   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=8
+04-04 06:22:41.346   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:41.376  1074  1135 V WindowManagerShell: Playing animation for (#29) android.os.BinderProxy@965bd4e@0
+04-04 06:22:41.387  1074  1135 V WindowManagerShell:  try firstHandler com.android.wm.shell.transition.DefaultMixedHandler@faf8f8c
+04-04 06:22:41.387  1074  1135 V WindowManagerShell: Mixed transition for opening an intent with a remote transition and PIP #29
+04-04 06:22:41.388  1074  1135 V WindowManagerShell:  Delegate animation for (#29) to RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2e4605a, appThread = android.app.IApplicationThread$Stub$Proxy@34a28b, debugName = QuickstepLaunch }
+04-04 06:22:41.390   673   727 I Choreographer: Skipped 265 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:41.467  3117  3129 I EGL_emulation: Opening libGLESv1_CM_emulation.so
+04-04 06:22:41.472   421   531 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+04-04 06:22:41.492  3117  3129 I EGL_emulation: Opening libGLESv2_emulation.so
+04-04 06:22:41.507  1074  1135 V WindowManagerShell:  animated by firstHandler
+04-04 06:22:41.507  1074  1135 W Looper  : Slow dispatch took 168ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@ac74729 m=0
+04-04 06:22:41.521  1495  1495 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+04-04 06:22:41.522  1495  1495 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+04-04 06:22:41.524  1495  1495 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+04-04 06:22:41.702  1495  1495 D BaseDepthController: mSurface is null and mCurrentBlur is: 0
+04-04 06:22:41.743  1495  1818 D EGL_emulation: app_time_stats: avg=1716.99ms min=35.72ms max=3398.26ms count=2
+04-04 06:22:41.754   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=9
+04-04 06:22:41.754   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:41.819   673   727 W Looper  : Slow dispatch took 429ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:41.925  1495  1818 D EGL_emulation: app_time_stats: avg=198.80ms min=73.56ms max=323.67ms count=5
+04-04 06:22:41.927   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=10
+04-04 06:22:41.927   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:41.931   394   394 I RanchuHwc: logCompositionFallbackIfChanged: layer 67 CompositionType fallback from 2 to 1
+04-04 06:22:41.932   394   394 I RanchuHwc: logCompositionFallbackIfChanged: layer 68 CompositionType fallback from 3 to 1
+04-04 06:22:41.932   394   394 I RanchuHwc: logCompositionFallbackIfChanged: layer 66 CompositionType fallback from 2 to 1
+04-04 06:22:42.063  3117  3129 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+04-04 06:22:42.071  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.071  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_king_of_cups
+04-04 06:22:42.071  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.074  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected.
+04-04 06:22:42.074  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_empress
+04-04 06:22:42.074  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.076  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.076  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_magician
+04-04 06:22:42.076  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.078  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.078  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_queen_of_cups
+04-04 06:22:42.078  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.080  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.080  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_fool
+04-04 06:22:42.080  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.081  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.081  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_cups
+04-04 06:22:42.081  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.137  3117  3137 W om.laurin.tarot: Long monitor contention with owner DefaultDispatcher-worker-4 (3160) at void com.bumptech.glide.RequestManager.track(com.bumptech.glide.request.target.Target, com.bumptech.glide.request.Request)(RequestManager.java:689) waiters=0 in com.bumptech.glide.request.RequestOptions com.bumptech.glide.RequestManager.getDefaultRequestOptions() for 230ms
+04-04 06:22:42.151  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.151  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_pentacles
+04-04 06:22:42.151  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.174  1074  1296 D EGL_emulation: app_time_stats: avg=1587.54ms min=12.71ms max=7810.07ms count=5
+04-04 06:22:42.184  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.184  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_cups
+04-04 06:22:42.184  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.216   673  2067 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:42.223  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.223  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_cups
+04-04 06:22:42.223  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.239   673  2067 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:42.251   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=11
+04-04 06:22:42.251   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:42.295   673  2067 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:42.378  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.378  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_cups
+04-04 06:22:42.378  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.381   673  1132 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:42.382  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.382  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_cups
+04-04 06:22:42.382  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.502  3117  3149 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(wmsSync-VRI[MainActivity]#2) as ready
+04-04 06:22:42.503  3117  3149 E SurfaceSyncGroup: Failed to receive transaction ready in 1000ms. Marking SurfaceSyncGroup(VRI[MainActivity]#3) as ready
+04-04 06:22:42.525  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.525  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_pents
+04-04 06:22:42.525  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.529   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=12
+04-04 06:22:42.530   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:42.530  1074  1135 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#29) android.os.BinderProxy@965bd4e@0
+04-04 06:22:42.552  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.552  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_two_cups
+04-04 06:22:42.552  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.660  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.660  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_cups
+04-04 06:22:42.660  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.662  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.662  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_cups
+04-04 06:22:42.662  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.688  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.688  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_cups
+04-04 06:22:42.688  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.698  1495  1495 D VRI[QuickstepLauncher]: visibilityChanged oldVisibility=true newVisibility=false
+04-04 06:22:42.715   432   432 E SurfaceFlinger: Out of order buffers detected for RequestedLayerState{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#179 parentId=109} producedId=15 frameNumber=23 -> producedId=15 frameNumber=13
+04-04 06:22:42.715   432   432 D SurfaceFlinger: TransactionTraceWriter: file=/data/misc/wmtrace/out_of_order_buffers_transactions_trace.winscope already exists
+04-04 06:22:42.715   673   725 I ActivityTaskManager: Displayed com.laurin.tarot/.MainActivity for user 0: +1s765ms
+04-04 06:22:42.725  1074  1135 V WindowManagerShell: Track 0 became idle
+04-04 06:22:42.725  1074  1135 V WindowManagerShell: All active transition animations finished
+04-04 06:22:42.726  1074  1135 W Looper  : Drained
+04-04 06:22:42.737  1074  1135 W Looper  : Slow dispatch took 197ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.RemoteTransitionHandler$1$$ExternalSyntheticLambda0@f2111c8 m=0
+04-04 06:22:42.746   673   725 V WindowManager: Finish Transition (#29): created at 04-04 06:22:40.834 collect-started=0.145ms request-sent=63.006ms started=135.739ms ready=135.657ms sent=428.823ms finished=1836.274ms
+04-04 06:22:42.763  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.763  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_cups
+04-04 06:22:42.763  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.765  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:42.765  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_high_priestess
+04-04 06:22:42.765  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:42.860  3117  3141 I ReactNativeJS: Running "main"
+04-04 06:22:42.891  1074  1135 W Looper  : Slow delivery took 246ms wmshell.main h=android.os.Handler c=android.window.TaskOrganizer$1$$ExternalSyntheticLambda6@d2fb261 m=0
+04-04 06:22:42.892  1074  1135 W Looper  : Drained
+04-04 06:22:43.003   673  1681 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+04-04 06:22:43.039  1495  1495 D BaseDepthController: setSurface:
+04-04 06:22:43.039  1495  1495 D BaseDepthController:   mWaitingOnSurfaceValidity: false
+04-04 06:22:43.039  1495  1495 D BaseDepthController:   mSurface: null
+04-04 06:22:43.040  1495  1495 D BaseDepthController: mSurface is null and mCurrentBlur is: 23
+04-04 06:22:43.041  1495  1495 D StatsLog: LAUNCHER_ONSTOP
+04-04 06:22:43.188  1495  1495 W FrameTracker: Missed App frame:UNKNOWN: 76, 53443, 0, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.189  1495  1495 W FrameTracker: Missed SF frame:UNKNOWN: 76, 53443, 0, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.189  1495  1495 W FrameTracker: Missing HWUI jank callback for vsyncId: 53443, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.190  1495  1495 W FrameTracker: Missed App frame:UNKNOWN: 76, 53495, 519646408, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.190  1495  1495 W FrameTracker: Missed SF frame:UNKNOWN: 76, 53495, 519646408, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.190  1495  1495 W FrameTracker: Missed App frame:UNKNOWN: 76, 53546, 594089148, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.191  1495  1495 W FrameTracker: Missed SF frame:UNKNOWN: 76, 53546, 594089148, CUJ=J<LAUNCHER_APP_LAUNCH_FROM_ICON>
+04-04 06:22:43.207  1495  1523 V PerfettoTrigger: Not triggering com.android.telemetry.interaction-jank-monitor-8 - not enough time since last trigger
+04-04 06:22:43.228  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.228  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_pents
+04-04 06:22:43.228  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.273  3117  3117 I Choreographer: Skipped 117 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:43.326   370   427 I netd    : tetherGetStats() -> {[]} <2.79ms>
+04-04 06:22:43.333   673   727 W Looper  : Slow dispatch took 1458ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:43.335   673   727 I Choreographer: Skipped 85 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:43.403  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.403  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_pents
+04-04 06:22:43.403  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.422  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.422  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_pents
+04-04 06:22:43.422  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.433   673  2067 I HWUI    : Davey! duration=5944ms; Flags=0, FrameTimelineVsyncId=52856, IntendedVsync=817958785350, Vsync=822375451840, InputEventId=0, HandleInputStart=822392174600, AnimationStart=822397010800, PerformTraversalsStart=822397875900, DrawStart=822398499800, FrameDeadline=817975452016, FrameInterval=822390239400, FrameStartTime=16666666, SyncQueued=822399055500, SyncStart=822814979700, IssueDrawCommandsStart=822818840900, SwapBuffers=824006299200, FrameCompleted=824319381600, DequeueBufferDuration=75300, QueueBufferDuration=2967000, GpuCompleted=824319381600, SwapBuffersCompleted=824319218300, DisplayPresentTime=0, CommandSubmissionCompleted=824006299200,
+04-04 06:22:43.432  3117  3127 I HWUI    : Davey! duration=2244ms; Flags=1, FrameTimelineVsyncId=53274, IntendedVsync=822058785186, Vsync=822275451844, InputEventId=0, HandleInputStart=822302341500, AnimationStart=822302416600, PerformTraversalsStart=822303050800, DrawStart=823255608900, FrameDeadline=822075451852, FrameInterval=822289524700, FrameStartTime=16666666, SyncQueued=823255975900, SyncStart=823266771300, IssueDrawCommandsStart=823267163100, SwapBuffers=823519683600, FrameCompleted=824314517300, DequeueBufferDuration=85700, QueueBufferDuration=1015000, GpuCompleted=824314517300, SwapBuffersCompleted=824215817300, DisplayPresentTime=0, CommandSubmissionCompleted=823519683600,
+04-04 06:22:43.518  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.518  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_pents
+04-04 06:22:43.518  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.519  3117  3117 D SplashScreenView: Building from parcel drawable: android.graphics.drawable.BitmapDrawable@7eb5550
+04-04 06:22:43.547  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.547  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_pents
+04-04 06:22:43.547  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.550  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.550  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_pentacles
+04-04 06:22:43.550  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.556  3117  3117 D SplashScreenView: Build android.window.SplashScreenView{154344e V.E...... ......ID 0,0-0,0}
+04-04 06:22:43.556  3117  3117 D SplashScreenView: Icon: view: androidx.appcompat.widget.AppCompatImageView{b1e396f V.ED..... ......I. 0,0-0,0 #1020504 android:id/splashscreen_icon_view} drawable: android.graphics.drawable.BitmapDrawable@7eb5550 size: 504
+04-04 06:22:43.556  3117  3117 D SplashScreenView: Branding: view: android.view.View{c38767c G.ED..... ......I. 0,0-0,0 #1020503 android:id/splashscreen_branding_view} drawable: null size w: 0 h: 0
+04-04 06:22:43.558  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.558  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_fool
+04-04 06:22:43.558  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.562  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.562  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_magician
+04-04 06:22:43.562  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.564   673   727 W Looper  : Slow dispatch took 229ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:43.565  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.565  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_king_of_cups
+04-04 06:22:43.565  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.631  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.631  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ace_of_pentacles
+04-04 06:22:43.631  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.654   673  2067 I HWUI    : Davey! duration=704ms; Flags=0, FrameTimelineVsyncId=53356, IntendedVsync=822408785172, Vsync=822858785154, InputEventId=0, HandleInputStart=822875761500, AnimationStart=822875824700, PerformTraversalsStart=822876419100, DrawStart=822876552300, FrameDeadline=824342118428, FrameInterval=822875292300, FrameStartTime=16666666, SyncQueued=822876932800, SyncStart=824323194700, IssueDrawCommandsStart=824323277100, SwapBuffers=824475277200, FrameCompleted=824559919000, DequeueBufferDuration=791300, QueueBufferDuration=4303600, GpuCompleted=824557878300, SwapBuffersCompleted=824559919000, DisplayPresentTime=0, CommandSubmissionCompleted=824475277200,
+04-04 06:22:43.654  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.654  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_pentacles
+04-04 06:22:43.654  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.664  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.664  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_pentacles
+04-04 06:22:43.664  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.668   673  1132 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:43.675  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.675  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_cups
+04-04 06:22:43.675  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.684  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.684  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_high_priestess
+04-04 06:22:43.684  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.692  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.692  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_queen_of_cups
+04-04 06:22:43.692  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.705  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.705  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_cups
+04-04 06:22:43.705  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.713   673  1132 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:43.715  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.715  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_two_cups
+04-04 06:22:43.715  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.720  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.720  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_page_of_cups
+04-04 06:22:43.720  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.725  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.725  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_pents
+04-04 06:22:43.725  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.730   673   727 W Looper  : Slow dispatch took 164ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.UidObserverController$$ExternalSyntheticLambda0@5355d3b m=0
+04-04 06:22:43.782  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.782  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_pents
+04-04 06:22:43.782  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.783  1074  1165 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@b6215fe
+04-04 06:22:43.783  3117  3141 I ReactNativeJS: ✅ Initialized and optimized 28 tarot card assets
+04-04 06:22:43.784  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.784  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_cups
+04-04 06:22:43.784  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.787   673  1132 D CoreBackPreview: Window{7206c32 u0 Splash Screen com.laurin.tarot}: Setting back callback null
+04-04 06:22:43.811  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.811  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_cups
+04-04 06:22:43.811  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.815   673  1449 W InputManager-JNI: Input channel object '7206c32 Splash Screen com.laurin.tarot (client)' was disposed without first being removed with the input manager!
+04-04 06:22:43.905  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.905  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_cups
+04-04 06:22:43.905  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.907  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.907  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_cups
+04-04 06:22:43.907  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.922   673  1449 I HWUI    : Davey! duration=1681ms; Flags=0, FrameTimelineVsyncId=53539, IntendedVsync=822908785152, Vsync=824325451762, InputEventId=0, HandleInputStart=824337658700, AnimationStart=824337717900, PerformTraversalsStart=824337803100, DrawStart=824337933500, FrameDeadline=824575451752, FrameInterval=824335550300, FrameStartTime=16666666, SyncQueued=824338690900, SyncStart=824560307100, IssueDrawCommandsStart=824560406000, SwapBuffers=824660175900, FrameCompleted=824811622700, DequeueBufferDuration=70300, QueueBufferDuration=755300, GpuCompleted=824811622700, SwapBuffersCompleted=824725963100, DisplayPresentTime=0, CommandSubmissionCompleted=824660175900,
+04-04 06:22:43.923  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.923  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_cups
+04-04 06:22:43.923  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:43.983  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:43.983  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_six_pents
+04-04 06:22:43.983  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.004  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.004  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_three_pents
+04-04 06:22:44.004  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.064  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.064  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_four_pents
+04-04 06:22:44.064  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.071  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.071  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_the_empress
+04-04 06:22:44.071  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.074  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.074  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_cups
+04-04 06:22:44.074  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.089  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.089  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_knight_of_cups
+04-04 06:22:44.089  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.115  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.115  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_five_pents
+04-04 06:22:44.115  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.123  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.123  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_seven_pents
+04-04 06:22:44.123  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.133  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.133  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ace_of_pentacles
+04-04 06:22:44.133  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.137  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.137  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_ten_pents
+04-04 06:22:44.137  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.141  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.141  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_eight_pents
+04-04 06:22:44.141  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.153  3117  3127 I HWUI    : Davey! duration=725ms; Flags=0, FrameTimelineVsyncId=53746, IntendedVsync=824292118430, Vsync=824542118420, InputEventId=0, HandleInputStart=824648936700, AnimationStart=824649016500, PerformTraversalsStart=824650085600, DrawStart=824653586000, FrameDeadline=824342118428, FrameInterval=824558707600, FrameStartTime=16666666, SyncQueued=824654105200, SyncStart=824654993100, IssueDrawCommandsStart=824655212400, SwapBuffers=824721040400, FrameCompleted=825018196500, DequeueBufferDuration=242600, QueueBufferDuration=2173300, GpuCompleted=825017782300, SwapBuffersCompleted=825018196500, DisplayPresentTime=0, CommandSubmissionCompleted=824721040400,
+04-04 06:22:44.155  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.155  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_pents
+04-04 06:22:44.155  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.182  3117  3141 E ReactNativeJS: 'Failed to optimize image:', { [Error: Call to function 'Context.renderAsync' has been rejected. 
+04-04 06:22:44.182  3117  3141 E ReactNativeJS: → Caused by: Could not load the image: assets_images_tarot_cards_nine_cups
+04-04 06:22:44.182  3117  3141 E ReactNativeJS: → Caused by: java.lang.Exception: Loading bitmap failed] code: 'ERR_UNEXPECTED' }
+04-04 06:22:44.184  3117  3141 I ReactNativeJS: ✅ Initialized and optimized 28 tarot card assets
+04-04 06:22:44.188   673   727 W Looper  : Slow dispatch took 381ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:44.240   673  1449 I HWUI    : Davey! duration=772ms; Flags=0, FrameTimelineVsyncId=53761, IntendedVsync=824358785094, Vsync=824725451746, InputEventId=0, HandleInputStart=824783794300, AnimationStart=824783860500, PerformTraversalsStart=824784244300, DrawStart=824784987300, FrameDeadline=824842118408, FrameInterval=824730474600, FrameStartTime=16666666, SyncQueued=824785203400, SyncStart=824785404200, IssueDrawCommandsStart=824785485600, SwapBuffers=825013785200, FrameCompleted=825131908100, DequeueBufferDuration=80300, QueueBufferDuration=6081200, GpuCompleted=825130316700, SwapBuffersCompleted=825131908100, DisplayPresentTime=0, CommandSubmissionCompleted=825013785200,
+04-04 06:22:44.373   379  2285 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 1969280
+04-04 06:22:44.464   673   727 W Looper  : Slow dispatch took 197ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:44.541  3117  3117 D SplashScreenView: remove starting view
+04-04 06:22:45.376   673  1482 D EGL_emulation: app_time_stats: avg=596.56ms min=19.54ms max=2250.97ms count=7
+04-04 06:22:45.382   673   727 W Looper  : Slow dispatch took 915ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:45.401   673   727 I Choreographer: Skipped 54 frames!  The application may be doing too much work on its main thread.
+04-04 06:22:45.480   673  1449 I HWUI    : Davey! duration=1028ms; Flags=0, FrameTimelineVsyncId=53930, IntendedVsync=825225451726, Vsync=825258785058, InputEventId=197341228, HandleInputStart=825267187900, AnimationStart=825267268500, PerformTraversalsStart=825267381600, DrawStart=825267610200, FrameDeadline=825425451718, FrameInterval=825267151100, FrameStartTime=16666666, SyncQueued=825289436500, SyncStart=825412126300, IssueDrawCommandsStart=825412267000, SwapBuffers=826050129000, FrameCompleted=826377044000, DequeueBufferDuration=82800, QueueBufferDuration=1003500, GpuCompleted=826376418200, SwapBuffersCompleted=826377044000, DisplayPresentTime=0, CommandSubmissionCompleted=826050129000,
+04-04 06:22:45.494   421   860 D audioserver: logFgsApiBegin: FGS Logger Transaction failed, -129
+04-04 06:22:45.502   673  1132 W AS.PlaybackActivityMon: No piid assigned for invalid/internal port id 15
+04-04 06:22:45.527   421   531 D AudioFlinger: mixer(0x7bfabb03f8e0) throttle end: throttle time(9)
+04-04 06:22:45.601   673   727 W Looper  : Slow dispatch took 111ms android.ui h=android.view.Choreographer$FrameHandler c=android.view.Choreographer$FrameDisplayEventReceiver@f5da6b0 m=0
+04-04 06:22:45.603   673   727 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda11@902721b
+04-04 06:22:45.603   673   727 D CoreBackPreview: Window{c0bcb5d u0 Application Error: com.laurin.tarot}: Setting back callback null
+04-04 06:22:45.649   421   531 D AudioFlinger: mixer(0x7bfabb03f8e0) throttle end: throttle time(23)
+04-04 06:22:45.655   673  2874 W ActivityTaskManager:   Force finishing activity com.laurin.tarot/.MainActivity
+04-04 06:22:45.659   673  1449 I HWUI    : Davey! duration=1029ms; Flags=0, FrameTimelineVsyncId=53967, IntendedVsync=825492118382, Vsync=826392118346, InputEventId=253450815, HandleInputStart=826410123600, AnimationStart=826410199700, PerformTraversalsStart=826410821700, DrawStart=826411015100, FrameDeadline=826508785008, FrameInterval=826401704100, FrameStartTime=16666666, SyncQueued=826432452700, SyncStart=826485433400, IssueDrawCommandsStart=826485740600, SwapBuffers=826490868900, FrameCompleted=826574163100, DequeueBufferDuration=72133100, QueueBufferDuration=1376800, GpuCompleted=826573736800, SwapBuffersCompleted=826574163100, DisplayPresentTime=29555302051348480, CommandSubmissionCompleted=826490868900,     
+04-04 06:22:45.666   673  1482 D HWUI    : endAllActiveAnimators on 0x7c86e65a4830 (RippleDrawable) with handle 0x7c85066f1360
+04-04 06:22:45.679  1074  1135 V WindowManagerShell: Transition requested (#30): android.os.BinderProxy@7f46b5e TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 16, debugId = 30 }
+04-04 06:22:45.691   673  2874 I ActivityManager: Killing 3117:com.laurin.tarot/u0a148 (adj 0): crash
+04-04 06:22:45.736  1074  1135 W Looper  : Slow dispatch took 57ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda1@47c8b3f m=0
+04-04 06:22:45.743   673   727 W InputManager-JNI: Input channel object 'c0bcb5d Application Error: com.laurin.tarot (client)' was disposed without first being removed with the input manager!
+04-04 06:22:45.763  1495  1495 D BaseDepthController: mSurface is null and mCurrentBlur is: 23
+04-04 06:22:45.764   370   427 I netd    : tetherGetStats() -> {[]} <1.61ms>
+04-04 06:22:45.804   673   895 W InputDispatcher: Not sending touch to c0bcb5d Application Error: com.laurin.tarot because there's no corresponding connection
+04-04 06:22:45.816   371   371 I Zygote  : Process 3117 exited due to signal 9 (Killed)
+04-04 06:22:45.829   673   727 W Looper  : Slow dispatch took 226ms android.ui h=com.android.server.am.AppErrorDialog$1 c=null m=1
+04-04 06:22:45.832   432   432 I BpBinder: onLastStrongRef automatically unlinking death recipients:
+04-04 06:22:45.790     0     0 I binder  : undelivered TRANSACTION_COMPLETE
+04-04 06:22:45.795     0     0 I binder  : undelivered transaction 145077, process died.
+04-04 06:22:45.859   673   730 W ActivityTaskManager: Unable to send transaction to client proc com.laurin.tarot: no app thread
+04-04 06:22:45.868   673  2957 I WindowManager: WIN DEATH: Window{a65197e u0 com.laurin.tarot/com.laurin.tarot.MainActivity}
+04-04 06:22:45.876   673   960 D ConnectivityService: releasing NetworkRequest [ REQUEST id=91, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ] (release request)
+04-04 06:22:45.894   421   531 D audioserver: logFgsApiEnd: FGS Logger Transaction failed, -129
+04-04 06:22:45.898   673  1249 V ActivityManager: Got obituary of 3117:com.laurin.tarot
+04-04 06:22:45.908   673   895 I InputDispatcher: Dropping event because no targets were found: MotionEvent(deviceId=12, eventTime=826796632000, source=TOUCHSCREEN | STYLUS, displayId=0, action=DOWN, actionButton=0x00000000, flags=0x00000080, metaState=0x00000000, buttonState=0x00000000, classification=NONE, edgeFlags=0x00000000, xPrecision=30.3, yPrecision=14.0, xCursorPosition=nan, yCursorPosition=nan, pointers=[0: (367.0, 1304.9)]), policyFlags=0x62000000
+04-04 06:22:45.934   673   744 I libprocessgroup: Removed cgroup /sys/fs/cgroup/uid_10148/pid_3117
+04-04 06:22:45.938   673  2957 W InputManager-JNI: Input channel object 'a65197e com.laurin.tarot/com.laurin.tarot.MainActivity (client)' was disposed without first being removed with the input manager!
+04-04 06:22:45.943   673   729 W ActivityManager: setHasOverlayUi called on unknown pid: 3117
+04-04 06:22:45.972   673   960 D ConnectivityService: releasing NetworkRequest [ REQUEST id=89, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED&NOT_VCN_MANAGED&NOT_BANDWIDTH_CONSTRAINED Uid: 10148 RequestorUid: 10148 RequestorPkg: com.laurin.tarot UnderlyingNetworks: Null] ] (release request)
+04-04 06:22:45.987   673   727 D DisplayManagerService: Drop pending events for gone uid 10148
+04-04 06:22:45.988   673   727 W Looper  : Slow dispatch took 153ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=com.android.server.am.UidObserverController$$ExternalSyntheticLambda0@5355d3b m=0
+04-04 06:22:46.046   673   727 W Looper  : Drained
+04-04 06:22:46.079   673   960 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+04-04 06:22:46.083   673   960 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+04-04 06:22:46.091   673   960 D InetDiagMessage: Destroyed live tcp sockets for uids={10148} in 117ms
+04-04 06:22:46.105   673   960 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET, states=14
+04-04 06:22:46.106   673   729 V WindowManager: Unknown focus tokens, dropping reportFocusChanged
+04-04 06:22:46.108   673   960 D InetDiagMessage: Destroyed 0 sockets, proto=IPPROTO_TCP, family=AF_INET6, states=14
+04-04 06:22:46.108  1495  1495 D BaseDepthController: setSurface:
+04-04 06:22:46.108  1495  1495 D BaseDepthController:   mWaitingOnSurfaceValidity: false
+04-04 06:22:46.108  1495  1495 D BaseDepthController:   mSurface: Surface(name=com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher)/@0x83b1780
+04-04 06:22:46.108   673   960 D InetDiagMessage: Destroyed live tcp sockets for uids={20148} in 17ms
+04-04 06:22:46.118   673   730 W ActivityTaskManager: Unable to send transaction to client proc com.laurin.tarot: no app thread
+04-04 06:22:46.275  1495  1495 D StatsLog: LAUNCHER_ONRESUME
+04-04 06:22:46.318  1074  1772 V WindowManagerShell: onTransitionReady(transaction=2890512991619)
+04-04 06:22:46.319  1074  1135 V WindowManagerShell: onTransitionReady (#30) android.os.BinderProxy@7f46b5e: {id=30 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e207cf8} m=TO_FRONT f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@9b8f5d1} leash=Surface(name=Task=1)/@0xd2eac0c sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@f4c8836} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=DefaultTaskDisplayArea)/@0x2931955 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0},{null m=TO_FRONT f=IS_WALLPAPER|IS_OCCLUDED leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0x717df6a sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}]}
+04-04 06:22:46.321  1074  1135 V WindowManagerShell: Playing animation for (#30) android.os.BinderProxy@7f46b5e@0
+04-04 06:22:46.322  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultMixedHandler@faf8f8c
+04-04 06:22:46.322  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.keyguard.KeyguardTransitionHandler@dc4f6d5
+04-04 06:22:46.329   673   725 V WindowManager: Sent Transition (#30) createdAt=04-04 06:22:45.658 via request=TransitionRequestInfo { type = CLOSE, triggerTask = null, pipTask = null, remoteTransition = null, displayChange = null, flags = 16, debugId = 30 }
+04-04 06:22:46.330   673   725 V WindowManager:     startWCT=WindowContainerTransaction { changes = {} hops = [] errorCallbackToken=null taskFragmentOrganizer=null }
+04-04 06:22:46.360   673   725 V WindowManager:     info={id=30 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[
+04-04 06:22:46.360   673   725 V WindowManager:         {WCT{RemoteToken{be78f4a Task{eeeda93 #1 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER p=WCT{RemoteToken{1a0edfd DefaultTaskDisplayArea@54025400}} leash=Surface(name=Task=1)/@0xeb173f2 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},
+04-04 06:22:46.360   673   725 V WindowManager:         {WCT{RemoteToken{1a0edfd DefaultTaskDisplayArea@54025400}} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=DefaultTaskDisplayArea)/@0xadb95a7 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0},
+04-04 06:22:46.360   673   725 V WindowManager:         {null m=TO_FRONT f=IS_WALLPAPER|IS_OCCLUDED leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0xd2eceba sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}
+04-04 06:22:46.360   673   725 V WindowManager:     ]}
+04-04 06:22:46.367  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.pip.PipTransition@dd02eea
+04-04 06:22:46.368   673  2768 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:46.370  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.activityembedding.ActivityEmbeddingController@2eb75db     
+04-04 06:22:46.371  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.recents.RecentsTransitionHandler@e8c1878
+04-04 06:22:46.387  1074  1135 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+04-04 06:22:46.387  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.splitscreen.StageCoordinator@dfa4fb6
+04-04 06:22:46.392  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.transition.RemoteTransitionHandler@4a194b7
+04-04 06:22:46.401  1074  1135 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=30 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e207cf8} m=TO_FRONT f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@9b8f5d1} leash=Surface(name=Task=1)/@0xd2eac0c sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@f4c8836} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=DefaultTaskDisplayArea)/@0x2931955 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0},{null m=TO_FRONT f=IS_WALLPAPER|IS_OCCLUDED leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0x717df6a sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}]}
+04-04 06:22:46.401  1074  1135 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@2ba06c9, appThread = android.app.IApplicationThread$Stub$Proxy@fbc51ce, debugName = QuickstepLaunchHome }}
+04-04 06:22:46.404  1074  1135 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher} launchCookie=null},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@25c70a4, appThread = android.app.IApplicationThread$Stub$Proxy@e861e0d, debugName = QuickstepLaunchHome }}
+04-04 06:22:46.406  1074  1135 V WindowManagerShell:  Delegate animation for (#30) to null
+04-04 06:22:46.407  1074  1135 V WindowManagerShell:  try handler com.android.wm.shell.transition.DefaultTransitionHandler@a64424
+04-04 06:22:46.407  1074  1135 V WindowManagerShell: start default transition animation, info = {id=30 t=CLOSE f=0x10 trk=0 r=[0@Point(0, 0)] c=[{WCT{android.window.IWindowContainerToken$Stub$Proxy@e207cf8} m=TO_FRONT f=SHOW_WALLPAPER p=WCT{android.window.IWindowContainerToken$Stub$Proxy@9b8f5d1} leash=Surface(name=Task=1)/@0xd2eac0c sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0 taskParent=-1},{WCT{android.window.IWindowContainerToken$Stub$Proxy@f4c8836} m=TO_FRONT f=SHOW_WALLPAPER leash=Surface(name=DefaultTaskDisplayArea)/@0x2931955 sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0},{null m=TO_FRONT f=IS_WALLPAPER|IS_OCCLUDED leash=Surface(name=WallpaperWindowToken{3f8e7f4 token=android.os.Binder@1ec25c7})/@0x717df6a sb=Rect(0, 0 - 1080, 2340) eb=Rect(0, 0 - 1080, 2340) d=0}]}
+04-04 06:22:46.415  1495  1818 D EGL_emulation: app_time_stats: avg=1141.28ms min=6.87ms max=4051.76ms count=4
+04-04 06:22:46.422  1074  1135 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@52c3bd3 animAttr=0x10 type=CLOSE isEntrance=true
+04-04 06:22:46.449  1074  1135 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@a64424
+04-04 06:22:46.449  1074  1135 W Looper  : Slow dispatch took 130ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.Transitions$TransitionPlayerImpl$$ExternalSyntheticLambda0@838e09 m=0
+04-04 06:22:46.452  1074  1135 W Looper  : Slow delivery took 129ms wmshell.main h=android.os.Handler c=android.window.TaskOrganizer$1$$ExternalSyntheticLambda4@f4c22f m=0
+04-04 06:22:46.577   673   907 I ImeTracker: com.android.launcher3:9953add7: onRequestHide at ORIGIN_SERVER reason HIDE_SAME_WINDOW_FOCUSED_WITHOUT_EDITOR fromUser false
+04-04 06:22:46.578   673   907 I ImeTracker: com.android.launcher3:9953add7: onCancelled at PHASE_SERVER_SHOULD_HIDE
+04-04 06:22:46.705  1074  1135 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#30) android.os.BinderProxy@7f46b5e@0
+04-04 06:22:46.732   673   725 V WindowManager: Finish Transition (#30): created at 04-04 06:22:45.658 collect-started=2.582ms request-sent=2.77ms started=76.641ms ready=76.576ms sent=658.094ms finished=1071.516ms
+04-04 06:22:46.699     0     0 I binder  : 2768:673 cannot find target node
+04-04 06:22:46.704     0     0 I binder  : 673:2768 transaction async to 0:0 failed 145557/29189/-22, size 64-0 line 3265
+04-04 06:22:46.753   673  2768 E IPCThreadState: Binder transaction failure. id: 145557, BR_*: 29189, error: -22 (Invalid argument)
+04-04 06:22:46.753   673  2768 W ActivityManager: pid 673 system sent binder code 7 with flags 1 to frozen apps and got error -32
+04-04 06:22:46.767   673  2768 W WindowManager: Exception thrown during dispatchAppVisibility Window{a65197e u0 com.laurin.tarot/com.laurin.tarot.MainActivity EXITING}
+04-04 06:22:46.767   673  2768 W WindowManager: android.os.DeadObjectException
+04-04 06:22:46.767   673  2768 W WindowManager:         at android.os.BinderProxy.transactNative(Native Method)
+04-04 06:22:46.767   673  2768 W WindowManager:         at android.os.BinderProxy.transact(BinderProxy.java:586)
+04-04 06:22:46.767   673  2768 W WindowManager:         at android.view.IWindow$Stub$Proxy.dispatchAppVisibility(IWindow.java:553)
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.WindowState.sendAppVisibilityToClients(WindowState.java:3253)   
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.WindowContainer.sendAppVisibilityToClients(WindowContainer.java:1289)
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.WindowToken.setClientVisible(WindowToken.java:403)
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.ActivityRecord.setClientVisible(ActivityRecord.java:7166)       
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.ActivityRecord.postApplyAnimation(ActivityRecord.java:5881)     
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.ActivityRecord.commitVisibility(ActivityRecord.java:5823)       
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.Transition.finishTransition(Transition.java:1286)
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.TransitionController.finishTransition(TransitionController.java:937)
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.WindowOrganizerController.finishTransition(WindowOrganizerController.java:494)
+04-04 06:22:46.767   673  2768 W WindowManager:         at android.window.IWindowOrganizerController$Stub.onTransact(IWindowOrganizerController.java:289)
+04-04 06:22:46.767   673  2768 W WindowManager:         at com.android.server.wm.WindowOrganizerController.onTransact(WindowOrganizerController.java:204)
+04-04 06:22:46.767   673  2768 W WindowManager:         at android.os.Binder.execTransactInternal(Binder.java:1505)
+04-04 06:22:46.767   673  2768 W WindowManager:         at android.os.Binder.execTransact(Binder.java:1444)
+04-04 06:22:46.785   673  2768 W Process : Unable to open /proc/3117/status
+04-04 06:22:46.913  1074  1135 V WindowManagerShell: Track 0 became idle
+04-04 06:22:46.913  1074  1135 V WindowManagerShell: All active transition animations finished
+04-04 06:22:46.913  1074  1135 W Looper  : Drained
+04-04 06:22:46.927   673  2768 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:46.927  1074  1135 W Looper  : Slow dispatch took 209ms wmshell.main h=android.os.Handler c=com.android.wm.shell.transition.DefaultTransitionHandler$$ExternalSyntheticLambda11@4ce01c5 m=0
+04-04 06:22:46.928  1495  1495 I TopTaskTracker: onTaskRemoved: taskId=27
+04-04 06:22:46.950  1074  1135 W Looper  : Slow delivery took 146ms wmshell.main h=android.os.Handler c=android.window.TaskOrganizer$1$$ExternalSyntheticLambda4@39ef71a m=0
+04-04 06:22:46.984   673  2768 W UserManagerService: Requested status bar icon for non-badged user 0
+04-04 06:22:47.003  1495  1495 I TopTaskTracker: onTaskRemoved: taskId=27
+04-04 06:22:47.007  1074  1296 D EGL_emulation: app_time_stats: avg=1173.80ms min=36.71ms max=4488.21ms count=4
+04-04 06:22:47.032   432   432 E BpTransactionCompletedListener: Failed to transact (-32)
+04-04 06:22:48.611   379  2285 D android.hardware.audio@7.1-impl.ranchu: threadLoop: entering standby, frames: 2102016
+
+
+lauri@WINDOWS-MMO3SPS MINGW64 ~/tarot/frontend (main)
+$
+
+lauri@WINDOWS-MMO3SPS MINGW64 ~/tarot/frontend (main)

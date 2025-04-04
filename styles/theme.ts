@@ -140,38 +140,56 @@ export const borderEffects = {
 
 // Typography system
 export const typography = {
+  // Font families
+  fontFamily: {
+    primary: "Quicksand",
+    primaryBold: "Quicksand-Bold",
+    primaryLight: "Quicksand-Light",
+    primaryMedium: "Quicksand-Medium",
+    primarySemiBold: "Quicksand-SemiBold",
+    decorative: "EagleLake",
+    monospace: "SpaceMono",
+  },
+  
   header: {
+    fontFamily: "Quicksand-Bold",
     fontSize: 24,
     fontWeight: "bold" as const,
     color: colors.primaryLight,
   },
   title: {
+    fontFamily: "EagleLake",
     fontSize: 28,
     fontWeight: "bold" as const,
     color: colors.primaryLight,
     textAlign: "center" as const,
   },
   subtitle: {
+    fontFamily: "Quicksand-SemiBold",
     fontSize: 20,
     fontWeight: "600" as const,
     color: colors.primaryLight,
   },
   body: {
+    fontFamily: "Quicksand",
     fontSize: 17,
     lineHeight: 26,
     color: colors.textSecondary,
   },
   button: {
+    fontFamily: "Quicksand-Medium",
     fontSize: 18,
     fontWeight: "bold" as const,
     color: colors.text,
   },
   caption: {
+    fontFamily: "Quicksand-Medium",
     fontSize: 14,
     fontWeight: "bold" as const,
     color: colors.textMuted,
   },
   small: {
+    fontFamily: "Quicksand-Light",
     fontSize: 12,
     color: colors.textMuted,
   },

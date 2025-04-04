@@ -1,5 +1,5 @@
 import React from "react";
-import OptimizedTarotCard from "./OptimizedTarotCard";
+import DynamicTarotCard from "./DynamicTarotCard";
 
 interface TarotCardProps {
   image: any;
@@ -16,34 +16,29 @@ export interface ITarotCard {
   isSelected?: boolean;
 }
 
+const getCardIdFromImage = () => {
+  if (typeof image === "number") {
+    // Get the source code for the require() call
+    const imageSource = image.toString();
+    // Extract filename from path
+    const matches = imageSource.match(/tarot_cards\/([^.]+)/);
+    return matches ? matches[1].toLowerCase().replace(/\s+/g, "_") : "unknown";
+  }
+  return "unknown";
+};
+
 export default function TarotCard({
   image,
   name,
   isShown,
   style,
 }: TarotCardProps) {
-  // Extrahiere die ID aus dem Image-Pfad, falls verfügbar
-  // Fallback für alte Verwendungen ohne korrekte ID
-  const getCardIdFromImage = () => {
-    if (typeof image === "number") {
-      // Get the source code for the require() call
-      const imageSource = image.toString();
-      // Extract filename from path
-      const matches = imageSource.match(/tarot_cards\/([^.]+)/);
-      return matches
-        ? matches[1].toLowerCase().replace(/\s+/g, "_")
-        : "unknown";
-    }
-    return "unknown";
-  };
+  const cardId = getCardIdFromImage();
 
   return (
-    <OptimizedTarotCard
-      cardId={getCardIdFromImage()}
-      imageSource={image}
+    <DynamicTarotCard
+      cardName={name ?? "Unknown Card"}
       isShown={isShown}
-      name={name}
-      style={style}
       size="medium"
     />
   );

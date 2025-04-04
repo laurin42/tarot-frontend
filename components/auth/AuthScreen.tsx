@@ -10,7 +10,7 @@ import * as AppleAuthentication from "expo-apple-authentication";
 import * as WebBrowser from "expo-web-browser";
 import { useAuth } from "../../context/AuthContext";
 import { useGoogleAuth } from "../../providers/GoogleAuthProvider";
-import { jwtDecode } from "jwt-decode";
+import JWT from "expo-jwt";
 
 // Initialize WebBrowser for auth session
 WebBrowser.maybeCompleteAuthSession();
@@ -156,7 +156,15 @@ export default function AuthScreen() {
 
         try {
           const id_token = response.params.id_token;
-          const decoded: any = jwtDecode(id_token);
+          const jwt_key = process.env.EXPO_JWT_KEY;
+
+          if (!jwt_key) {
+            throw new Error(
+              "JWT key is not defined. Please set the EXPO_JWT_KEY environment variable."
+            );
+          }
+
+          const decoded: any = JWT.decode(id_token, jwt_key);
           console.log("Decoded token:", decoded);
 
           // Extract user information

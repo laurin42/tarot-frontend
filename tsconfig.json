@@ -8,6 +8,7 @@
       "@/*": ["./*"],
       "tailwind.config": ["./tailwind.config.js"]
     },
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,

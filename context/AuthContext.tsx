@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useUser } from "./UserContext";
-import { auth, signOut as firebaseSignOut } from "@/services/firebase";
+import auth from "@react-native-firebase/auth";
+import { signOut as firebaseSignOut } from "@/services/firebase";
 
 interface AuthState {
   token: string | null;
@@ -125,6 +126,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           body: JSON.stringify({
             authProvider: "anonymous",
             authId: `anonymous|${user.uid}`,
+            token: idToken,
             username: "Anonymer Benutzer",
           }),
         }

@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react';
+import  { ComponentType } from 'react';
 import type { Router } from 'expo-router';
 
 // Typensichere Route-Pfade
@@ -46,7 +46,7 @@ export const DynamicRouteService = {
   /**
    * Gibt alle registrierten Routen zurück
    */
-  getPendingRoutes(): ReadonlyArray<DynamicRoute> {
+  getPendingRoutes(): readonly DynamicRoute[] {
     return [...pendingRoutes];
   },
   
