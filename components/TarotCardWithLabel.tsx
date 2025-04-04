@@ -1,6 +1,12 @@
 import React from "react";
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
-import OptimizedTarotCard from "@/components/OptimizedTarotCard";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet,
+} from "react-native";
+import DynamicTarotCard from "@/components/DynamicTarotCard";
 import { Shadow } from "react-native-shadow-2";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
 import { componentStyles, textStyles, colors } from "@/styles";
@@ -34,7 +40,7 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
   };
 
   return (
-    <View style={componentStyles.cardWrapper}>
+    <View style={[styles.container, componentStyles.cardWrapper]}>
       {/* Position Label */}
       <Text style={textStyles.cardLabel}>({getPositionLabel(index)})</Text>
 
@@ -54,12 +60,10 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
             endColor="rgba(139, 92, 246, 0.0)"
             offset={[0, 0]}
           >
-            <OptimizedTarotCard
-              cardId={card.id}
-              imageSource={card.image}
+            <DynamicTarotCard
+              cardName={card.name}
+              size="small"
               isShown={true}
-              size="small" // Für Listenansichten ist "small" effizienter
-              name={card.name}
               style={{
                 width: cardWidth,
                 height: cardWidth * 1.6,
@@ -90,5 +94,15 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+  },
+  label: {
+    marginTop: 8,
+    textAlign: "center",
+  },
+});
 
 export default React.memo(TarotCardWithLabel); // Optimierung durch Memoization

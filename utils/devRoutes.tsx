@@ -1,7 +1,6 @@
 import React from "react";
 import { DynamicRouteService } from "../services/dynamicRoutes";
 import { bugsnagService } from "../services/bugsnag";
-import { importComponentDynamically } from "./dynamicImport";
 import { DYNAMIC_ROUTES } from "../constants/routes";
 
 /**
@@ -12,15 +11,8 @@ export function registerDevRoutes(): void {
 
   try {
     // Registriere die Debug-Tools-Route mit dem Helper
-    DynamicRouteService.registerRoute(
-      DYNAMIC_ROUTES.DEV_TOOLS,
-      (): React.ComponentType<Record<string, unknown>> => {
-        return importComponentDynamically(
-          "../dev-tools/BugsnagTest",
-          "default",
-          "Fehler beim Laden der Debug-Tools"
-        );
-      }
+    DynamicRouteService.registerRoute(DYNAMIC_ROUTES.DEV_TOOLS, () =>
+      React.lazy(() => import("../dev-tools/BugsnagTest"))
     );
 
     bugsnagService.leaveBreadcrumb("Debug route registered");

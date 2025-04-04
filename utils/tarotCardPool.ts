@@ -1,5 +1,5 @@
 import { tarotCards, ISelectedAndShownCard } from "@/constants/tarotcards";
-import { optimizeImage } from "./imageOptimization";
+import DynamicTarotCard from "@/components/DynamicTarotCard";
 import { tarotApi } from "@/services/apiService";
 import { storage } from "./storage";
 import { bugsnagService } from "@/services/bugsnag";
@@ -31,7 +31,7 @@ export async function getRandomDrawnCards(): Promise<ISelectedAndShownCard[]> {
   const optimizedCards = await Promise.all(
     drawnCards.map(async (card) => {
       if (card.image) {
-        card.image = await optimizeImage(card.image);
+        card.image = await DynamicTarotCard(card.image);
       }
       return card;
     })

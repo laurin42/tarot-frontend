@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { View, Animated, Pressable } from "react-native";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
 import { layoutStyles, componentStyles } from "@/styles/styles";
-import OptimizedTarotCard from "../OptimizedTarotCard";
+import DynamicTarotCard from "../DynamicTarotCard";
 
 interface CardFanProps {
   cards: ISelectedAndShownCard[];
@@ -69,9 +69,8 @@ const CardFan = memo(
               style={[componentStyles.cardBase, componentStyles.cardPressable]}
               onPress={() => onCardSelect(card)}
             >
-              <OptimizedTarotCard
-                cardId={card.id}
-                imageSource={card.image}
+              <DynamicTarotCard
+                cardName={card.name}
                 isShown={card.showFront || false}
                 size="medium"
                 style={{

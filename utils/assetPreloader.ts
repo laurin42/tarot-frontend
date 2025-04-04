@@ -1,7 +1,6 @@
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { optimizeImage } from './imageOptimization';
 
 // Halte den SplashScreen für Preloading
 SplashScreen.preventAutoHideAsync();
@@ -103,11 +102,8 @@ class AssetManager {
       await asset.downloadAsync();
     }
     
-    return await optimizeImage(asset.localUri || asset.uri || '', {
-      width,
-      quality: priority === AssetPriority.LOW ? 0.7 : 0.85,
-      cacheKey: `img-${imageModule}`
-    });
+    // Simply return the URI without optimization
+    return asset.localUri || asset.uri || '';
   }
 }
 

@@ -40,7 +40,7 @@ export default function DynamicTarotCard({
       setError("Konnte Karte nicht laden");
       setIsLoading(false);
     }
-  }, [cardName, isShown]);
+  }, [cardName, isShown, size, style]);
 
   // Blurhash für besseren Ladeeffekt
   const blurhash = "LEHV6nWB2yk8pyo0adR*.7kCMdnj";

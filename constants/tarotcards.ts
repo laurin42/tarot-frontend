@@ -14,58 +14,53 @@ export interface ISelectedAndShownCard extends ITarotCard {
   onNextCard: () => void;
 }
 
-// Kartennamen zu Dateinamen-Mapping für Konsistenz
-const cardFilenameMapping: Record<string, string> = {
-  // Der Narr → The_fool.jpg
-  "Der Narr": "The_fool.jpg",
-  "Der Magier": "The_magician.jpg",
-  "Die Kaiserin": "The_empress.jpg",
-  "Die Hohepriesterin": "High_priestess.jpg",
-  "König der Kelche": "King_of_cups.jpg",
-  "Ritter der Kelche": "Knight_of_cups.jpg",
-  "Ritter der Münzen": "Knight_of_pentacles.jpg",
-  "Page der Kelche": "Page_of_cups.jpg",
-  "Page der Münzen": "Page_of_pentacles.jpg",
-  "Königin der Kelche": "Queen_of_cups.jpg",
-  "Zwei Kelche": "Two_Cups.jpg",
-  "Drei Kelche": "Three_Cups.jpg",
-  "Vier Kelche": "Four_Cups.jpg",
-  "Fünf Kelche": "Five_Cups.jpg",
-  "Sechs Kelche": "Six_Cups.jpg",
-  "Sieben Kelche": "Seven_Cups.jpg",
-  "Acht Kelche": "Eight_Cups.jpg",
-  "Neun Kelche": "Nine_Cups.jpg",
-  "Zehn Kelche": "Ten_Cups.jpg",
-  "Zwei Münzen": "Two_pents.jpg",
-  "Drei Münzen": "Three_pents.jpg",
-  "Vier Münzen": "Four_pents.jpg",
-  "Fünf Münzen": "Five_pents.jpg",
-  "Sechs Münzen": "Six_pents.jpg",
-  "Sieben Münzen": "Seven_pents.jpg",
-  "Acht Münzen": "Eight_pents.jpg",
-  "Neun Münzen": "Nine_pents.jpg",
-  "Zehn Münzen": "Ten_pents.jpg",
-  "Ass Münzen": "Ace_of_Pentacles.jpg",
-  "Ass Kelche": "Ace_of_cups.jpg",
+// Statisches Mapping für Kartennamen zu vorgeladenen Bildern
+const cardImageMapping: Record<string, any> = {
+  "Der Narr": require("../assets/images/tarot_cards/The_fool.jpg"),
+  "Der Magier": require("../assets/images/tarot_cards/The_magician.jpg"),
+  "Die Kaiserin": require("../assets/images/tarot_cards/The_empress.jpg"),
+  "Die Hohepriesterin": require("../assets/images/tarot_cards/High_priestess.jpg"),
+  "König der Kelche": require("../assets/images/tarot_cards/King_of_cups.jpg"),
+  "Ritter der Kelche": require("../assets/images/tarot_cards/Knight_of_cups.jpg"),
+  "Ritter der Münzen": require("../assets/images/tarot_cards/Knight_of_pentacles.jpg"),
+  "Page der Kelche": require("../assets/images/tarot_cards/Page_of_cups.jpg"),
+  "Page der Münzen": require("../assets/images/tarot_cards/Page_of_pentacles.jpg"),
+  "Königin der Kelche": require("../assets/images/tarot_cards/Queen_of_cups.jpg"),
+  "Zwei Kelche": require("../assets/images/tarot_cards/Two_Cups.jpg"),
+  "Drei Kelche": require("../assets/images/tarot_cards/Three_Cups.jpg"),
+  "Vier Kelche": require("../assets/images/tarot_cards/Four_Cups.jpg"),
+  "Fünf Kelche": require("../assets/images/tarot_cards/Five_Cups.jpg"),
+  "Sechs Kelche": require("../assets/images/tarot_cards/Six_Cups.jpg"),
+  "Sieben Kelche": require("../assets/images/tarot_cards/Seven_Cups.jpg"),
+  "Acht Kelche": require("../assets/images/tarot_cards/Eight_Cups.jpg"),
+  "Neun Kelche": require("../assets/images/tarot_cards/Nine_Cups.jpg"),
+  "Zehn Kelche": require("../assets/images/tarot_cards/Ten_Cups.jpg"),
+  "Zwei Münzen": require("../assets/images/tarot_cards/Two_pents.jpg"),
+  "Drei Münzen": require("../assets/images/tarot_cards/Three_pents.jpg"),
+  "Vier Münzen": require("../assets/images/tarot_cards/Four_pents.jpg"),
+  "Fünf Münzen": require("../assets/images/tarot_cards/Five_pents.jpg"),
+  "Sechs Münzen": require("../assets/images/tarot_cards/Six_pents.jpg"),
+  "Sieben Münzen": require("../assets/images/tarot_cards/Seven_pents.jpg"),
+  "Acht Münzen": require("../assets/images/tarot_cards/Eight_pents.jpg"),
+  "Neun Münzen": require("../assets/images/tarot_cards/Nine_pents.jpg"),
+  "Zehn Münzen": require("../assets/images/tarot_cards/Ten_pents.jpg"),
+  "Ass Münzen": require("../assets/images/tarot_cards/Ace_of_Pentacles.jpg"),
+  "Ass Kelche": require("../assets/images/tarot_cards/Ace_of_cups.jpg"),
 };
 
 /**
- * Funktion zum dynamischen Laden von Tarotkarten auf Basis des Namens
- * Diese Funktion stellt sicher, dass Kartennamen korrekt in Bilddateien übersetzt werden
+ * Funktion zum statischen Laden von Tarotkarten auf Basis des Namens
+ * Diese Funktion verwendet vordefinierte Bildreferenzen 
  */
 export function getCardImageByName(cardName: string): any {
-  try {
-    const filename = cardFilenameMapping[cardName];
-    if (!filename) {
-      console.warn(`Keine Bildabbildung für Karte "${cardName}" gefunden`);
-      return require("../assets/images/tarot_cards/Card_back.png");
-    }
-    return require(`../assets/images/tarot_cards/${filename}`);
-  } catch (error) {
-    console.error(`Fehler beim Laden des Bildes für Karte "${cardName}":`, error);
-    // Fallback zum Kartenrücken bei Fehlern
-    return require("../assets/images/tarot_cards/Card_back.png");
+  // Direkter Zugriff auf das vordefinierte Mapping
+  if (cardImageMapping[cardName]) {
+    return cardImageMapping[cardName];
   }
+  
+  // Fallback zum Kartenrücken, wenn keine Karte gefunden wurde
+  console.warn(`Keine Bildabbildung für Karte "${cardName}" gefunden`);
+  return CARD_BACK_IMAGE;
 }
 
 /**
@@ -225,18 +220,3 @@ export const tarotCards: ITarotCard[] = [
     image: require("../assets/images/tarot_cards/Two_pents.jpg"),
   },
 ];
-
-// Überprüfe, ob für alle Karten im Mapping ein entsprechendes Bild vorhanden ist
-
-  Object.entries(cardFilenameMapping).forEach(([cardName, filename]) => {
-    try {
-      require(`../assets/images/tarot_cards/${filename}`);
-    } catch {
-      console.warn(`⚠️ Bildpfad für Karte "${cardName}" ist ungültig: ../assets/images/tarot_cards/${filename}`);
-    }
-  });
-  
-  console.log(`✅ Tarotkarten sind bereit: ${tarotCards.length} Karten geladen`);
-
-
-
