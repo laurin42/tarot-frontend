@@ -4,13 +4,14 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Platform,
   ScrollView,
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
 import TarotCard from "./TarotCard";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { componentStyles, glowEffects, textStyles } from "@/styles";
+import { typography } from "@/styles/theme";
 
 interface DrawnCardsDisplayProps {
   selectedCards: ISelectedAndShownCard[];
@@ -23,7 +24,17 @@ export default function DrawnCardsDisplay({
   onDismiss,
   currentRound,
 }: DrawnCardsDisplayProps) {
-  const currentCard = selectedCards[currentRound];
+  // Get the card to display (the last one in the array)
+  const currentCard =
+    selectedCards.length > 0 ? selectedCards[selectedCards.length - 1] : null;
+
+  // LOGGING: Check if currentCard exists and has expected data
+  console.log("DrawnCardsDisplay - currentCard:", JSON.stringify(currentCard));
+  console.log("DrawnCardsDisplay - currentRound (prop):", currentRound); // Log the prop
+  console.log(
+    "DrawnCardsDisplay - selectedCards length:",
+    selectedCards.length
+  );
 
   // Lokaler State für Button-Opazität
   const [buttonOpacity, setButtonOpacity] = useState(0.3);
@@ -48,32 +59,34 @@ export default function DrawnCardsDisplay({
 
   return (
     <View style={styles.overlay}>
-      <View style={styles.container}>
+      <View style={[componentStyles.modalContainer, styles.containerOverrides]}>
+        {/* Restore ScrollView */}
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollViewContent}
           scrollEventThrottle={16}
           onLayout={(e) => {
-            // sichtbarer Bereich
             scrollContainerHeight.current = e.nativeEvent.layout.height;
           }}
           onContentSizeChange={(h) => {
-            // gesamte Scroll-Höhe
             scrollContentHeight.current = h;
           }}
           onScroll={handleScroll}
         >
           {currentCard && (
             <View style={styles.cardContainer}>
-              <Text style={styles.cardTitle}>{currentCard.name}</Text>
+              <Text style={[textStyles.title, styles.cardTitleOverrides]}>
+                {currentCard.name}
+              </Text>
               <View style={styles.cardWrapper}>
                 <TarotCard
+                  name={currentCard.name}
                   image={currentCard.image}
                   isShown={true}
-                  style={styles.card}
+                  style={[componentStyles.cardImage, styles.cardOverrides]}
                 />
               </View>
-              <Text style={styles.explanationText}>
+              <Text style={[textStyles.body, styles.explanationTextOverrides]}>
                 {currentCard.explanation}
               </Text>
             </View>
@@ -83,12 +96,13 @@ export default function DrawnCardsDisplay({
         <TouchableOpacity
           onPress={onDismiss}
           style={[
-            styles.button,
+            componentStyles.buttonFullWidth,
+            styles.buttonOverrides,
             { backgroundColor: `rgba(124, 58, 237, ${buttonOpacity})` },
           ]}
         >
-          <Text style={styles.buttonText}>
-            {currentRound === 2
+          <Text style={typography.button}>
+            {currentRound === 3
               ? "Zusammenfassung anzeigen"
               : "Zur nächsten Karte"}
           </Text>
@@ -107,122 +121,52 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.85)",
   },
-  container: {
+  containerOverrides: {
+    flexDirection: "column",
+    padding: 20,
     width: "90%",
     maxHeight: "90%",
-    alignItems: "center",
-    backgroundColor: "rgba(17, 24, 39, 0.98)",
-    borderRadius: 16,
-    padding: 20, // Reduced from 24
-    borderWidth: 1,
-    borderColor: "rgba(139, 92, 246, 0.3)",
-    ...Platform.select({
-      ios: {
-        shadowColor: "#8B5CF6",
-        shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 20,
-      },
-      android: {
-        elevation: 10,
-      },
-    }),
+    alignItems: "stretch",
   },
-  cardTitle: {
+  scrollView: {
+    // width: "100%", // Keep this if needed (though stretch should handle it)
+    flex: 1,
+    // backgroundColor: "rgba(255, 0, 0, 0.3)", // Remove DEBUG background
+  },
+  scrollViewContent: {
+    alignItems: "center", // Restore center alignment
+    paddingBottom: 20,
+  },
+  cardContainer: {
+    marginBottom: 24,
+    alignItems: "center",
+  },
+  cardTitleOverrides: {
     color: "#A78BFA",
-    fontSize: 24, // Reduced from 28
-    fontWeight: "bold",
-    marginBottom: 24, // Reduced from 32
+    marginBottom: 24,
     textAlign: "center",
   },
   cardWrapper: {
-    // Der Wrapper hat dieselben Dimensionen wie die Karte
     width: 160,
     height: 256,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#8B5CF6",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.6,
-    shadowRadius: 20,
-    elevation: 8,
-    borderRadius: 16, // Stimmt den Glow-Radius auf die Karte ab
+    ...glowEffects.medium,
+    borderRadius: 16,
+    marginBottom: 24,
   },
-  card: {
-    // Karte auf volle Wrapper-Fläche
+  cardOverrides: {
     width: "100%",
     height: "100%",
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(139, 92, 246, 0.2)",
   },
-  explanationContainer: {
-    width: "100%",
-    marginTop: 24, // Reduced from 32
-    flex: 1.5, // Increased from 1 to give more space to text
-    backgroundColor: "rgba(17, 24, 39, 0.95)",
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(139, 92, 246, 0.3)",
-    overflow: "hidden", // Ensures content doesn't overflow
-    display: "flex", // Ensures proper flex layout
-    ...Platform.select({
-      ios: {
-        shadowColor: "#8B5CF6",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
-  },
-  scrollView: {
-    flex: 1, // Takes remaining space
-    padding: 20, // Adjusted padding
-  },
-  scrollViewContent: {
-    flexGrow: 1,
-    alignItems: "center", // <-- zentriert Inhalt im ScrollView
-  },
-  explanationText: {
-    color: "#F3F4F6",
-    fontSize: 17, // Slightly reduced from 18
-    lineHeight: 26, // Adjusted for better readability
+  explanationTextOverrides: {
     textAlign: "center",
-    marginTop: 24, // füge diesen hinzu
+    marginTop: 0,
+    paddingHorizontal: 10,
   },
-  button: {
-    width: "100%",
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    backgroundColor: "rgba(124, 58, 237, 0.9)",
-    borderBottomLeftRadius: 16,
-    borderBottomRightRadius: 16,
+  buttonOverrides: {
     borderTopWidth: 1,
     borderColor: "rgba(139, 92, 246, 0.3)",
-    marginTop: "auto", // Statt "auto" kommt ein fester Wert für minimalen Abstand
-    ...Platform.select({
-      ios: {
-        shadowColor: "#8B5CF6",
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 6,
-      },
-    }),
-  },
-  buttonText: {
-    color: "#FFFFFF",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  cardContainer: {
-    marginBottom: 24,
-    alignItems: "center", // <-- zentriert die Karte im Wrapper
+    marginTop: 16,
   },
 });

@@ -376,7 +376,6 @@ export const gameStyles = StyleSheet.create({
     alignSelf: "center",
   },
   startButton: {
-    position: 'absolute',
     alignSelf: 'center',
     backgroundColor: 'rgba(234, 88, 12, 0.9)',
     paddingHorizontal: 16,
@@ -390,7 +389,8 @@ export const gameStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   bgGray900: {
-    backgroundColor: '#111827',
+    flex: 1,
+    backgroundColor: colors.background,
   },
 });
 

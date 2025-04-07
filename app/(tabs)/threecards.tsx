@@ -5,7 +5,14 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
-import { View, Pressable, Text, Dimensions, Animated } from "react-native";
+import {
+  View,
+  Pressable,
+  Text,
+  Dimensions,
+  Animated,
+  StyleSheet,
+} from "react-native";
 import CardStackView from "@/components/CardStack";
 import DrawnCardsDisplay from "@/components/DrawnCardsDisplay";
 import { getRandomDrawnCards } from "@/utils/tarotCardPool";
@@ -152,15 +159,16 @@ export default function Index() {
   return (
     <View style={gameStyles.bgGray900}>
       {!sessionStarted ? (
-        <Pressable
-          style={[
-            gameStyles.startButton,
-            { alignSelf: "center", marginTop: 50 },
-          ]}
-          onPress={handleStartSession}
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Text style={gameStyles.startButtonText}>Start</Text>
-        </Pressable>
+          <Pressable
+            style={gameStyles.startButton}
+            onPress={handleStartSession}
+          >
+            <Text style={gameStyles.startButtonText}>Start</Text>
+          </Pressable>
+        </View>
       ) : (
         <>
           {currentRound < 3 && !showDrawnCard ? (
@@ -179,7 +187,9 @@ export default function Index() {
           ) : null}
 
           {showDrawnCard && currentRound < 3 && (
-            <Animated.View style={{ opacity: drawnCardOpacity }}>
+            <Animated.View
+              style={[StyleSheet.absoluteFill, { opacity: drawnCardOpacity }]}
+            >
               <DrawnCardsDisplay
                 selectedCards={selectedDrawnCards}
                 onDismiss={handleDismissExplanation}
