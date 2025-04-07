@@ -64,7 +64,7 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
-          name="dailycard"
+          name="dailyCard"
           options={{
             title: "Tageskarte",
             tabBarIcon: ({ color }) => (

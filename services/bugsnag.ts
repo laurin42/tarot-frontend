@@ -1,5 +1,5 @@
-import Bugsnag, { Config } from '@bugsnag/expo';
-import type { Event } from '@bugsnag/expo';
+import type { Event, Config } from '@bugsnag/expo';
+import { Platform } from 'react-native';
 // Importiere die gemeinsamen Typen
 import type { BugsnagService, BugsnagMetadata } from '../types/bugsnag.types';
 
@@ -21,36 +21,49 @@ const prepareBugsnagMetadata = (metadata: BugsnagMetadata | undefined): Record<s
 };
 
 // Factory-Funktion, die den Service *erstellt*, aber nicht sofort startet
-const createBugsnagServiceInternal = (): BugsnagService & { init: () => void } => {
+const createBugsnagServiceInternal = (): BugsnagService & { init: () => Promise<void> } => {
   let bugsnagStarted = false;
-  let internalBugsnagInstance: typeof Bugsnag | null = null;
+  let internalBugsnagModule: { default: { start: (config: Config) => void; notify: (...args: any[]) => any; leaveBreadcrumb: (...args: any[]) => any; setUser: (...args: any[]) => any; } } | null = null;
 
-  const init = () => {
+  const init = async (): Promise<void> => {
     if (bugsnagStarted) {
-        console.log("Bugsnag already started.");
-        return;
+      console.log("Bugsnag already started.");
+      return;
     }
-    try {
-      console.log("Initializing Bugsnag...");
-      const bugsnagConfig: Config = {
-        apiKey: process.env.EXPO_PUBLIC_BUGSNAG_API_KEY || '',
-        releaseStage: process.env.EXPO_PUBLIC_ENVIRONMENT || 'development',
-        enabledReleaseStages: ['production', 'staging', 'development'],
-        appVersion: process.env.EXPO_PUBLIC_APP_VERSION,
-        maxBreadcrumbs: 50,
-        // autoTrackSessions: true // Kann hier oder später konfiguriert werden
-      };
-      Bugsnag.start(bugsnagConfig); // Start erfolgt jetzt hier!
-      internalBugsnagInstance = Bugsnag; // Speichere die Instanz für spätere Aufrufe
-      bugsnagStarted = true;
-      console.log("Bugsnag initialized successfully.");
-    } catch (error: unknown) {
-      console.error(
-        'Failed to initialize Bugsnag:',
-        error instanceof Error ? error.message : String(error)
-      );
+
+    if (Platform.OS === 'ios' || Platform.OS === 'android') {
+      try {
+        console.log("Dynamically importing Bugsnag for native platform...");
+        const BugsnagModule = await import('@bugsnag/expo');
+        internalBugsnagModule = BugsnagModule as any;
+
+        if (internalBugsnagModule && internalBugsnagModule.default) {
+          console.log("Initializing Bugsnag...");
+          const bugsnagConfig: Config = {
+            apiKey: process.env.EXPO_PUBLIC_BUGSNAG_API_KEY || '',
+            releaseStage: process.env.EXPO_PUBLIC_ENVIRONMENT || 'development',
+            enabledReleaseStages: ['production', 'staging', 'development'],
+            appVersion: process.env.EXPO_PUBLIC_APP_VERSION,
+            maxBreadcrumbs: 50,
+          };
+          internalBugsnagModule.default.start(bugsnagConfig);
+          bugsnagStarted = true;
+          console.log("Bugsnag initialized successfully.");
+        } else {
+          throw new Error("Bugsnag module loaded incorrectly.");
+        }
+      } catch (error: unknown) {
+        console.error(
+          'Failed to load or initialize Bugsnag:',
+          error instanceof Error ? error.message : String(error)
+        );
+        bugsnagStarted = false;
+        internalBugsnagModule = null;
+      }
+    } else {
+      console.log("Bugsnag import and initialization skipped for non-native platform:", Platform.OS);
       bugsnagStarted = false;
-      internalBugsnagInstance = null;
+      internalBugsnagModule = null;
     }
   };
 
@@ -67,11 +80,11 @@ const createBugsnagServiceInternal = (): BugsnagService & { init: () => void } =
 
 
   return {
-    init, // Füge die init-Methode hinzu
+    init,
     notify: (error: Error | string, metadata?: BugsnagMetadata): unknown => {
-      if (!internalBugsnagInstance) return fallbackNotify(error);
+      if (!internalBugsnagModule?.default) return fallbackNotify(error);
       const errorObj = typeof error === 'string' ? new Error(error) : error;
-      return internalBugsnagInstance.notify(errorObj, (event: Event) => {
+      return internalBugsnagModule.default.notify(errorObj, (event: Event) => {
         if (metadata) {
           const preparedMetadata = prepareBugsnagMetadata(metadata);
           Object.entries(preparedMetadata).forEach(([section, data]) => {
@@ -82,12 +95,12 @@ const createBugsnagServiceInternal = (): BugsnagService & { init: () => void } =
       });
     },
     leaveBreadcrumb: (message: string, metadata?: BugsnagMetadata): void => {
-      if (!internalBugsnagInstance) return fallbackLeaveBreadcrumb(message, metadata);
-      internalBugsnagInstance.leaveBreadcrumb(message, prepareBugsnagMetadata(metadata));
+      if (!internalBugsnagModule?.default) return fallbackLeaveBreadcrumb(message, metadata);
+      internalBugsnagModule.default.leaveBreadcrumb(message, prepareBugsnagMetadata(metadata));
     },
     setUser: (id?: string, name?: string, email?: string): void => {
-      if (!internalBugsnagInstance) return fallbackSetUser(id, name, email);
-      internalBugsnagInstance.setUser(id, name, email);
+      if (!internalBugsnagModule?.default) return fallbackSetUser(id, name, email);
+      internalBugsnagModule.default.setUser(id, name, email);
     },
     isStarted: (): boolean => bugsnagStarted
   };
@@ -95,6 +108,6 @@ const createBugsnagServiceInternal = (): BugsnagService & { init: () => void } =
 
 /**
  * Typsicherer Bugsnag-Service für die gesamte Anwendung.
- * WICHTIG: `bugsnagService.init()` muss im App-Einstiegspunkt aufgerufen werden!
+ * WICHTIG: `await bugsnagService.init()` muss im App-Einstiegspunkt aufgerufen werden!
  */
-export const bugsnagService = createBugsnagServiceInternal(); // Erstellt das Service-Objekt, startet aber nicht
+export const bugsnagService = createBugsnagServiceInternal();

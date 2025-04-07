@@ -15,6 +15,7 @@ import { useUser } from "../../context/UserContext";
 import { useAuth } from "../../context/AuthContext";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { Link } from "expo-router";
 
 const ZODIAC_SIGNS = [
   "Widder",
@@ -33,7 +34,7 @@ const ZODIAC_SIGNS = [
 
 export default function ProfileScreen() {
   const { user, updateGoals } = useUser();
-  const { signOut } = useAuth();
+  const { signOut, isAuthenticated, isGuest } = useAuth();
 
   // Existing state
   const [goals, setGoals] = useState(user?.goals || "");
@@ -114,6 +115,23 @@ export default function ProfileScreen() {
       setBirthday(selectedDate);
     }
   };
+
+  if (isGuest) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Du bist als Gast unterwegs.</Text>
+        <Link href={{ pathname: "/(auth)" }}>
+          <Text style={{ color: "blue", marginTop: 10 }}>
+            Anmelden oder Registrieren
+          </Text>
+        </Link>
+      </View>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Link href={{ pathname: "/(auth)" }} />;
+  }
 
   return (
     <ScrollView style={styles.container}>

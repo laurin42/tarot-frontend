@@ -94,10 +94,18 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     fontSize: 14,
   },
+  skipButton: {
+    marginTop: 20,
+    padding: 10,
+  },
+  skipText: {
+    color: "gray",
+    textDecorationLine: "underline",
+  },
 });
 
 export default function AuthScreen() {
-  const { signIn, signInAnonymously } = useAuth();
+  const { signIn, signInAnonymously, skipLogin } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [isAnonymousLoading, setIsAnonymousLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -202,15 +210,16 @@ export default function AuthScreen() {
     try {
       setIsLoading(true);
       setError(null);
+      // Starte den Google-Prompt. Der useEffect wird auf die Antwort reagieren.
       await promptAsync();
     } catch (err) {
-      console.error("Google Sign In Error:", err);
+      console.error("Google Sign In Error (prompt failed):", err);
       setError(
         err instanceof Error ? err.message : "Ein Fehler ist aufgetreten"
       );
-      setIsLoading(false);
+      setIsLoading(false); // Setze Loading hier zurück, falls promptAsync fehlschlägt
     }
-    // setIsLoading wird im useEffect nach der Antwort auf false gesetzt
+    // isLoading wird im useEffect zurückgesetzt, wenn die Verarbeitung beginnt/fehlschlägt
   }, [promptAsync]);
 
   const handleAppleAuth = useCallback(async () => {
@@ -244,6 +253,10 @@ export default function AuthScreen() {
     };
     checkAppleAuth();
   }, []);
+
+  const handleSkipLogin = () => {
+    skipLogin();
+  };
 
   // Handler for anonymous sign-in
   const handleAnonymousSignIn = useCallback(async () => {
@@ -310,6 +323,10 @@ export default function AuthScreen() {
         ) : (
           <Text style={styles.anonymousText}>Ohne Anmeldung fortfahren</Text>
         )}
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={handleSkipLogin} style={styles.skipButton}>
+        <Text style={styles.skipText}>Als Gast fortfahren</Text>
       </TouchableOpacity>
     </View>
   );

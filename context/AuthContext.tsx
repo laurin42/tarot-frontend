@@ -8,12 +8,14 @@ interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  isGuest: boolean;
 }
 
 interface AuthContextType extends AuthState {
   signIn: (token: string) => Promise<void>;
   signOut: () => Promise<void>;
   signInAnonymously: () => Promise<void>;
+  skipLogin: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -23,6 +25,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     token: null,
     isAuthenticated: false,
     isLoading: true,
+    isGuest: false,
   });
 
   // Use UserContext to manage user data
@@ -42,6 +45,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           token: token,
           isAuthenticated: !!token,
           isLoading: false,
+          isGuest: false,
         });
       } catch (error) {
         console.error("Fehler beim Laden des Tokens:", error);
@@ -49,6 +53,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           token: null,
           isAuthenticated: false,
           isLoading: false,
+          isGuest: false,
         });
       }
     };
@@ -65,6 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         token,
         isAuthenticated: true,
         isLoading: false,
+        isGuest: false,
       });
       console.log("Anmeldung erfolgreich");
     } catch (error) {
@@ -94,6 +100,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         token: null,
         isAuthenticated: false,
         isLoading: false,
+        isGuest: false,
       });
       console.log("Authentifizierungsstatus zurückgesetzt");
 
@@ -151,15 +158,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         token: data.token,
         isAuthenticated: true,
         isLoading: false,
+        isGuest: false,
       });
 
       console.log("Anonyme Anmeldung erfolgreich");
       return Promise.resolve();
     } catch (error) {
       console.error("Fehler bei anonymer Anmeldung:", error);
-      setAuthState((prev) => ({ ...prev, isLoading: false }));
+      setAuthState((prev) => ({
+        ...prev,
+        isLoading: false,
+        isAuthenticated: false,
+        isGuest: false,
+      }));
       return Promise.reject(error);
     }
+  };
+
+  // NEU: Funktion für den Gast-Modus
+  const skipLogin = () => {
+    console.log("Skipping login, entering guest mode.");
+    setUser(null); // Kein User im UserContext
+    setAuthState({
+      token: null, // Kein Token
+      isAuthenticated: false, // Nicht authentifiziert
+      isLoading: false, // Laden abgeschlossen
+      isGuest: true, // Ist Gast
+    });
   };
 
   return (
@@ -169,6 +194,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         signIn,
         signOut,
         signInAnonymously,
+        skipLogin,
       }}
     >
       {children}

@@ -2,7 +2,7 @@ import { storage } from "../utils/storage";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
 import { SummaryResponse, CardExplanationResponse, ReadingSummaryResponse, ApiErrorResponse } from "@/types/api";
 
-const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || "http://192.168.178.67:8000";
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
 
 // Helper-Funktion zum Erstellen von Header mit Auth-Token
 async function getAuthHeaders(): Promise<HeadersInit> {

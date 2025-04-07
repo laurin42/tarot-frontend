@@ -21,7 +21,7 @@ export async function saveDrawnCards(cards: ISelectedAndShownCard[]): Promise<vo
 
             const saveResponse = await fetch(
               `${
-                process.env.EXPO_PUBLIC_API_URL || "http://192.168.178.67:8000"
+                process.env.EXPO_PUBLIC_API_URL
               }/tarot/drawn-card`,
               {
                 method: "POST",

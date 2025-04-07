@@ -10,13 +10,41 @@ import React, { useEffect } from "react";
 import { Text, View } from "react-native";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { UserProvider } from "../context/UserContext";
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider, useAuth } from "../context/AuthContext";
+import { GoogleAuthProvider } from "../providers/GoogleAuthProvider";
 import { bugsnagService } from "../services/bugsnag";
 import { initializeSplashScreen } from "../utils/splashScreen";
 import * as SplashScreen from "expo-splash-screen";
+import { useRouter, useSegments } from "expo-router";
 
 // Initialize splash screen
 initializeSplashScreen();
+
+function useProtectedRoute() {
+  const { isAuthenticated, isGuest, isLoading } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoading) return; // Noch nicht bereit
+
+    const inAuthGroup = segments[0] === "(auth)";
+    const userHasAccess = isAuthenticated || isGuest; // Prüft beides
+
+    if (userHasAccess && inAuthGroup) {
+      // Nutzer hat Zugriff (eingeloggt ODER Gast) und ist im Auth-Bereich -> Weiterleiten zur App
+      router.replace({ pathname: "/dailyCard" }); // Korrigierter Pfadname
+    } else if (!userHasAccess && !inAuthGroup) {
+      // Nutzer hat keinen Zugriff (weder eingeloggt noch Gast) und ist NICHT im Auth-Bereich -> Weiterleiten zum Login
+      router.replace({ pathname: "/(auth)" }); // Geänderter Pfad
+    }
+  }, [isAuthenticated, isGuest, isLoading, segments, router]);
+}
+
+function ProtectedLayout() {
+  useProtectedRoute();
+  return <Slot />;
+}
 
 export default function RootLayout(): JSX.Element | null {
   const colorScheme = useColorScheme();
@@ -63,12 +91,14 @@ export default function RootLayout(): JSX.Element | null {
     return (
       <UserProvider>
         <AuthProvider>
-          <ThemeProvider
-            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-          >
-            <Slot />
-            <StatusBar style="auto" />
-          </ThemeProvider>
+          <GoogleAuthProvider>
+            <ThemeProvider
+              value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+            >
+              <ProtectedLayout />
+              <StatusBar style="auto" />
+            </ThemeProvider>
+          </GoogleAuthProvider>
         </AuthProvider>
       </UserProvider>
     );
