@@ -5,7 +5,7 @@ interface TarotCardProps {
   image: any;
   isShown: boolean;
   style?: any;
-  name?: string;
+  name: string;
 }
 
 export interface ITarotCard {
@@ -24,7 +24,7 @@ export default function TarotCard({
 }: TarotCardProps) {
   return (
     <DynamicTarotCard
-      cardName={name ?? "Unknown Card"}
+      cardName={name}
       isShown={isShown}
       size="medium"
       style={style}

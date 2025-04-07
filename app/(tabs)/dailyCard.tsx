@@ -52,6 +52,7 @@ export default function DailyCardScreen() {
 
       // Hole Erklärung vom Server
       const token = await storage.getItem("userToken");
+      console.log("Token aus Storage:", token); // <-- Hinzufügen!
       const response = await fetch(
         `${process.env.EXPO_PUBLIC_API_URL}/tarot/cards/${encodeURIComponent(
           randomCard.name
@@ -103,11 +104,14 @@ export default function DailyCardScreen() {
         <View style={styles.cardContainer}>
           <Text style={styles.cardName}>{card?.name}</Text>
           <View style={styles.cardWrapper}>
-            <TarotCard
-              image={card?.image}
-              isShown={true}
-              style={{ width: 160, height: 256 }}
-            />
+            {card && card.name && (
+              <TarotCard
+                name={card.name}
+                image={card?.image}
+                isShown={true}
+                style={{ width: 160, height: 256 }}
+              />
+            )}
           </View>
           <Text style={styles.explanation}>{explanation}</Text>
         </View>
