@@ -51,15 +51,16 @@ export default function DailyCardScreen() {
       setCard(randomCard);
 
       // Hole Erklärung vom Server
-      const token = await storage.getItem("userToken");
-      console.log("Token aus Storage:", token); // <-- Hinzufügen!
+      // const token = await storage.getItem("userToken"); // Entferne Token-Logik
+      // console.log("Token aus Storage:", token); // Entferne Log
       const response = await fetch(
         `${process.env.EXPO_PUBLIC_API_URL}/tarot/cards/${encodeURIComponent(
           randomCard.name
-        )}`,
-        {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        }
+        )}`
+        // Entferne Headers-Objekt komplett, wenn kein Token mehr benötigt wird
+        // {
+        //  headers: token ? { Authorization: `Bearer ${token}` } : {},
+        // }
       );
 
       if (!response.ok) throw new Error("Fehler beim Laden der Kartendetails");

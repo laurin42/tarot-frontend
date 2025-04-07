@@ -30,9 +30,6 @@ export async function getRandomDrawnCards(): Promise<ISelectedAndShownCard[]> {
   // Add optimization for card images
   const optimizedCards = await Promise.all(
     drawnCards.map(async (card) => {
-      if (card.image) {
-        card.image = await DynamicTarotCard(card.image);
-      }
       return card;
     })
   );

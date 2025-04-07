@@ -68,13 +68,13 @@ export function useCardStackLogic({
 
       return () => clearTimeout(timer);
     }
-  }, [currentRound, predeterminedCards, sessionStarted, onAnimationComplete, fanAnimation]);
+  }, [currentRound, predeterminedCards, sessionStarted, onAnimationComplete, fanAnimation.animateToFan]);
 
   // Reset states when round changes
   useEffect(() => {
     setIsCardSelected(false);
     cardAnimation.resetAnimations();
-  }, [currentRound, cardAnimation]);
+  }, [currentRound, cardAnimation.resetAnimations]);
 
   // Show instruction after card initialization
   useEffect(() => {
@@ -86,7 +86,7 @@ export function useCardStackLogic({
 
       return () => clearTimeout(timer);
     }
-  }, [cards, cardAnimation]);
+  }, [cards, cardAnimation.showInstruction]);
 
   // Handle card selection with animations
   const handleCardSelect = useCallback((card: ISelectedAndShownCard) => {
@@ -116,7 +116,7 @@ export function useCardStackLogic({
 
     // Hide instruction
     setShowInstruction(false);
-  }, [cards, isCardSelected, currentRound, drawnSlotPositions, onCardSelect, cardAnimation]);
+  }, [cards, isCardSelected, currentRound, drawnSlotPositions, onCardSelect, cardAnimation.animateCardSelection]);
 
   return {
     cards,
