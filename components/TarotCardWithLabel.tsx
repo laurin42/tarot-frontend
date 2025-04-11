@@ -26,23 +26,10 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
   const { width: screenWidth } = Dimensions.get("window");
   const cardWidth = screenWidth * 0.25; // ~25% mit etwas Abstand
 
-  const getPositionLabel = (index: number): string => {
-    switch (index) {
-      case 0:
-        return "Gegenwart";
-      case 1:
-        return "Konflikt";
-      case 2:
-        return "Perspektive";
-      default:
-        return `Position ${index + 1}`;
-    }
-  };
-
   return (
     <View style={[styles.container, componentStyles.cardWrapper]}>
       {/* Position Label */}
-      <Text style={textStyles.cardLabel}>({getPositionLabel(index)})</Text>
+      {/* Removed getPositionLabel function */}
 
       {/* Tarot Card Image */}
       <View
@@ -62,7 +49,6 @@ const TarotCardWithLabel: React.FC<TarotCardWithLabelProps> = ({
           >
             <DynamicTarotCard
               cardName={card.name}
-              size="small"
               isShown={true}
               style={{
                 width: cardWidth,

@@ -14,6 +14,7 @@ const CardInstruction = memo(({ opacity }: CardInstructionProps) => {
         layoutStyles.instructionContainer,
         { opacity },
       ]}
+      pointerEvents="none"
     >
       <Text style={textStyles.mysticalText}>
         {"Tippe auf den Stapel, um eine Karte zu ziehen"}

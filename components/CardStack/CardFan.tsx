@@ -1,91 +1,51 @@
-import React, { memo } from "react";
-import { View, Animated, Pressable } from "react-native";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { layoutStyles, componentStyles } from "@/styles/styles";
-import DynamicTarotCard from "../DynamicTarotCard";
+import React, { useEffect, useRef } from "react";
+import { View, Text, Animated } from "react-native";
+import { useCardStack } from "../../contexts/CardStackContext";
+import { layoutStyles } from "../../styles/layoutStyles";
+import { cardContainerStyle, instructionStyle } from "../../styles/cardStyles";
+import AnimatedFanCard from "./AnimatedFanCard";
 
-interface CardFanProps {
-  cards: ISelectedAndShownCard[];
-  currentRound: number;
-  cardDimensions: { width: number; height: number };
-  fanAnimation: {
-    translateX: Animated.Value[];
-    translateY: Animated.Value[];
-    rotations: Animated.Value[];
-    scales: Animated.Value[];
-  };
-  stackOpacity: Animated.Value;
-  selectedCardPosition: Animated.ValueXY;
-  selectedCardScale: Animated.Value;
-  animatingToPosition: boolean;
-  onCardSelect: (card: ISelectedAndShownCard) => void;
-}
-
-const CardFan = memo(
-  ({
+const CardFan = () => {
+  const {
     cards,
-    currentRound,
+    spreadAngle,
     cardDimensions,
-    fanAnimation,
-    stackOpacity,
-    selectedCardPosition,
-    selectedCardScale,
-    animatingToPosition,
-    onCardSelect,
-  }: CardFanProps) => {
-    return (
-      <View style={layoutStyles.cardFan}>
+    sessionStarted,
+    handleCardSelect,
+  } = useCardStack();
+  const fanRef = useRef(new Animated.Value(0));
+
+  useEffect(() => {
+    Animated.timing(fanRef.current, {
+      toValue: 1,
+      duration: 1000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  return (
+    <View
+      style={[layoutStyles.flexCenter, { flex: 1, alignItems: "center" }]}
+      testID="card-fan-container"
+    >
+      <View style={cardContainerStyle}>
+        <Text style={instructionStyle}>Click a card to select it</Text>
         {cards.map((card, index) => (
-          <Animated.View
-            key={`${currentRound}-${index}`}
-            style={[
-              componentStyles.animatedCard,
-              {
-                zIndex: cards.length - index,
-                transform:
-                  card.isSelected && animatingToPosition
-                    ? [
-                        { translateX: selectedCardPosition.x },
-                        { translateY: selectedCardPosition.y },
-                        { scale: selectedCardScale },
-                        { rotate: "0deg" },
-                      ]
-                    : [
-                        { translateY: fanAnimation.translateY[index] },
-                        { translateX: fanAnimation.translateX[index] },
-                        {
-                          rotate: fanAnimation.rotations[index].interpolate({
-                            inputRange: [-30, 30],
-                            outputRange: ["-30deg", "30deg"],
-                          }),
-                        },
-                        { scale: fanAnimation.scales[index] },
-                      ],
-                opacity: card.isSelected ? 1 : stackOpacity,
-              },
-            ]}
-          >
-            <Pressable
-              style={[componentStyles.cardBase, componentStyles.cardPressable]}
-              onPress={() => onCardSelect(card)}
-            >
-              <DynamicTarotCard
-                cardName={card.name}
-                isShown={card.showFront || false}
-                size="medium"
-                style={{
-                  width: cardDimensions.width,
-                  height: cardDimensions.height,
-                }}
-              />
-            </Pressable>
-          </Animated.View>
+          <AnimatedFanCard
+            key={card.id}
+            card={card}
+            index={index}
+            totalCards={cards.length}
+            spreadAngle={spreadAngle}
+            cardDimensions={cardDimensions}
+            handleCardSelect={handleCardSelect}
+            sessionStarted={sessionStarted}
+            testID={`card-${card.id}`}
+          />
         ))}
       </View>
-    );
-  }
-);
-
-CardFan.displayName = "CardFan";
+    </View>
+  );
+};
 
 export default CardFan;

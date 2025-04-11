@@ -1,130 +1,143 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { useCardFanAnimation } from "@/hooks/useCardFanAnimation";
-import { useCardSelectionAnimation } from "@/hooks/useCardSelectionAnimation";
+import {
+  useCardSelectionAnimation,
+  // CardTransformMap, // No longer explicitly needed here
+} from "@/hooks/useCardSelectionAnimation";
 
 interface CardStackLogicParams {
-  onAnimationComplete: () => void;
-  onCardSelect: (card: ISelectedAndShownCard) => void;
-  sessionStarted: boolean;
-  cardDimensions: { width: number; height: number };
-  drawnSlotPositions: { x: number; y: number }[];
-  currentRound: number;
   predeterminedCards: ISelectedAndShownCard[];
+  sessionStarted: boolean;
+  currentRound: number;
+  drawnSlotPositions: { x: number; y: number }[];
+  cardDimensions: { width: number; height: number };
+  spreadAngle: number;
+  onCardSelect: (card: ISelectedAndShownCard) => void;
   onCardPositioned?: () => void;
+  containerDimensions: { width: number; height: number };
 }
 
-export function useCardStackLogic({
-  onAnimationComplete,
-  onCardSelect,
-  sessionStarted,
-  cardDimensions,
-  currentRound,
+// Create dummy card matching required ISelectedAndShownCard fields
+const createDummyCard = (id: string): ISelectedAndShownCard => ({
+  id,
+  name: "Card Back",
+  image: undefined,
+  onNextCard: () => {},
+  showFront: false,
+  isSelected: false,
+  explanation: undefined,
+});
+
+export const useCardStackLogic = ({
   predeterminedCards,
+  sessionStarted,
+  currentRound,
   drawnSlotPositions,
+  cardDimensions,
+  spreadAngle,
+  onCardSelect,
   onCardPositioned,
-}: CardStackLogicParams) {
+  containerDimensions,
+}: CardStackLogicParams) => {
   const [cards, setCards] = useState<ISelectedAndShownCard[]>([]);
-  const [showInstruction, setShowInstruction] = useState(false);
+  // const [showInstruction, setShowInstruction] = useState(false); // Removed state
   const [isCardSelected, setIsCardSelected] = useState(false);
   const [animatingToPosition, setAnimatingToPosition] = useState(false);
 
-  // Animation hooks - Wiederverwendung der bestehenden Hooks
-  const fanAnimation = useCardFanAnimation({
-    cardCount: 5,
-    spreadAngle: 60,
-    cardDimensions,
-    currentRound,
-    sessionStarted,
-  });
-
   const cardAnimation = useCardSelectionAnimation(onCardPositioned);
 
-  // Initialize cards and start animation
+  // Effect 1: Set cards when session starts or predetermined cards change
   useEffect(() => {
-    if (
-      sessionStarted &&
-      predeterminedCards.length > 0 &&
-      currentRound < predeterminedCards.length
-    ) {
-      const newStack = Array(5)
-        .fill(null)
-        .map(() => ({
-          ...predeterminedCards[currentRound],
-          showFront: false,
-          isSelected: false,
-        }));
-
-      setCards(newStack);
-
-      // Start fan animation with delay
-      const timer = setTimeout(() => {
-        fanAnimation.animateToFan().start(() => {
-          if (typeof onAnimationComplete === "function") {
-            onAnimationComplete();
-          }
-        });
-      }, 300);
-
-      return () => clearTimeout(timer);
+    console.log("[useCardStackLogic Effect 1] Triggered. sessionStarted:", sessionStarted);
+    if (sessionStarted && predeterminedCards && predeterminedCards.length > 0) {
+      console.log("[useCardStackLogic Effect 1] Setting cards from predeterminedCards:", predeterminedCards);
+      setCards(predeterminedCards);
+      // Reset selection state when new cards are set
+      setIsCardSelected(false);
+      setAnimatingToPosition(false);
+    } else if (!sessionStarted) {
+        console.log("[useCardStackLogic Effect 1] Session ended or not started, clearing cards.");
+        setCards([]); // Clear cards if session ends
+        cardAnimation.resetAnimations(); // Reset animations including instruction
     }
-  }, [currentRound, predeterminedCards, sessionStarted, onAnimationComplete, fanAnimation.animateToFan]);
+  }, [sessionStarted, predeterminedCards, cardAnimation]); // Added cardAnimation dependency for reset
 
-  // Reset states when round changes
+  // Effect 2: Update transforms and show instruction when cards state updates and session is active
   useEffect(() => {
-    setIsCardSelected(false);
-    cardAnimation.resetAnimations();
-  }, [currentRound, cardAnimation.resetAnimations]);
-
-  // Show instruction after card initialization
-  useEffect(() => {
-    if (cards.length > 0 && !cards.some((c) => c.isSelected)) {
-      const timer = setTimeout(() => {
-        setShowInstruction(true);
-        cardAnimation.showInstruction().start();
-      }, 1000);
-
-      return () => clearTimeout(timer);
+    console.log("[useCardStackLogic Effect 2] Triggered. cards.length:", cards.length, "sessionStarted:", sessionStarted);
+    if (sessionStarted && cards.length > 0) {
+      console.log("[useCardStackLogic Effect 2] Calling updateAllCardTransforms and showInstruction for cards:", cards);
+      cardAnimation.updateAllCardTransforms(
+        cards,
+        sessionStarted, // Pass sessionStarted here
+        spreadAngle,
+        cardDimensions
+      );
+      // Use the animation hook's method to show instruction
+      if (!isCardSelected) { // Only show instruction if no card is selected/animating
+          cardAnimation.showInstruction();
+      }
     }
-  }, [cards, cardAnimation.showInstruction]);
+    // If session is not started or cards are empty, transforms/instruction should already be reset by Effect 1 / resetAnimations
+  }, [
+    cards, // Depend on the actual cards state
+    sessionStarted,
+    cardDimensions,
+    spreadAngle,
+    cardAnimation,
+    isCardSelected, // Add dependency to re-evaluate showing instruction
+    containerDimensions,
+  ]);
 
-  // Handle card selection with animations
-  const handleCardSelect = useCallback((card: ISelectedAndShownCard) => {
-    if (cards.some((c) => c.isSelected) || isCardSelected) return;
 
-    setIsCardSelected(true);
-    setAnimatingToPosition(true);
+  const handleCardSelect = useCallback(
+    (selectedCard: ISelectedAndShownCard) => {
+      // Check for dummy cards or if an animation is already in progress or if session not started
+      if (!sessionStarted || selectedCard.id.startsWith("dummy-") || isCardSelected || animatingToPosition) {
+         console.log(`[handleCardSelect] Selection blocked: sessionStarted=${sessionStarted}, dummy=${selectedCard.id.startsWith("dummy-")}, isSelected=${isCardSelected}, animating=${animatingToPosition}`);
+        return;
+      }
+      console.log("[handleCardSelect] Selecting card:", selectedCard.id);
 
-    setCards((prevCards) =>
-      prevCards.map((c) => ({
-        ...c,
-        showFront: c === card ? true : false,
-        isSelected: c === card ? true : false,
-      }))
-    );
+      setIsCardSelected(true); // Set flag immediately
+      setAnimatingToPosition(true); // Indicate animation start
+      // setShowInstruction(false); // Instruction opacity is handled by animateCardSelection now
 
-    // Start the card selection animation sequence
-    cardAnimation.animateCardSelection(
-      card,
+      cardAnimation.animateCardSelection(
+        selectedCard,
+        cards, // Pass current cards state
+        currentRound,
+        drawnSlotPositions,
+        cardDimensions,
+        (finalCardState) => {
+          console.log("[handleCardSelect] Animation complete for card:", finalCardState.id);
+          onCardSelect(finalCardState); // Call original callback
+          // Keep isCardSelected true, but allow new animations *after* this one completes fully
+          setAnimatingToPosition(false);
+          // Don't reset isCardSelected here, let the parent component manage rounds/reset
+        }
+      );
+    },
+    [
+      sessionStarted, // Add dependency
+      isCardSelected,
+      animatingToPosition, // Add dependency
+      cards,
       currentRound,
       drawnSlotPositions,
-      (selectedCard) => {
-        setAnimatingToPosition(false);
-        onCardSelect(selectedCard);
-      }
-    );
-
-    // Hide instruction
-    setShowInstruction(false);
-  }, [cards, isCardSelected, currentRound, drawnSlotPositions, onCardSelect, cardAnimation.animateCardSelection]);
+      cardDimensions,
+      cardAnimation,
+      onCardSelect,
+    ]
+  );
 
   return {
     cards,
-    showInstruction,
-    isCardSelected,
-    animatingToPosition,
-    fanAnimation,
-    cardAnimation,
+    showInstruction: !isCardSelected, // Compute based on isCardSelected 
+    isCardSelected, // Still needed to show drawn cards view
+    animatingToPosition, // Expose this if needed by parent
+    cardTransforms: cardAnimation.cardTransforms,
+    instructionOpacity: cardAnimation.instructionOpacity, // Pass this down for the text
     handleCardSelect,
   };
-}
+};

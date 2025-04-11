@@ -1,8 +1,33 @@
 import { storage } from "../utils/storage";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
 import { SummaryResponse, CardExplanationResponse, ReadingSummaryResponse, ApiErrorResponse } from "@/types/api";
+import { bugsnagService } from "@/services/bugsnag";
 
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL;
+
+export async function fetchAndProcessTarotSummary(cards: ISelectedAndShownCard[]): Promise<FetchResult> {
+  if (cards.length === 0) {
+    return { summary: '', error: null }; // Return early for empty cards
+  }
+  try {
+    const summaryText = await tarotApi.fetchSummary(cards);
+    
+    // Save the reading (fire and forget)
+    if (summaryText) {
+      tarotApi.saveSummaryReading(cards, summaryText).catch((saveErr) => {
+        console.error('Failed to save summary reading:', saveErr);
+        bugsnagService.notify(new Error('Failed to save summary reading'));
+      });
+    }
+    return { summary: summaryText, error: null };
+
+  } catch (err) {
+    console.error('Summary fetch/process error:', err);
+    const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+    bugsnagService.notify(err instanceof Error ? err : new Error(String(err)));
+    return { summary: null, error: errorMessage }; // Return error message
+  }
+}
 
 // Helper-Funktion zum Erstellen von Header mit Auth-Token
 async function getAuthHeaders(): Promise<HeadersInit> {
@@ -73,3 +98,8 @@ export const tarotApi = {
     return data.explanation || "Keine Erklärung verfügbar";
   }
 };
+
+interface FetchResult {
+  summary: string | null;
+  error: string | null;
+}

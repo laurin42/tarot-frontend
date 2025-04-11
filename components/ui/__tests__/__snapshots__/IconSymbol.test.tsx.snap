@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconSymbol Component renders correctly with all valid props and matches snapshot 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="star.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 25,
+          "width": 25,
+        },
+        {
+          "margin": 5,
+        },
+      ],
+    ]
+  }
+  tintColor="purple"
+  type="monochrome"
+  weight="semibold"
+/>
+`;
+
+exports[`IconSymbol Component renders correctly with custom color and matches snapshot 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="star.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 24,
+          "width": 24,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="blue"
+  type="monochrome"
+  weight="regular"
+/>
+`;
+
+exports[`IconSymbol Component renders correctly with custom color and size and matches snapshot 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="star.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 30,
+          "width": 30,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="red"
+  type="monochrome"
+  weight="regular"
+/>
+`;
+
+exports[`IconSymbol Component renders correctly with custom size and matches snapshot 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="star.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 40,
+          "width": 40,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="black"
+  type="monochrome"
+  weight="regular"
+/>
+`;
+
+exports[`IconSymbol Component renders correctly with default props and matches snapshot 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="star.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 24,
+          "width": 24,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="black"
+  type="monochrome"
+  weight="regular"
+/>
+`;
+
+exports[`IconSymbol Component renders correctly with weight prop and matches snapshot 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="star.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 24,
+          "width": 24,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="black"
+  type="monochrome"
+  weight="bold"
+/>
+`;

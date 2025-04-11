@@ -66,7 +66,7 @@ const SummaryView: React.FC<SummaryViewProps> = ({ cards, onDismiss }) => {
         <SummaryPanel
           loading={loading}
           error={error}
-          summary={summary}
+          summary={summary ?? ""}
           showButton={hasScrolledToEnd}
           onButtonPress={onDismiss}
         />

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Image } from "expo-image";
-import { getCardImageByName, CARD_BACK_IMAGE } from "@/constants/tarotcards";
+import { getCardImageByName, CARD_BACK_IMAGES } from "@/constants/tarotcards";
 
 interface DynamicTarotCardProps {
   cardName: string; // Name der Karte, wird zum dynamischen Laden verwendet
-  size?: "small" | "medium" | "large"; // Für verschiedene Größen
   isShown?: boolean; // Ob Vorder- oder Rückseite gezeigt wird
-  style?: any; // Zusätzliche Styles
+  cardBackIndex?: number; // Index für die gewünschte Kartenrückseite (0, 1, oder 2)
+  style?: any; // Zusätzliche Styles (will now control size)
 }
 
 /**
@@ -22,8 +22,8 @@ interface DynamicTarotCardProps {
  */
 export default function DynamicTarotCard({
   cardName,
-  size = "medium",
   isShown = true,
+  cardBackIndex = 0, // Standardmäßig die erste Rückseite (Index 0)
   style,
 }: DynamicTarotCardProps) {
   const [imageSource, setImageSource] = useState<any>(null);
@@ -31,16 +31,38 @@ export default function DynamicTarotCard({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    try {
-      const source = getCardImageByName(cardName);
-      setImageSource(source);
+    // Stelle sicher, dass der Index gültig ist
+    const validCardBackIndex =
+      cardBackIndex >= 0 && cardBackIndex < CARD_BACK_IMAGES.length
+        ? cardBackIndex
+        : 0;
+
+    if (isShown) {
+      try {
+        const source = getCardImageByName(cardName);
+        setImageSource(source);
+        setIsLoading(false);
+      } catch (err) {
+        console.error("Fehler beim Laden der Karte:", err);
+        setError("Konnte Karte nicht laden");
+        setIsLoading(false);
+      }
+    } else {
+      // Wenn die Rückseite gezeigt werden soll, lade das entsprechende Bild aus dem Array
+      setImageSource(CARD_BACK_IMAGES[validCardBackIndex]);
       setIsLoading(false);
-    } catch (err) {
-      console.error("Fehler beim Laden der Karte:", err);
-      setError("Konnte Karte nicht laden");
-      setIsLoading(false);
+      setError(null); // Setze Fehler zurück, falls zuvor einer aufgetreten ist
     }
-  }, [cardName, isShown, size]);
+  }, [cardName, isShown, cardBackIndex]); // Füge cardBackIndex zur Abhängigkeitsliste hinzu
+
+  // Wähle die korrekte Bildquelle basierend auf isShown und cardBackIndex
+  const finalImageSource = isShown
+    ? imageSource
+    : CARD_BACK_IMAGES[
+        cardBackIndex >= 0 && cardBackIndex < CARD_BACK_IMAGES.length
+          ? cardBackIndex
+          : 0
+      ];
 
   return (
     <View style={[styles.container, style]}>
@@ -53,8 +75,9 @@ export default function DynamicTarotCard({
       ) : (
         <Image
           style={styles.image}
-          source={isShown ? imageSource : CARD_BACK_IMAGE}
-          // placeholder={isShown ? blurhash : undefined}
+          // Verwende die ermittelte Bildquelle
+          source={finalImageSource}
+          // placeholder={isShown ? blurhash : undefined} // Beispielhaft auskommentiert, falls du Placeholder verwendest
           contentFit="contain"
           transition={200}
         />
@@ -71,31 +94,36 @@ export default function DynamicTarotCard({
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    borderWidth: 0.4,
-    borderColor: "rgba(224, 224, 224, 1)",
+    borderWidth: 0.3,
+    borderColor: "black", // Testweise auf schwarz ändern
     borderRadius: 16,
     overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#000000", // Test: Undurchsichtiger schwarzer Hintergrund
   },
   image: {
     width: "100%",
     height: "100%",
-    borderRadius: 16,
   },
   nameContainer: {
     position: "absolute",
     bottom: 4,
     left: 4,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    right: 4, // Sorge dafür, dass der Text ggf. umbricht
+    backgroundColor: "rgba(0, 0, 0, 0.6)", // Etwas dunkler für besseren Kontrast
     borderRadius: 4,
-    padding: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 4, // Etwas mehr Padding
   },
   nameText: {
     color: "white",
-    fontSize: 16,
+    fontSize: 12, // Kleinere Schriftgröße für Namen
     fontWeight: "bold",
+    textAlign: "center", // Zentrierter Text
   },
   loadingText: {
-    color: "white",
+    color: "rgba(255, 215, 0, 0.8)", // Goldene Ladeanzeige
     textAlign: "center",
     padding: 10,
   },
@@ -104,9 +132,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+    backgroundColor: "rgba(255, 0, 0, 0.1)", // Leichter roter Hintergrund bei Fehler
   },
   errorText: {
     color: "red",
     textAlign: "center",
+    fontSize: 12,
   },
 });

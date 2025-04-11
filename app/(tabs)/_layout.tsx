@@ -1,23 +1,24 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform, SafeAreaView } from "react-native";
+import { colors } from "@/styles/theme";
 import DailyCardIcon from "../../components/icons/DailyCardIcon";
 import ThreeCardsIcon from "../../components/icons/ThreeCardsIcon";
 import ProfileIcon from "../../components/icons/ProfileIcon";
 
 export default function TabLayout() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#111827" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.tabBarBackground }}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: "#A78BFA",
-          tabBarInactiveTintColor: "#9CA3AF",
+          tabBarActiveTintColor: colors.tabBarActive,
+          tabBarInactiveTintColor: colors.tabBarInactive,
           headerShown: false,
           tabBarStyle: {
             height: 65,
             paddingBottom: 0,
             paddingTop: 0,
-            backgroundColor: "#111827",
+            backgroundColor: colors.tabBarBackground,
             borderTopWidth: 0,
             elevation: 0,
             shadowOpacity: 0,
@@ -36,7 +37,6 @@ export default function TabLayout() {
               },
             }),
           },
-          // Stelle sicher, dass diese Einstellung aktiviert ist
           tabBarLabelPosition: "below-icon",
           tabBarShowLabel: true,
           tabBarLabelStyle: {
@@ -44,7 +44,6 @@ export default function TabLayout() {
             fontWeight: "500",
             marginTop: 2,
             paddingBottom: 4,
-            color: "#9CA3AF", // Standard-Textfarbe - wird für aktiven Tab überschrieben
           },
           tabBarIconStyle: {
             marginTop: 6,
@@ -70,7 +69,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => (
               <DailyCardIcon width={28} height={28} fill={color} />
             ),
-            tabBarLabel: "Tageskarte", // Explizit das Label setzen
+            tabBarLabel: "Tageskarte",
           }}
         />
         <Tabs.Screen
@@ -80,7 +79,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => (
               <ProfileIcon width={28} height={28} fill={color} />
             ),
-            tabBarLabel: "Profil", // Explizit das Label setzen
+            tabBarLabel: "Profil",
           }}
         />
       </Tabs>

@@ -1,14 +1,20 @@
-import React, { memo } from "react";
-import { View } from "react-native";
+import React, { memo, useState } from "react";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  LayoutChangeEvent,
+} from "react-native";
+import Animated from "react-native-reanimated";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
-import { layoutStyles } from "@/styles/styles";
+import { layoutStyles, textStyles } from "@/styles/styles";
 import { useCardStackLogic } from "./useCardStackLogic";
-import CardFan from "./CardFan";
-import CardInstruction from "./CardInstruction";
-import CardIndicator from "./CardIndicator";
+import AnimatedFanCard from "./AnimatedFanCard";
+// import CardInstruction from "./CardInstruction";
+// import CardIndicator from "./CardIndicator";
 
 interface CardStackViewProps {
-  onAnimationComplete: () => void;
   onCardSelect: (card: ISelectedAndShownCard) => void;
   sessionStarted: boolean;
   cardDimensions: { width: number; height: number };
@@ -19,52 +25,82 @@ interface CardStackViewProps {
 }
 
 const CardStackView = memo((props: CardStackViewProps) => {
+  const spreadAngle = 60;
+  // Initialize containerDimensions with estimated values
+  const [containerDimensions, setContainerDimensions] = useState({
+    width: Dimensions.get("window").width,
+    height: 300, // Initial estimate
+  });
+
+  const handleLayout = (event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    console.log("[CardStackView] Container dimensions:", width, height);
+    setContainerDimensions({ width, height });
+  };
+
   const {
     cards,
     showInstruction,
-    isCardSelected,
-    animatingToPosition,
-    fanAnimation,
-    cardAnimation,
-    handleCardSelect,
-  } = useCardStackLogic(props);
-
-  const {
+    cardTransforms,
     instructionOpacity,
-    stackOpacity,
-    selectedCardPosition,
-    selectedCardScale,
-  } = cardAnimation;
+    handleCardSelect,
+  } = useCardStackLogic({
+    ...props,
+    spreadAngle,
+    containerDimensions,
+  });
 
   return (
-    <View style={layoutStyles.centeredContainer}>
-      {/* Mystical glow background */}
-      <View style={layoutStyles.mysticalGlowContainer} />
-
-      <View style={layoutStyles.gamePlayArea}>
-        {/* Instruction floating indicator */}
-        {showInstruction && <CardInstruction opacity={instructionOpacity} />}
-
-        {/* Card fan container */}
-        <CardFan
-          cards={cards}
-          currentRound={props.currentRound}
+    <View style={styles.container} onLayout={handleLayout}>
+      {cards.map((card) => (
+        <AnimatedFanCard
+          key={card.id}
+          card={card}
+          cardTransforms={cardTransforms}
+          sessionStarted={props.sessionStarted}
+          handleCardSelect={handleCardSelect}
           cardDimensions={props.cardDimensions}
-          fanAnimation={fanAnimation}
-          stackOpacity={stackOpacity}
-          selectedCardPosition={selectedCardPosition}
-          selectedCardScale={selectedCardScale}
-          animatingToPosition={animatingToPosition}
-          onCardSelect={handleCardSelect}
+          containerDimensions={containerDimensions}
         />
+      ))}
 
-        {/* Card indicator */}
-        {cards.length > 0 && !isCardSelected && (
-          <CardIndicator currentRound={props.currentRound} />
-        )}
-      </View>
+      {showInstruction && (
+        <Animated.Text
+          style={[
+            textStyles.body,
+            styles.instructionText,
+            { opacity: instructionOpacity },
+          ]}
+        >
+          Bitte Karte wählen...
+        </Animated.Text>
+      )}
     </View>
   );
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: "100%",
+    position: "relative",
+    justifyContent: "center", // Center content vertically
+    alignItems: "center", // Center content horizontally
+    // --- Remove DEBUG STYLES --- //
+    // backgroundColor: "rgba(0, 255, 0, 0.3)",
+    // borderWidth: 2,
+    // borderColor: "green",
+    // --- END DEBUG STYLES --- //
+  },
+  instructionText: {
+    position: "absolute",
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: "center",
+    color: "#FFF",
+    zIndex: 1,
+  },
 });
 
 CardStackView.displayName = "CardStackView";

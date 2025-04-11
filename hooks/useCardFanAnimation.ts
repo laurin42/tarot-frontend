@@ -1,92 +1,86 @@
-import { useRef, useEffect, useCallback } from 'react';
-import { Animated, Dimensions } from 'react-native';
+import Animated, { useSharedValue, withTiming } from 'react-native-reanimated';
+import { animation } from '@/styles/theme';
 
-interface CardFanConfig {
-  cardCount: number;
-  spreadAngle: number;
-  cardDimensions: { width: number; height: number };
-  currentRound: number;
-  sessionStarted: boolean; // Add sessionStarted to trigger initial animation
+// Define the structure of the returned animated values
+interface CardFanAnimatedValues {
+  translateX: Animated.SharedValue<number>;
+  translateY: Animated.SharedValue<number>;
+  rotate: Animated.SharedValue<number>;
+  scale: Animated.SharedValue<number>;
+  opacity: Animated.SharedValue<number>;
 }
 
-export const useCardFanAnimation = ({ 
-  cardCount, 
-  spreadAngle, 
-  cardDimensions,
-  currentRound,
-  sessionStarted 
-}: CardFanConfig) => {
-  const translateY = useRef(new Array(cardCount).fill(0).map(() => new Animated.Value(1000))).current;
-  const translateX = useRef(new Array(cardCount).fill(0).map(() => new Animated.Value(0))).current;
-  const rotations = useRef(new Array(cardCount).fill(0).map(() => new Animated.Value(0))).current;
-  const scales = useRef(new Array(cardCount).fill(0).map(() => new Animated.Value(0.8))).current;
+// Define the type for the animation function
+type AnimateFanFunction = (
+  index: number,
+  cardCount: number,
+  cardDimensions: { width: number; height: number }
+) => void;
 
-  const animateToFan = useCallback(() => {
-    const { width: screenWidth } = Dimensions.get('window');
-    const centerX = screenWidth / 2;
-    const radius = cardDimensions.width * 1.5;
-    
-    const animations = Array(cardCount).fill(0).map((_, index) => {
-      const angle = -spreadAngle / 2 + (spreadAngle / (cardCount - 1)) * index;
-      const radian = (angle * Math.PI) / 180;
-      
-      const targetX = centerX + radius * Math.sin(radian);
-      const targetY = -radius * Math.cos(radian) + radius;
+// Define and export the hook's return type
+export interface CardFanAnimationHookResult extends CardFanAnimatedValues {
+  animateFan: AnimateFanFunction;
+}
 
-      return Animated.parallel([
-        Animated.spring(translateY[index], {
-          toValue: targetY,
-          friction: 6,
-          tension: 40,
-          useNativeDriver: true,
-        }),
-        Animated.spring(translateX[index], {
-          toValue: targetX - centerX,
-          friction: 6,
-          tension: 40,
-          useNativeDriver: true,
-        }),
-        Animated.spring(rotations[index], {
-          toValue: angle,
-          friction: 6,
-          tension: 40,
-          useNativeDriver: true,
-        }),
-        Animated.spring(scales[index], {
-          toValue: 1,
-          friction: 6,
-          tension: 40,
-          useNativeDriver: true,
-        }),
-      ]);
-    });
+// Helper to calculate fan target transform (returns plain numbers)
+interface FanTargetTransform {
+    translateX: number;
+    translateY: number;
+    rotate: number;
+    scale: number;
+}
 
-    return Animated.stagger(50, animations);
-  }, [cardCount, spreadAngle, cardDimensions, translateX, translateY, rotations, scales]);
+const calculateFanTarget = (
+    index: number,
+    cardCount: number, // Keep for consistency, even if unused currently
+    cardDimensions: { width: number; height: number }
+  ): FanTargetTransform => {
+  const radius = cardDimensions.width * 1.4;
+  let angle = 0;
+  if (index === 0) angle = -15;
+  else if (index === 2) angle = 15;
+  // Index 1 keeps angle = 0
 
-  // Trigger animation on both sessionStarted and currentRound changes
-  useEffect(() => {
-    if (sessionStarted) {
-      // Reset to initial positions
-      translateY.forEach(anim => anim.setValue(1000));
-      translateX.forEach(anim => anim.setValue(0));
-      rotations.forEach(anim => anim.setValue(0));
-      scales.forEach(anim => anim.setValue(0.8));
-
-      // Start animation with a slight delay
-      const timer = setTimeout(() => {
-        animateToFan().start();
-      }, 3000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentRound, sessionStarted, animateToFan, rotations, scales, translateX, translateY]); // Now it works correctly
+  const radian = (angle * Math.PI) / 180;
+  const targetXRelativeToCenter = radius * Math.sin(radian);
+  const targetYRelativeToArcOrigin = -radius * Math.cos(radian) + radius * 0.6;
+  const adjustedTranslateY = targetYRelativeToArcOrigin - cardDimensions.height / 2;
+  const adjustedTranslateX = targetXRelativeToCenter - cardDimensions.width / 2;
 
   return {
-    translateY,
+    translateX: adjustedTranslateX,
+    translateY: adjustedTranslateY,
+    rotate: angle,
+    scale: 1, // Assuming scale stays 1 for the fan
+  };
+};
+
+// This hook provides animated values and a function to trigger the fan animation for ONE card.
+// It does NOT take config like cardCount etc. as an argument anymore.
+export const useCardFanAnimation = (): CardFanAnimationHookResult => {
+  const translateX = useSharedValue(0); // Initial position (off-screen logic might be better handled by the component using this)
+  const translateY = useSharedValue(1000); // Start off-screen below
+  const rotate = useSharedValue(0);
+  const scale = useSharedValue(0.8); // Match initial scale from selection hook
+  const opacity = useSharedValue(0); // Start invisible
+
+  const animateFan: AnimateFanFunction = (index, cardCount, cardDimensions) => {
+    const target = calculateFanTarget(index, cardCount, cardDimensions);
+
+    // Use withTiming for smooth transition
+    translateX.value = withTiming(target.translateX, { duration: animation.timing.move.duration });
+    translateY.value = withTiming(target.translateY, { duration: animation.timing.move.duration });
+    rotate.value = withTiming(target.rotate, { duration: animation.timing.move.duration });
+    scale.value = withTiming(target.scale, { duration: animation.timing.move.duration }); // Animate scale to 1
+    opacity.value = withTiming(1, { duration: animation.timing.fadeIn.duration }); // Fade in
+  };
+
+  return {
     translateX,
-    rotations,
-    scales,
-    animateToFan,
+    translateY,
+    rotate,
+    scale,
+    opacity,
+    animateFan,
   };
 };

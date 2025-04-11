@@ -9,6 +9,8 @@ export async function getRandomDrawnCards(): Promise<ISelectedAndShownCard[]> {
   const drawnCards = shuffledCards.slice(0, 3);
   const explanations: { [key: string]: string } = {};
 
+  // --- VORÜBERGEHEND AUSKOMMENTIERT ZUM TESTEN ---
+  /*
   // Fetch explanations for each card
   await Promise.all(
     drawnCards.map(async (card) => {
@@ -26,6 +28,8 @@ export async function getRandomDrawnCards(): Promise<ISelectedAndShownCard[]> {
       }
     })
   );
+  */
+  // --- ENDE AUSKOMMENTIERTER BLOCK ---
 
   // Add optimization for card images
   const optimizedCards = await Promise.all(

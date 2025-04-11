@@ -13,6 +13,7 @@ const CardIndicator = memo(({ currentRound }: CardIndicatorProps) => {
         layoutStyles.floatingIndicator,
         layoutStyles.cardIndicatorContainer,
       ]}
+      pointerEvents="none"
     >
       <Text style={textStyles.mysticalText}>
         {currentRound === 2 ? "Letzte Karte" : `Karte ${currentRound + 1}/3`}

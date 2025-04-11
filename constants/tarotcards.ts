@@ -58,15 +58,20 @@ export function getCardImageByName(cardName: string): any {
     return cardImageMapping[cardName];
   }
   
-  // Fallback zum Kartenrücken, wenn keine Karte gefunden wurde
-  console.warn(`Keine Bildabbildung für Karte "${cardName}" gefunden`);
-  return CARD_BACK_IMAGE;
+  // Fallback zur ersten Kartenrückseite, wenn keine Karte gefunden wurde
+  console.warn(`Keine Bildabbildung für Karte \"${cardName}\" gefunden`);
+  return CARD_BACK_IMAGES[0]; // Verwende die erste Rückseite als Standard-Fallback
 }
 
 /**
- * Kartenrücken-Bild, kann einfach in der gesamten App verwendet werden
+ * Kartenrücken-Bilder
  */
-export const CARD_BACK_IMAGE = require("../assets/images/tarot_cards/Card_back.png");
+// export const CARD_BACK_IMAGE = require("../assets/images/tarot_cards/Card_back.png"); // Alte Definition auskommentieren oder löschen
+export const CARD_BACK_IMAGES = [
+  require("../assets/images/tarot_cards/Card_back_1.png"), // Ersetze dies mit deinen Dateinamen
+  require("../assets/images/tarot_cards/Card_back_2.png"), // Ersetze dies mit deinen Dateinamen
+  require("../assets/images/tarot_cards/Card_back_3.png"), // Ersetze dies mit deinen Dateinamen
+];
 
 export const tarotCards: ITarotCard[] = [
   {

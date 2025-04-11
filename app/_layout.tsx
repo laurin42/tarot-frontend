@@ -8,6 +8,7 @@ import { Slot } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect } from "react";
 import { Text, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { bugsnagService } from "../services/bugsnag";
 import { initializeSplashScreen } from "../utils/splashScreen";
@@ -59,10 +60,14 @@ export default function RootLayout(): JSX.Element | null {
 
   try {
     return (
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Slot />
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Slot />
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </GestureHandlerRootView>
     );
   } catch (error: unknown) {
     bugsnagService.notify(

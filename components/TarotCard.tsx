@@ -26,7 +26,7 @@ export default function TarotCard({
     <DynamicTarotCard
       cardName={name}
       isShown={isShown}
-      size="medium"
+      size="large"
       style={style}
     />
   );

@@ -82,13 +82,12 @@ export const layoutStyles = StyleSheet.create({
     alignSelf: "center",
   },
   floatingIndicator: {
-    position: "absolute", // Damit der Indikator über anderen Elementen schwebt
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // Leicht transparenter Hintergrund
-    paddingVertical: 10, // Vertikales Padding
-    paddingHorizontal: 20, // Horizontales Padding
-    borderRadius: 8, // Abgerundete Ecken
-    alignSelf: "center", // Zentriert auf der X-Achse
-    zIndex: zIndex.tooltip, // Z-Index für die Schichtung
+    backgroundColor: "rgba(30, 36, 44, 0.85)",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    ...borderEffects.subtle,
+    alignSelf: "center",
+    zIndex: zIndex.tooltip,
   },
   cardIndicatorContainer: {
     position: "absolute", // Damit der Indikator über anderen Elementen schwebt
@@ -106,7 +105,6 @@ export const layoutStyles = StyleSheet.create({
     borderRadius: 250,
     backgroundColor: "rgba(139, 92, 246, 0.3)",
     zIndex: zIndex.overlay,
-    ...glowEffects.gold,
   },
 
   gamePlayArea: {
@@ -115,10 +113,8 @@ export const layoutStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "relative",
-    backgroundColor: colors.backgroundLight,
     padding: spacing.md,
     borderRadius: 16,
-    ...glowEffects.medium,
   },
 });
 
@@ -130,8 +126,9 @@ export const layoutStyles = StyleSheet.create({
 export const componentStyles = StyleSheet.create({
   // Card components
   cardBase: {
-    ...borderEffects.standard,
-    ...glowEffects.medium,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.cardBackGold,
+    borderRadius: 16,
   },
   cardContainer: {
     borderRadius: 16,
@@ -139,9 +136,6 @@ export const componentStyles = StyleSheet.create({
     backgroundColor: colors.backgroundLight,
   },
   cardImage: {
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: "rgba(139, 92, 246, 0.2)",
   },
   cardWrapper: {
     alignItems: "center",
@@ -155,7 +149,9 @@ export const componentStyles = StyleSheet.create({
   },
   animatedCard: {
     position: "absolute",
-    ...glowEffects.medium,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.cardBackGold,
+    borderRadius: 16,
   },
   cardPressable: {
     borderRadius: 16,
@@ -197,7 +193,6 @@ export const componentStyles = StyleSheet.create({
     backgroundColor: colors.backgroundLight,
     padding: 20,
     ...borderEffects.standard,
-    ...glowEffects.medium,
   },
   modalContent: {
     backgroundColor: colors.backgroundDarker,
@@ -209,20 +204,16 @@ export const componentStyles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: colors.border,
-    ...glowEffects.medium,
   },
   
   // Other UI elements
   floatingIndicator: {
-    position: "absolute",
-    backgroundColor: "transparent",
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    minWidth: 250,
-    maxWidth: "80%",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "rgba(30, 36, 44, 0.85)",
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    ...borderEffects.subtle,
+    alignSelf: "center",
+    zIndex: zIndex.tooltip,
   },
   mysticalGlowContainer: {
     position: "absolute",
@@ -230,7 +221,7 @@ export const componentStyles = StyleSheet.create({
     height: 500,
     borderRadius: 250,
     backgroundColor: "transparent",
-    ...glowEffects.gold,
+    zIndex: zIndex.overlay,
   },
   instructionContainer: {
     top: "10%",
@@ -246,7 +237,6 @@ export const componentStyles = StyleSheet.create({
     marginBottom: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
-    ...glowEffects.medium,
   },
   cardsContainer: {
     flexDirection: "row",
@@ -308,10 +298,9 @@ export const textStyles = StyleSheet.create({
   // Special text styles
   mysticalText: {
     color: colors.primaryLight,
-    fontSize: 18,
-    fontWeight: "600",
+    fontSize: 16,
+    fontWeight: "500",
     textAlign: "center",
-    ...glowEffects.text,
   },
   glowingText: {
     color: colors.primaryLight,

@@ -19,12 +19,26 @@ import { getRandomDrawnCards } from "@/utils/tarotCardPool";
 import { ISelectedAndShownCard } from "@/constants/tarotcards";
 import SummaryView from "@/components/SummaryView";
 import { gameStyles, layoutStyles } from "@/styles/styles";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+// Helper to safely get dimensions, providing defaults for tests
+const getSafeDimensions = () => {
+  try {
+    if (Dimensions && typeof Dimensions.get === "function") {
+      return Dimensions.get("window");
+    }
+  } catch (error) {
+    console.warn("[ThreeCardsScreen] Dimensions API failed:", error);
+  }
+  return { width: 400, height: 800 }; // Default values for tests
+};
 
 export default function Index() {
-  const { width, height } = Dimensions.get("window");
+  // Use the safe getter
+  const { width, height } = getSafeDimensions();
 
   const cardDimensions = useMemo(() => {
-    const baseCardWidth = width > 400 ? 150 : 100;
+    const baseCardWidth = width > 400 ? 230 : 160;
     return {
       width: baseCardWidth,
       height: baseCardWidth * 1.6,
@@ -58,16 +72,33 @@ export default function Index() {
   }, [drawnCards]); // Recalculate only when drawnCards changes
 
   const handleStartSession = useCallback(() => {
+    console.log("Start button clicked, calling handleStartSession");
     setSessionStarted(true);
     setLoading(true);
     setError(null);
     getRandomDrawnCards()
       .then((cards) => {
+        console.log("[handleStartSession] Received cards:", cards);
+        if (!cards || cards.length === 0) {
+          console.warn(
+            "[handleStartSession] No cards received or empty array!"
+          );
+          setError("Keine Karten zum Anzeigen gefunden.");
+          setLoading(false);
+          setSessionStarted(false);
+          return;
+        }
+        console.log(
+          "[handleStartSession] Setting predeterminedCards and loading=false"
+        );
         setPredeterminedCards(cards);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to get predetermined cards:", err);
+        console.error(
+          "[handleStartSession] Failed to get predetermined cards:",
+          err
+        );
         setError("Fehler beim Laden der Karten.");
         setLoading(false);
         setSessionStarted(false);
@@ -106,7 +137,6 @@ export default function Index() {
   const handleDismissExplanation = () => {
     setShowDrawnCard(false);
     setTimeout(() => {
-      setCurrentRound((prev) => prev + 1);
       drawnCardOpacity.setValue(0);
     }, 300);
   };
@@ -157,7 +187,7 @@ export default function Index() {
   }
 
   return (
-    <View style={gameStyles.bgGray900}>
+    <View style={[gameStyles.bgGray900, { flex: 1 }]}>
       {!sessionStarted ? (
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
@@ -172,23 +202,25 @@ export default function Index() {
       ) : (
         <>
           {currentRound < 3 && !showDrawnCard ? (
-            <View style={layoutStyles.flexCenter}>
-              <CardStackView
-                onAnimationComplete={handleAnimationComplete}
-                onCardSelect={handleCardSelect}
-                sessionStarted={sessionStarted}
-                cardDimensions={cardDimensions}
-                drawnSlotPositions={drawnSlotPositions}
-                currentRound={currentRound}
-                predeterminedCards={predeterminedCards}
-                onCardPositioned={handleCardPositioned}
-              />
-            </View>
+            <>
+              <View style={{ flex: 1 }}>
+                <CardStackView
+                  onCardSelect={handleCardSelect}
+                  sessionStarted={sessionStarted}
+                  cardDimensions={cardDimensions}
+                  drawnSlotPositions={drawnSlotPositions}
+                  currentRound={currentRound}
+                  predeterminedCards={predeterminedCards}
+                  onCardPositioned={handleCardPositioned}
+                />
+              </View>
+            </>
           ) : null}
 
           {showDrawnCard && currentRound < 3 && (
             <Animated.View
               style={[StyleSheet.absoluteFill, { opacity: drawnCardOpacity }]}
+              pointerEvents="box-none"
             >
               <DrawnCardsDisplay
                 selectedCards={selectedDrawnCards}

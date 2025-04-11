@@ -1,7 +1,22 @@
 import { Platform, Easing, Dimensions } from "react-native";
 
 // Get device dimensions for responsive styling
-const { width, height } = Dimensions.get("window");
+// Use default dimensions if Dimensions API is not available (e.g., during Jest tests)
+const getDimensions = () => {
+  try {
+    // Attempt to get dimensions, check if 'get' exists
+    if (Dimensions && typeof Dimensions.get === 'function') {
+      return Dimensions.get("window");
+    }
+  } catch (error) {
+    // Handle potential errors during access, although unlikely with the check above
+    console.warn("Dimensions API failed during initialization:", error);
+  }
+  // Return default values if API fails or is not available
+  return { width: 400, height: 800 };
+};
+
+const { width, height } = getDimensions();
 
 // Main color palette
 export const colors = {
@@ -11,10 +26,10 @@ export const colors = {
   primaryDark: "#7C3AED",
   
   // Background colors
-  background: "#111827", // Dark background
-  backgroundLight: "rgba(31, 41, 55, 0.95)",
-  backgroundDarker: "rgba(31, 41, 55, 0.98)",
-  backgroundOverlay: "rgba(0, 0, 0, 0.85)",
+  background: "#0D1117", // Darker, less saturated background
+  backgroundLight: "rgba(30, 36, 44, 0.95)", // Slightly darker light bg
+  backgroundDarker: "rgba(25, 30, 38, 0.98)", // Slightly darker darker bg
+  backgroundOverlay: "rgba(0, 0, 0, 0.8)", // Adjust overlay opacity if needed
   
   // Text colors
   text: "#FFFFFF",
@@ -25,15 +40,21 @@ export const colors = {
   orange: "rgba(249, 115, 22, 0.9)",
   orangeLight: "rgba(249, 115, 22, 0.7)",
   gold: "#FFD700",
+  cardBackGold: "#rgba(237, 179, 96, 0.3)",
   error: "#EF4444",
   success: "#6EE7B7",
   
   // Glow colors
-  purpleGlow: "rgba(139, 92, 246, 0.4)",
+  purpleGlow: "rgba(139, 92, 246, 0.3)", // Reduce alpha for purple glow
 
   // Border colors
   border: "rgba(139, 92, 246, 0.3)",
   borderLight: "rgba(139, 92, 246, 0.2)",
+
+  // Tab Bar Colors - ADD THESE
+  tabBarBackground: "#0D1117",
+  tabBarActive: "rgba(237, 179, 96, 0.8)",   // Gold with 50% opacity (wie gewünscht)
+  tabBarInactive: "#9CA3AF",                 // Muted grey (textMuted)
 };
 
 // Spacing scale for consistent layout
@@ -48,73 +69,73 @@ export const spacing = {
 
 // Shadow/glow effects with different intensities - optimized for each platform
 export const glowEffects = {
-  strong: {
+  strong: { // Keep strong glow for specific highlights if needed, maybe reduce slightly
     ...Platform.select({
       ios: {
         shadowColor: colors.primary,
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 20,
+        shadowOpacity: 0.7,
+        shadowRadius: 18,
       },
       android: {
-        elevation: 15,
+        elevation: 14,
       },
       web: {
-        boxShadow: `0 0 20px ${colors.purpleGlow}`,
+        boxShadow: `0 0 18px ${colors.purpleGlow}`,
       },
     }),
   },
-  medium: {
+  medium: { // Reduce medium glow significantly
     ...Platform.select({
       ios: {
         shadowColor: colors.primary,
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.5,
-        shadowRadius: 15,
+        shadowOpacity: 0.25, // Lower opacity
+        shadowRadius: 8, // Smaller radius
       },
       android: {
-        elevation: 10,
+        elevation: 6,
       },
       web: {
-        boxShadow: `0 0 15px ${colors.purpleGlow}`,
+        boxShadow: `0 0 8px rgba(139, 92, 246, 0.25)`, // Smaller, less opaque glow
       },
     }),
   },
-  subtle: {
+  subtle: { // Reduce subtle glow
     ...Platform.select({
       ios: {
         shadowColor: colors.primary,
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
+        shadowOpacity: 0.15, // Lower opacity
+        shadowRadius: 5, // Smaller radius
       },
       android: {
-        elevation: 5,
+        elevation: 3,
       },
       web: {
-        boxShadow: `0 0 10px ${colors.purpleGlow}`,
+        boxShadow: `0 0 5px rgba(139, 92, 246, 0.15)`, // Smaller, less opaque glow
       },
     }),
   },
-  text: {
-    textShadowColor: `rgba(139, 92, 246, 0.8)`,
+  text: { // Reduce text glow
+    textShadowColor: `rgba(139, 92, 246, 0.6)`, // Less intense color
     textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 10,
+    textShadowRadius: 6, // Smaller radius
   },
-  gold: {
+  gold: { // Reduce gold glow significantly
     ...Platform.select({
       ios: {
         shadowColor: colors.gold,
         shadowOffset: { width: 0, height: 0 },
-        shadowOpacity: 0.8,
-        shadowRadius: 20,
+        shadowOpacity: 0.5, // Lower opacity
+        shadowRadius: 10, // Smaller radius
       },
       android: {
-        elevation: 20,
-        backgroundColor: "rgba(255,215,0,0.05)",
+        elevation: 10,
+        backgroundColor: "rgba(255,215,0,0.02)", // Less bg color influence
       },
       web: {
-        boxShadow: `0 0 20px rgba(255,215,0,0.8)`,
+        boxShadow: `0 0 10px rgba(255,215,0,0.5)`, // Smaller, less opaque glow
       },
     }),
   },

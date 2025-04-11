@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorDisplay Component matches snapshot with dark mode 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 20,
+      },
+      {
+        "backgroundColor": "#1F2937",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "red",
+          "fontSize": 16,
+          "marginBottom": 20,
+          "textAlign": "center",
+        },
+        {
+          "color": "white",
+        },
+      ]
+    }
+  >
+    Something went wrong!
+  </Text>
+</View>
+`;
+
+exports[`ErrorDisplay Component matches snapshot with dark mode and reload button 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 20,
+      },
+      {
+        "backgroundColor": "#1F2937",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "red",
+          "fontSize": 16,
+          "marginBottom": 20,
+          "textAlign": "center",
+        },
+        {
+          "color": "white",
+        },
+      ]
+    }
+  >
+    Something went wrong!
+  </Text>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#FF3B30",
+        "borderRadius": 20,
+        "elevation": 3,
+        "paddingHorizontal": 12,
+        "paddingVertical": 8,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Neu laden
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`ErrorDisplay Component matches snapshot with default props 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 20,
+      },
+      false,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "red",
+          "fontSize": 16,
+          "marginBottom": 20,
+          "textAlign": "center",
+        },
+        false,
+      ]
+    }
+  >
+    Something went wrong!
+  </Text>
+</View>
+`;
+
+exports[`ErrorDisplay Component matches snapshot with reload button 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 20,
+      },
+      false,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "red",
+          "fontSize": 16,
+          "marginBottom": 20,
+          "textAlign": "center",
+        },
+        false,
+      ]
+    }
+  >
+    Something went wrong!
+  </Text>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "backgroundColor": "#FF3B30",
+        "borderRadius": 20,
+        "elevation": 3,
+        "paddingHorizontal": 12,
+        "paddingVertical": 8,
+        "shadowColor": "#000",
+        "shadowOffset": {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Neu laden
+    </Text>
+  </View>
+</View>
+`;
