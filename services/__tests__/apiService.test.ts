@@ -1,7 +1,7 @@
 import { fetchAndProcessTarotSummary, tarotApi } from '../apiService'; // Import REAL function and REAL object
 import { bugsnagService } from '@/services/bugsnag';
 import { storage } from '@/utils/storage';
-import { ISelectedAndShownCard } from '@/constants/tarotcards';
+import { ISelectedAndShownCard } from '@/constants/tarotCards';
 
 // --- Mock ONLY external dependencies ---
 // REMOVED: jest.mock('../apiService', ...)

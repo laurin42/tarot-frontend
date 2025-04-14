@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DynamicTarotCard Component applies custom style correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      {
+        "height": 300,
+        "opacity": 0.5,
+        "width": 200,
+      },
+    ]
+  }
+>
+  <View
+    data-contentFit="contain"
+    data-source="mock-known-card-source"
+    data-transition={200}
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    testID="mock-expo-image"
+  />
+  <View
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.6)",
+        "borderRadius": 4,
+        "bottom": 4,
+        "left": 4,
+        "paddingHorizontal": 4,
+        "paddingVertical": 2,
+        "position": "absolute",
+        "right": 4,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Known Card
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`DynamicTarotCard Component renders back side correctly with default index (0) 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    data-contentFit="contain"
+    data-transition={200}
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    testID="mock-expo-image"
+  />
+</View>
+`;
+
+exports[`DynamicTarotCard Component renders back side correctly with specific index (1) 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    data-contentFit="contain"
+    data-transition={200}
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    testID="mock-expo-image"
+  />
+</View>
+`;
+
+exports[`DynamicTarotCard Component renders back side with default index (0) if provided index is invalid 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    data-contentFit="contain"
+    data-transition={200}
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    testID="mock-expo-image"
+  />
+</View>
+`;
+
+exports[`DynamicTarotCard Component renders fallback image (first back) for an unknown card when shown 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    data-contentFit="contain"
+    data-source="mock-card-back-1"
+    data-transition={200}
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    testID="mock-expo-image"
+  />
+  <View
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.6)",
+        "borderRadius": 4,
+        "bottom": 4,
+        "left": 4,
+        "paddingHorizontal": 4,
+        "paddingVertical": 2,
+        "position": "absolute",
+        "right": 4,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Unknown Card
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`DynamicTarotCard Component renders front side correctly for a known card 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    data-contentFit="contain"
+    data-source="mock-known-card-source"
+    data-transition={200}
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    testID="mock-expo-image"
+  />
+  <View
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.6)",
+        "borderRadius": 4,
+        "bottom": 4,
+        "left": 4,
+        "paddingHorizontal": 4,
+        "paddingVertical": 2,
+        "position": "absolute",
+        "right": 4,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Known Card
+    </Text>
+  </View>
+</View>
+`;

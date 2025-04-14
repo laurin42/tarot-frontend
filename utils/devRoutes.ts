@@ -12,7 +12,7 @@ export function registerDevRoutes(): void {
   try {
     // Registriere die Debug-Tools-Route mit dem Helper
     DynamicRouteService.registerRoute(DYNAMIC_ROUTES.DEV_TOOLS, () =>
-      React.lazy(() => import("../dev-tools/BugsnagTest"))
+      React.lazy(() => import("../dev-tools/bugsnagTest"))
     );
 
     bugsnagService.leaveBreadcrumb("Debug route registered");

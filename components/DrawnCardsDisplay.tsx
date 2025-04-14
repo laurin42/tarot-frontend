@@ -19,7 +19,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { TapGestureHandler, State } from "react-native-gesture-handler";
 import TarotCard from "./TarotCard";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { componentStyles, glowEffects, textStyles } from "@/styles";
 import { typography } from "@/styles/theme";
 import { colors } from "@/styles/theme";

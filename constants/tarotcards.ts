@@ -2,17 +2,18 @@ export interface ITarotCard {
   id: string;
   name: string;
   image: any;
+  showFront?: boolean;
 }
 
 export interface ISelectedAndShownCard extends ITarotCard {
   name: string;
-  showFront?: boolean;
   isSelected?: boolean;
   currentIndex?: number;
   explanation?: string;
   image: any;
   onNextCard: () => void;
-}
+  }
+
 
 // Statisches Mapping für Kartennamen zu vorgeladenen Bildern
 const cardImageMapping: Record<string, any> = {

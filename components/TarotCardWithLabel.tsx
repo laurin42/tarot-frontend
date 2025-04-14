@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import DynamicTarotCard from "@/components/DynamicTarotCard";
 import { Shadow } from "react-native-shadow-2";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { componentStyles, textStyles, colors } from "@/styles";
 
 interface TarotCardWithLabelProps {

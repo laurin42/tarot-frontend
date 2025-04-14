@@ -1,7 +1,7 @@
 import { renderHook, act, waitFor } from '@testing-library/react-native';
 import { useTarotSummary } from '../useTarotSummary';
 import { fetchAndProcessTarotSummary } from '@/services/apiService';
-import { ISelectedAndShownCard } from '@/constants/tarotcards';
+import { ISelectedAndShownCard } from '@/constants/tarotCards';
 import { bugsnagService } from '@/services/bugsnag';
 
 // --- Mock ONLY the service module containing the helper ---

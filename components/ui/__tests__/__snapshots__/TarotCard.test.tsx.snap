@@ -1,0 +1,268 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TarotCard Component renders correctly when showFront is false and matches snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      {
+        "opacity": 0.8,
+        "transform": [
+          {
+            "translateX": 10,
+          },
+          {
+            "translateY": 20,
+          },
+          {
+            "rotate": "5deg",
+          },
+        ],
+        "zIndex": 5,
+      },
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoImage
+    containerViewRef={"[React.ref]"}
+    contentFit="contain"
+    contentPosition={
+      {
+        "left": "50%",
+        "top": "50%",
+      }
+    }
+    height="100%"
+    nativeViewRef={"[React.ref]"}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    placeholder={[]}
+    source={
+      [
+        {
+          "testUri": "../../../assets/images/tarot_cards/Card_back_1.png",
+        },
+      ]
+    }
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    transition={
+      {
+        "duration": 200,
+      }
+    }
+    width="100%"
+  />
+</View>
+`;
+
+exports[`TarotCard Component renders correctly with card data and animatedStyle and matches snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      {
+        "opacity": 0.8,
+        "transform": [
+          {
+            "translateX": 10,
+          },
+          {
+            "translateY": 20,
+          },
+          {
+            "rotate": "5deg",
+          },
+        ],
+        "zIndex": 5,
+      },
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoImage
+    containerViewRef={"[React.ref]"}
+    contentFit="contain"
+    contentPosition={
+      {
+        "left": "50%",
+        "top": "50%",
+      }
+    }
+    height="100%"
+    nativeViewRef={"[React.ref]"}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    placeholder={[]}
+    source={
+      [
+        {
+          "testUri": "../../../assets/images/tarot_cards/Card_back_1.png",
+        },
+      ]
+    }
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    transition={
+      {
+        "duration": 200,
+      }
+    }
+    width="100%"
+  />
+  <View
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.6)",
+        "borderRadius": 4,
+        "bottom": 4,
+        "left": 4,
+        "paddingHorizontal": 4,
+        "paddingVertical": 2,
+        "position": "absolute",
+        "right": 4,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Test Card
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`TarotCard Component renders correctly with card data and matches snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "alignItems": "center",
+        "backgroundColor": "#000000",
+        "borderColor": "black",
+        "borderRadius": 16,
+        "borderWidth": 0.3,
+        "justifyContent": "center",
+        "overflow": "hidden",
+        "position": "relative",
+      },
+      {
+        "opacity": 0.8,
+        "transform": [
+          {
+            "translateX": 10,
+          },
+          {
+            "translateY": 20,
+          },
+          {
+            "rotate": "5deg",
+          },
+        ],
+        "zIndex": 5,
+      },
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoImage
+    containerViewRef={"[React.ref]"}
+    contentFit="contain"
+    contentPosition={
+      {
+        "left": "50%",
+        "top": "50%",
+      }
+    }
+    height="100%"
+    nativeViewRef={"[React.ref]"}
+    onError={[Function]}
+    onLoad={[Function]}
+    onLoadStart={[Function]}
+    onProgress={[Function]}
+    placeholder={[]}
+    source={
+      [
+        {
+          "testUri": "../../../assets/images/tarot_cards/Card_back_1.png",
+        },
+      ]
+    }
+    style={
+      {
+        "height": "100%",
+        "width": "100%",
+      }
+    }
+    transition={
+      {
+        "duration": 200,
+      }
+    }
+    width="100%"
+  />
+  <View
+    style={
+      {
+        "backgroundColor": "rgba(0, 0, 0, 0.6)",
+        "borderRadius": 4,
+        "bottom": 4,
+        "left": 4,
+        "paddingHorizontal": 4,
+        "paddingVertical": 2,
+        "position": "absolute",
+        "right": 4,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontSize": 12,
+          "fontWeight": "bold",
+          "textAlign": "center",
+        }
+      }
+    >
+      Test Card
+    </Text>
+  </View>
+</View>
+`;

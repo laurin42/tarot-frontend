@@ -1,7 +1,7 @@
 // components/CardStack/__tests__/useCardStackLogic.test.tsx
 import { renderHook, act } from "@testing-library/react-native";
 import { useCardStackLogic } from "../useCardStackLogic";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import * as CardUtils from "@/utils/cardUtils";
 import * as AnimationHook from "@/hooks/useCardSelectionAnimation";
 

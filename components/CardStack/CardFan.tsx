@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, Animated } from "react-native";
-import { useCardStack } from "../../contexts/CardStackContext";
+import { useCardStack } from "../../context/CardStackContext";
 import { layoutStyles } from "../../styles/layoutStyles";
 import { cardContainerStyle, instructionStyle } from "../../styles/cardStyles";
 import AnimatedFanCard from "./AnimatedFanCard";

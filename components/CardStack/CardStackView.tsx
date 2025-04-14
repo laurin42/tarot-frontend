@@ -7,7 +7,7 @@ import {
   LayoutChangeEvent,
 } from "react-native";
 import Animated from "react-native-reanimated";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { layoutStyles, textStyles } from "@/styles/styles";
 import { useCardStackLogic } from "./useCardStackLogic";
 import AnimatedFanCard from "./AnimatedFanCard";

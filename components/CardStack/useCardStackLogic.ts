@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import {
   useCardSelectionAnimation,
   // CardTransformMap, // No longer explicitly needed here

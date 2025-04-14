@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { View, Text, ScrollView, Platform, StyleSheet } from "react-native";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { useTarotSummary } from "@/hooks/useTarotSummary";
 import { useScrollEndDetection } from "@/hooks/useScrollEndDetection";
 import TarotCardWithLabel from "@/components/TarotCardWithLabel";

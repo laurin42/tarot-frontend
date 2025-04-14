@@ -1,5 +1,5 @@
 import { storage } from "../utils/storage";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { SummaryResponse, CardExplanationResponse, ReadingSummaryResponse, ApiErrorResponse } from "@/types/api";
 import { bugsnagService } from "@/services/bugsnag";
 
@@ -57,7 +57,6 @@ async function authFetch<T>(url: string, options: RequestInit = {}): Promise<T> 
 }
 
 export const tarotApi = {
-  // Fetch summary for a set of cards
   async fetchSummary(cards: ISelectedAndShownCard[]): Promise<string> {
     const data = await authFetch<SummaryResponse>(`${API_BASE_URL}/tarot/summary`, {
       method: "POST",
@@ -96,7 +95,21 @@ export const tarotApi = {
     );
     
     return data.explanation || "Keine Erklärung verfügbar";
-  }
+  },
+
+  async fetchRandomCard(): Promise<ISelectedAndShownCard> {
+    const data = await authFetch<ISelectedAndShownCard>(`${API_BASE_URL}/tarot/cards/random`);
+    
+    return {
+      ...data,
+      showFront: false,
+      explanation: data.explanation,
+      image: data.image,
+      onNextCard: () => {},
+    };
+  },
+
+
 };
 
 interface FetchResult {

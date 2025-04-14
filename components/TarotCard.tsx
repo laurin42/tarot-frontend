@@ -1,33 +1,21 @@
 import React from "react";
 import DynamicTarotCard from "./DynamicTarotCard";
+import { ITarotCard } from "../constants/tarotCards";
 
 interface TarotCardProps {
-  image: any;
-  isShown: boolean;
-  style?: any;
-  name: string;
-}
-
-export interface ITarotCard {
-  id: string;
-  image: any;
-  description?: string;
-  showFront?: boolean;
-  isSelected?: boolean;
+  card: ITarotCard;
+  animatedStyle: any;
 }
 
 export default function TarotCard({
-  image,
-  name,
-  isShown,
-  style,
+  card: { name, showFront },
+  animatedStyle,
 }: TarotCardProps) {
   return (
     <DynamicTarotCard
       cardName={name}
-      isShown={isShown}
-      size="large"
-      style={style}
+      isShown={showFront ?? true}
+      style={animatedStyle}
     />
   );
 }

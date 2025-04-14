@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { bugsnagService } from "@/services/bugsnag"; 
 import { fetchAndProcessTarotSummary } from '@/services/apiService';
 

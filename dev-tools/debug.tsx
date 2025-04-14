@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import BugsnagTest from "@/dev-tools/BugsnagTest";
+import BugsnagTest from "@/dev-tools/bugsnagTest";
 import { bugsnagService } from "@/services/bugsnag";
 
 export default function DebugScreen() {

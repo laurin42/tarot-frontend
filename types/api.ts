@@ -1,4 +1,4 @@
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 
 export interface ApiErrorResponse {
   error: string;

@@ -1,4 +1,4 @@
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export async function saveDrawnCards(cards: ISelectedAndShownCard[]): Promise<void> {

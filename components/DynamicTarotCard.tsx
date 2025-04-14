@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Image } from "expo-image";
-import { getCardImageByName, CARD_BACK_IMAGES } from "@/constants/tarotcards";
+import { getCardImageByName, CARD_BACK_IMAGES } from "@/constants/tarotCards";
 
 interface DynamicTarotCardProps {
-  cardName: string; // Name der Karte, wird zum dynamischen Laden verwendet
-  isShown?: boolean; // Ob Vorder- oder Rückseite gezeigt wird
-  cardBackIndex?: number; // Index für die gewünschte Kartenrückseite (0, 1, oder 2)
-  style?: any; // Zusätzliche Styles (will now control size)
+  cardName: string;
+  isShown?: boolean;
+  cardBackIndex?: number;
+  style?: any;
 }
-
 /**
  * Dynamische Tarotkarten-Komponente, die Bilder basierend auf dem Namen automatisch lädt
  *

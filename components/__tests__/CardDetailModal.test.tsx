@@ -7,7 +7,7 @@ import {
   act,
 } from "@testing-library/react-native";
 import CardDetailModal from "../CardDetailModal";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 
 // Mock React Native's Modal
 let mockModalProps: any = {}; // To store props passed to the mock

@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabBarBackground Component renders correctly and matches snapshot 1`] = `
+<View
+  style={
+    [
+      {
+        "backgroundColor": "transparent",
+      },
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      },
+    ]
+  }
+>
+  <ViewManagerAdapter_ExpoBlurView
+    blurReductionFactor={4}
+    experimentalBlurMethod="none"
+    intensity={100}
+    style={
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+    tint="systemChromeMaterial"
+  />
+</View>
+`;

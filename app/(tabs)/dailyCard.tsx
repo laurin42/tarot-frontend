@@ -7,9 +7,9 @@ import {
   useColorScheme,
 } from "react-native";
 import TarotCard from "@/components/TarotCard";
-import { tarotCards } from "@/constants/tarotcards";
+import { tarotCards } from "@/constants/tarotCards";
 import { storage } from "../../utils/storage";
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/constants/colors";
 
 export default function DailyCardScreen() {
   const colorScheme = useColorScheme();

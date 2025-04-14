@@ -6,7 +6,7 @@ import React from "react";
 import { render, waitFor, screen } from "@testing-library/react-native";
 import SummaryView from "../SummaryView"; // Import the component under test
 import { fetchAndProcessTarotSummary } from "@/services/apiService";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { bugsnagService } from "@/services/bugsnag"; // Import bugsnagService
 
 // --- Mock Dependencies ---

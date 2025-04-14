@@ -16,7 +16,7 @@ import {
 import CardStackView from "@/components/CardStack";
 import DrawnCardsDisplay from "@/components/DrawnCardsDisplay";
 import { getRandomDrawnCards } from "@/utils/tarotCardPool";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import SummaryView from "@/components/SummaryView";
 import { gameStyles, layoutStyles } from "@/styles/styles";
 import { GestureHandlerRootView } from "react-native-gesture-handler";

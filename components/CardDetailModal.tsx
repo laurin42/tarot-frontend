@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Modal, Text, ScrollView, TouchableOpacity } from "react-native";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { componentStyles, textStyles, layoutStyles } from "@/styles";
 
 interface CardDetailModalProps {

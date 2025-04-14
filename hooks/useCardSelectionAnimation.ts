@@ -10,7 +10,7 @@ import Animated, {
   withDelay,
 } from 'react-native-reanimated';
 import { animation } from '@/styles/theme';
-import { ISelectedAndShownCard } from '@/constants/tarotcards';
+import { ISelectedAndShownCard } from '@/constants/tarotCards';
 
 // Type for the transform values of a single card
 export interface CardTransform {

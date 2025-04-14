@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react-native";
 import TarotCardWithLabel from "../TarotCardWithLabel";
-import { ISelectedAndShownCard } from "@/constants/tarotcards";
+import { ISelectedAndShownCard } from "@/constants/tarotCards";
 
 // Mock child components to isolate the TarotCardWithLabel logic
 jest.mock("@/components/DynamicTarotCard", () => {

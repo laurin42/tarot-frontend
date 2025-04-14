@@ -6,7 +6,7 @@ import {
     CardTransform,
     UseCardSelectionAnimationResult // Import the hook's return type
 } from '../useCardSelectionAnimation'; // Adjust path
-import { ISelectedAndShownCard } from '@/constants/tarotcards'; // Adjust path
+import { ISelectedAndShownCard } from '@/constants/tarotCards'; // Adjust path
 // Remove direct import of animation from theme
 // import { animation } from '@/styles/theme'; // Adjust path
 
