@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useMemo,
-} from "react";
+import React, { useState, useRef, useCallback, useMemo } from "react";
 import {
   View,
   Pressable,
@@ -12,14 +6,14 @@ import {
   Dimensions,
   Animated,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import CardStackView from "@/components/CardStack";
 import DrawnCardsDisplay from "@/components/DrawnCardsDisplay";
-import { getRandomDrawnCards } from "@/utils/tarotCardPool";
+import { getRandomLocalCardsWithExplanations } from "@/services/localTarotPool";
 import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import SummaryView from "@/components/SummaryView";
 import { gameStyles, layoutStyles } from "@/styles/styles";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Helper to safely get dimensions, providing defaults for tests
 const getSafeDimensions = () => {
@@ -35,7 +29,7 @@ const getSafeDimensions = () => {
 
 export default function Index() {
   // Use the safe getter
-  const { width, height } = getSafeDimensions();
+  const { width } = getSafeDimensions();
 
   const cardDimensions = useMemo(() => {
     const baseCardWidth = width > 400 ? 230 : 160;
@@ -76,7 +70,7 @@ export default function Index() {
     setSessionStarted(true);
     setLoading(true);
     setError(null);
-    getRandomDrawnCards()
+    getRandomLocalCardsWithExplanations()
       .then((cards) => {
         console.log("[handleStartSession] Received cards:", cards);
         if (!cards || cards.length === 0) {
@@ -105,10 +99,6 @@ export default function Index() {
       });
   }, [setSessionStarted, setLoading, setError, setPredeterminedCards]);
 
-  const handleAnimationComplete = useCallback(() => {
-    console.log("CardStack Animation Complete");
-  }, []);
-
   const handleCardSelect = useCallback(
     (card: ISelectedAndShownCard) => {
       if (currentRound < 3) {
@@ -132,21 +122,21 @@ export default function Index() {
       useNativeDriver: true,
     }).start();
     console.log("A card has been positioned, showing DrawnCardsDisplay");
-  }, [setShowDrawnCard]);
+  }, [setShowDrawnCard, drawnCardOpacity]);
 
-  const handleDismissExplanation = () => {
+  const handleDismissExplanation = useCallback(() => {
     setShowDrawnCard(false);
     setTimeout(() => {
       drawnCardOpacity.setValue(0);
     }, 300);
-  };
+  }, [setShowDrawnCard, drawnCardOpacity]);
 
-  const handleDismissSummary = () => {
+  const handleDismissSummary = useCallback(() => {
     setSessionStarted(false);
     setDrawnCards([]);
     setCurrentRound(0);
     setError(null);
-  };
+  }, [setSessionStarted, setDrawnCards, setCurrentRound, setError]);
 
   if (loading) {
     return (
@@ -171,7 +161,7 @@ export default function Index() {
         >
           {error}
         </Text>
-        <Pressable
+        <TouchableOpacity
           onPress={handleDismissSummary}
           style={{
             backgroundColor: "#4F46E5",
@@ -181,7 +171,7 @@ export default function Index() {
           }}
         >
           <Text style={{ color: "white", fontSize: 16 }}>Erneut versuchen</Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     );
   }

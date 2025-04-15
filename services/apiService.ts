@@ -57,6 +57,50 @@ async function authFetch<T>(url: string, options: RequestInit = {}): Promise<T> 
 }
 
 export const tarotApi = {
+  async saveSingleDrawnCard(card: ISelectedAndShownCard, position: number): Promise<void> {
+    try {
+      const headers = await getAuthHeaders(); // Header holen
+      const response = await fetch(`${API_BASE_URL}/tarot/drawn-card`, { // Direkter fetch
+        method: "POST",
+        headers: headers, // Verwende die vorbereiteten Header
+        body: JSON.stringify({
+          name: card.name,
+          description: card.explanation ?? 'Keine Erklärung gespeichert',
+          position: position,
+        }),
+      });
+
+      if (!response.ok) {
+          // Versuche, Fehlerdetails zu bekommen
+          let errorMessage = `API error saving card: ${response.status}`;
+          try {
+              // Versuche, Fehlerdetails als Text oder JSON zu lesen
+              const errorBody = await response.text();
+              try {
+                  const errorJson = JSON.parse(errorBody);
+                  errorMessage = errorJson.error || errorMessage;
+              } catch (parseError) {
+                  console.debug('Failed to parse error body as JSON', parseError);
+                  errorMessage = errorBody || errorMessage;
+              }
+          } catch (readError) {
+            console.debug('Failed to read error body', readError);
+          }
+          console.error(`❌ Failed to save card via API service: ${card.name}`, errorMessage);
+          bugsnagService.notify(new Error(errorMessage)); // Optional: Fehler melden
+          throw new Error(errorMessage);
+      }
+      // Wenn response.ok, war der Request erfolgreich
+      console.log(`✅ Card saved via API service: ${card.name}`);
+
+    } catch (error) {
+        // Fängt Netzwerkfehler oder oben geworfene Fehler
+        const errorToThrow = error instanceof Error ? error : new Error(String(error));
+        console.error(`❌ Failed to save card via API service (catch block): ${card.name}`, errorToThrow);
+        bugsnagService.notify(errorToThrow); // Optional: Fehler melden
+        throw errorToThrow;
+    }
+  },
   async fetchSummary(cards: ISelectedAndShownCard[]): Promise<string> {
     const data = await authFetch<SummaryResponse>(`${API_BASE_URL}/tarot/summary`, {
       method: "POST",
@@ -108,7 +152,6 @@ export const tarotApi = {
       onNextCard: () => {},
     };
   },
-
 
 };
 
