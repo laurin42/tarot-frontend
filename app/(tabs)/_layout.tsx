@@ -49,13 +49,13 @@ export default function TabLayout() {
             marginTop: 6,
           },
         }}
-        initialRouteName="threecards"
+        initialRouteName="threeCards"
         safeAreaInsets={{ bottom: 0, top: 0, left: 0, right: 0 }}
       >
         <Tabs.Screen
-          name="threecards"
+          name="threeCards"
           options={{
-            title: "threecards",
+            title: "threeCards",
             tabBarIcon: ({ color }) => (
               <ThreeCardsIcon width={28} height={28} fill={color} />
             ),

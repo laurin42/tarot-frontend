@@ -1,23 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// Entferne den Import von tarotApi, da wir fetch mocken
-// import { tarotApi } from '@/services/apiService';
 import { saveDrawnCards } from '../tarotCardUtils';
 import { ISelectedAndShownCard } from '../../constants/tarotCards';
 
-
-// Mock die globale fetch Funktion
 global.fetch = jest.fn();
 const mockFetch = global.fetch as jest.Mock;
 
-// Mock console.log, console.error UND console.warn
 const mockConsoleLog = jest.spyOn(console, 'log').mockImplementation(() => {});
-const mockConsoleWarn = jest.spyOn(console, 'warn').mockImplementation(() => {}); // Hinzugefügt
+const mockConsoleWarn = jest.spyOn(console, 'warn').mockImplementation(() => {});
 const mockConsoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-// Typed mock für die API call ist nicht mehr nötig, mockFetch wird verwendet
-// const mockSaveSingleDrawnCard = tarotApi.saveSingleDrawnCard as jest.Mock;
-
-// Define mockAsyncGetItem here to access the globally mocked function
 const mockAsyncGetItem = AsyncStorage.getItem as jest.Mock;
 
 const mockCards: ISelectedAndShownCard[] = [
@@ -65,22 +56,17 @@ const mockToken = 'mock-user-token';
 
 describe('saveDrawnCards', () => {
   beforeEach(() => {
-    // Reset mocks before each test
-    // mockSaveSingleDrawnCard.mockClear(); // Entfernen
-    mockFetch.mockClear(); // Hinzufügen
+    mockFetch.mockClear();
     mockConsoleLog.mockClear();
-    mockConsoleWarn.mockClear(); // Hinzufügen
+    mockConsoleWarn.mockClear();
     mockConsoleError.mockClear();
-    // Clear the globally mocked AsyncStorage functions
     mockAsyncGetItem.mockClear();
     (AsyncStorage.setItem as jest.Mock).mockClear();
     (AsyncStorage.removeItem as jest.Mock).mockClear();
     (AsyncStorage.clear as jest.Mock).mockClear();
 
-    // Standard-Mock für erfolgreichen Fetch (kann pro Test überschrieben werden)
     mockFetch.mockResolvedValue({
       ok: true,
-      // json: async () => ({ success: true }), // Nicht benötigt für saveDrawnCards
       text: async () => 'Success',
     });
   });
@@ -124,7 +110,6 @@ describe('saveDrawnCards', () => {
         }),
       }
     );
-     // Überprüfe den zweiten Aufruf genauer (Beispiel)
     expect(mockFetch).toHaveBeenNthCalledWith(
       2,
       `${process.env.EXPO_PUBLIC_API_URL}/tarot/drawn-card`,
@@ -137,29 +122,25 @@ describe('saveDrawnCards', () => {
         body: JSON.stringify({
           name: mockCards[1].name,
           description: mockCards[1].explanation,
-          position: 1, // Index der Karte
+          position: 1,
         }),
       }
     );
-    // ... weitere Prüfungen für andere Karten bei Bedarf ...
 
     expect(mockConsoleError).not.toHaveBeenCalled();
-    // Überprüfe die Erfolgs-Logs
     expect(mockConsoleLog).toHaveBeenCalledWith(`✅ Card saved to user history: ${mockCards[0].name}`);
     expect(mockConsoleLog).toHaveBeenCalledWith(`✅ Card saved to user history: ${mockCards[1].name}`);
-    // ...
     expect(mockConsoleLog).toHaveBeenCalledWith('✅ All drawn cards saved to database');
   });
 
   it('should log an error if fetch fails for a card', async () => {
     const apiErrorText = 'Internal Server Error';
-    mockAsyncGetItem.mockResolvedValueOnce(mockToken); // Simulate token found
+    mockAsyncGetItem.mockResolvedValueOnce(mockToken);
 
-    // Simuliere einen fehlgeschlagenen fetch für den zweiten Aufruf
     mockFetch
-      .mockResolvedValueOnce({ ok: true, text: async () => 'OK' }) // First call succeeds
+      .mockResolvedValueOnce({ ok: true, text: async () => 'OK' })
       .mockResolvedValueOnce({ ok: false, status: 500, text: async () => apiErrorText });
-      mockFetch.mockResolvedValue({ ok: true, text: async () => 'OK' });
+
 
 
     await saveDrawnCards(mockCards);
@@ -169,7 +150,7 @@ describe('saveDrawnCards', () => {
 
     expect(mockConsoleError).toHaveBeenCalledTimes(1);
     expect(mockConsoleError).toHaveBeenCalledWith(
-      `❌ Failed to save card: ${mockCards[1].name}`, // 
+      `❌ Failed to save card: ${mockCards[1].name}`,
       apiErrorText
     );
 
@@ -202,12 +183,11 @@ describe('saveDrawnCards', () => {
 
   it('should log an error if checking token fails', async () => {
     const storageError = new Error('AsyncStorage Error');
-    mockAsyncGetItem.mockRejectedValueOnce(storageError); // 
+    mockAsyncGetItem.mockRejectedValueOnce(storageError);
     await expect(saveDrawnCards(mockCards)).rejects.toThrow(storageError);
 
     expect(mockAsyncGetItem).toHaveBeenCalledWith('userToken');
     expect(mockFetch).not.toHaveBeenCalled();
-    // Überprüfe, ob der Fehler korrekt geloggt wurde
     expect(mockConsoleError).toHaveBeenCalledWith(
       'Failed to save drawn cards:', 
       storageError

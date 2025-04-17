@@ -1,31 +1,31 @@
 import  { ComponentType } from 'react';
 import type { Router } from 'expo-router';
 
-// Typensichere Route-Pfade
+// typsafe routes
 export type CustomRoutePathString = `/dev-tools` | `/debug` | `/bugsnag-test`;
 
-// Typdefinition für eine dynamische Route
+// Typ definition for dynamic Routes
 export interface DynamicRoute {
   path: string;
   component: ComponentType<Record<string, unknown>>;
 }
 
-// Typen für den Kontext
+// Types for the context
 export interface DynamicRoutesContextType {
   routes: DynamicRoute[];
   registerRoute: (path: string, component: ComponentType<Record<string, unknown>>) => void;
   getRouteComponent: (path: string) => ComponentType<Record<string, unknown>> | null;
 }
 
-// Globaler Store für die dynamischen Routen
+// Globaler store for dynamic routes
 const pendingRoutes: DynamicRoute[] = [];
 
 /**
- * Service für die Verwaltung dynamischer Routen
+ * Service for managing dynamic routes
  */
 export const DynamicRouteService = {
   /**
-   * Registriert eine neue dynamische Route
+   * Registers a new dynamic route
    */
   registerRoute(path: CustomRoutePathString, getComponent: () => ComponentType<Record<string, unknown>>): void {
     try {
@@ -33,25 +33,25 @@ export const DynamicRouteService = {
       if (component) {
         pendingRoutes.push({ path, component });
       } else {
-        console.error(`Komponente für Pfad ${path} konnte nicht geladen werden`);
+        console.error(`component for path ${path} could not be loaded`);
       }
     } catch (error: unknown) {
       console.error(
-        `Fehler beim Registrieren der Route ${path}:`, 
+        `Error registering route ${path}:`, 
         error instanceof Error ? error.message : String(error)
       );
     }
   },
   
   /**
-   * Gibt alle registrierten Routen zurück
+   * Returns all registered routes
    */
   getPendingRoutes(): readonly DynamicRoute[] {
     return [...pendingRoutes];
   },
   
   /**
-   * Leert die Liste der ausstehenden Routen
+   * Clears the list of pending routes
    */
   clearPendingRoutes(): void {
     pendingRoutes.length = 0;
@@ -59,13 +59,13 @@ export const DynamicRouteService = {
 };
 
 /**
- * Hilfsfunktion für typsicheres Routing zu dynamischen Routen
+* Helper function for type-safe routing to dynamic routes
  */
 export function navigateToCustomPath(
-  router: Router, // ✅ Verwende den korrekten Expo Router Typ
+  router: Router, // ✅ Use the correct Expo Router type
   path: CustomRoutePathString
 ): void {
-  // Da der Router Typ-Einschränkungen hat, benötigen wir einen Cast
-  // Dies ist sicher, da wir die Pfade durch CustomRoutePathString einschränken
+  // Since the Router type has type constraints, we need a cast
+  // This is safe because we restrict the paths through CustomRoutePathString
   router.push(path as any);
 }

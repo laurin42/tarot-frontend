@@ -2,7 +2,6 @@
 import { renderHook, act } from "@testing-library/react-native";
 import { useCardStackLogic } from "../useCardStackLogic";
 import { ISelectedAndShownCard } from "@/constants/tarotCards";
-import * as CardUtils from "@/utils/cardUtils";
 import * as AnimationHook from "@/hooks/useCardSelectionAnimation";
 
 // Mock-Funktionen
@@ -11,7 +10,7 @@ const mockUpdateAllCardTransforms = jest.fn();
 const mockResetAnimations = jest.fn();
 const mockShowInstruction = jest.fn();
 const mockCardTransforms = { value: {} };
-const mockInstructionOpacity = { value: 1 };
+const mockInstructionOpacity = { value: 0 };
 
 // Objekt mit den Mock-Funktionen
 const mockAnimationFunctions = {
@@ -60,30 +59,25 @@ const mockInitialCards: ISelectedAndShownCard[] = [
   },
 ];
 
-// --- Test Setup ---
-// Define predeterminedCards type correctly and use jest.Mock for callbacks
-const defaultMockProps: {
-  predeterminedCards: ISelectedAndShownCard[];
-  onCardSelect: jest.Mock<(card: ISelectedAndShownCard) => void>;
-  onCardPositioned: jest.Mock<() => void>;
-} & Omit<
-  Parameters<typeof useCardStackLogic>[0],
-  "predeterminedCards" | "onCardSelect" | "onCardPositioned"
-> = {
-  predeterminedCards: [],
+// --- Angepasste Default Props für useCardStackLogic ---
+// Entferne die explizite Typdefinition, lasse TypeScript inferieren
+// type MockProps = Parameters<typeof useCardStackLogic>[0];
+
+const defaultMockProps = {
+  predeterminedCards: [] as ISelectedAndShownCard[], // expliziter Typ für leeres Array
   sessionStarted: false,
-  currentRound: 1,
+  currentRound: 0,
   drawnSlotPositions: [{ x: 10, y: 10 }],
   cardDimensions: { width: 100, height: 160 },
-  spreadAngle: 30,
-  onCardSelect: jest.fn(),
+  spreadAngle: 60,
+  selectCard: jest.fn(),
   onCardPositioned: jest.fn(),
   containerDimensions: { width: 400, height: 600 },
 };
 
 describe("useCardStackLogic", () => {
   beforeEach(() => {
-    // Setze die Implementierung des Hooks zurück und cleare die Funktionen
+    // Reset mocks
     (AnimationHook.useCardSelectionAnimation as jest.Mock).mockImplementation(
       () => mockAnimationFunctions
     );
@@ -91,8 +85,10 @@ describe("useCardStackLogic", () => {
     mockUpdateAllCardTransforms.mockClear();
     mockResetAnimations.mockClear();
     mockShowInstruction.mockClear();
-    defaultMockProps.onCardSelect.mockClear();
+    // Jetzt können wir .mockClear() sicher aufrufen
+    defaultMockProps.selectCard.mockClear();
     defaultMockProps.onCardPositioned.mockClear();
+    // Mock-Werte zurücksetzen
   });
 
   // --- Tests ---
@@ -106,7 +102,7 @@ describe("useCardStackLogic", () => {
     expect(result.current.cards).toEqual([]);
     expect(result.current.isCardSelected).toBe(false);
     expect(result.current.animatingToPosition).toBe(false);
-    expect(result.current.showInstruction).toBe(true);
+    expect(result.current.showInstruction).toBe(false);
     expect(result.current.cardTransforms).toBe(mockCardTransforms);
     expect(result.current.instructionOpacity).toBe(mockInstructionOpacity);
     expect(mockUpdateAllCardTransforms).not.toHaveBeenCalled();
@@ -170,7 +166,7 @@ describe("useCardStackLogic", () => {
     expect(result.current.cards).toEqual([]);
     expect(result.current.isCardSelected).toBe(false);
     expect(result.current.animatingToPosition).toBe(false);
-    expect(result.current.showInstruction).toBe(true);
+    expect(result.current.showInstruction).toBe(false);
 
     expect(mockResetAnimations).toHaveBeenCalledTimes(1);
     expect(mockUpdateAllCardTransforms).not.toHaveBeenCalled();
@@ -218,8 +214,8 @@ describe("useCardStackLogic", () => {
       animationCallback(finalCardStateFromAnimation);
     });
 
-    expect(defaultMockProps.onCardSelect).toHaveBeenCalledTimes(1);
-    expect(defaultMockProps.onCardSelect).toHaveBeenCalledWith(
+    expect(defaultMockProps.selectCard).toHaveBeenCalledTimes(1);
+    expect(defaultMockProps.selectCard).toHaveBeenCalledWith(
       finalCardStateFromAnimation
     );
     expect(result.current.animatingToPosition).toBe(false);
@@ -249,7 +245,7 @@ describe("useCardStackLogic", () => {
     expect(result.current.isCardSelected).toBe(false);
     expect(result.current.animatingToPosition).toBe(false);
     expect(mockAnimateCardSelection).not.toHaveBeenCalled();
-    expect(defaultMockProps.onCardSelect).not.toHaveBeenCalled();
+    expect(defaultMockProps.selectCard).not.toHaveBeenCalled();
   });
 
   it("should NOT handle card selection if card is already selected", () => {
@@ -279,14 +275,14 @@ describe("useCardStackLogic", () => {
     });
 
     mockAnimateCardSelection.mockClear();
-    defaultMockProps.onCardSelect.mockClear();
+    defaultMockProps.selectCard.mockClear();
 
     act(() => {
       result.current.handleCardSelect(cardToSelect);
     });
 
     expect(mockAnimateCardSelection).not.toHaveBeenCalled();
-    expect(defaultMockProps.onCardSelect).not.toHaveBeenCalled();
+    expect(defaultMockProps.selectCard).not.toHaveBeenCalled();
     expect(result.current.isCardSelected).toBe(true);
     expect(result.current.animatingToPosition).toBe(false);
   });

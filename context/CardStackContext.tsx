@@ -1,21 +1,10 @@
 import React, { createContext, useContext } from "react";
+import { useCardSessionManagement } from "@/hooks/useCardSessionManagement";
 
-interface CardStackContextType {
-  cards: Array<{
-    id: number;
-    isSelected: boolean;
-    isShown: boolean;
-  }>;
-  spreadAngle: number;
-  cardDimensions: {
-    width: number;
-    height: number;
-  };
-  sessionStarted: boolean;
-  handleCardSelect: (card: any) => void;
-}
+// Passe den Typ an das Rückgabeobjekt des Hooks an
+type CardSessionContextType = ReturnType<typeof useCardSessionManagement>;
 
-const CardStackContext = createContext<CardStackContextType | undefined>(
+const CardStackContext = createContext<CardSessionContextType | undefined>(
   undefined
 );
 
@@ -30,16 +19,11 @@ export const useCardStack = () => {
 export const CardStackProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const cardSession = useCardSessionManagement(); // Hook aufrufen
+
   return (
-    <CardStackContext.Provider
-      value={{
-        cards: [],
-        spreadAngle: 30,
-        cardDimensions: { width: 100, height: 160 },
-        sessionStarted: false,
-        handleCardSelect: () => {},
-      }}
-    >
+    <CardStackContext.Provider value={cardSession}>
+      {/* hook dependencies are passed here */}
       {children}
     </CardStackContext.Provider>
   );

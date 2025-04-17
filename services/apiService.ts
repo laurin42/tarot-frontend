@@ -1,4 +1,4 @@
-import { storage } from "../utils/storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import { SummaryResponse, CardExplanationResponse, ReadingSummaryResponse, ApiErrorResponse } from "@/types/api";
 import { bugsnagService } from "@/services/bugsnag";
@@ -31,7 +31,7 @@ export async function fetchAndProcessTarotSummary(cards: ISelectedAndShownCard[]
 
 // Helper-Funktion zum Erstellen von Header mit Auth-Token
 async function getAuthHeaders(): Promise<HeadersInit> {
-  const token = await storage.getItem("userToken");
+  const token = await AsyncStorage.getItem("userToken");
   const headers: HeadersInit = {
     "Content-Type": "application/json",
   };
@@ -115,8 +115,11 @@ export const tarotApi = {
     cards: ISelectedAndShownCard[],
     summary: string
   ): Promise<ReadingSummaryResponse | void> {
-    const token = await storage.getItem("userToken");
-    if (!token) return;
+    const token = await AsyncStorage.getItem("userToken");
+    if (!token) {
+        console.log("No user token found, skipping saveSummaryReading.");
+        return;
+    }
 
     const sessionId = `reading_${Date.now()}`;
     

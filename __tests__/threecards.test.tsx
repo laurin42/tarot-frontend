@@ -1,100 +1,138 @@
 import React from "react";
-import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
-import ThreeCardsScreen from "../app/(tabs)/threecards";
+import { render, fireEvent, act, waitFor } from "@testing-library/react-native";
+import ThreeCardsContent from "../app/(tabs)/threeCards";
 import { ISelectedAndShownCard } from "@/constants/tarotCards";
+import { CardStackProvider } from "@/context/CardStackContext";
+import * as AnimationHook from "@/hooks/useCardSelectionAnimation";
 
-jest.mock("react-native/Libraries/Utilities/Dimensions", () => ({
-  get: jest.fn().mockReturnValue({ width: 400, height: 800 }),
-  addEventListener: jest.fn(),
-  removeEventListener: jest.fn(),
-}));
+// --- Mocks ---
 
+// Mock for react-native (Dimensions)
+jest.mock("react-native", () => {
+  const RN = jest.requireActual("react-native");
+  RN.Dimensions = {
+    get: jest.fn().mockReturnValue({ width: 400, height: 800 }),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  };
+  // Mock Animated.Value for Opacity in threecards.tsx
+  RN.Animated = {
+    ...RN.Animated,
+    Value: jest.fn(() => ({
+      current: 0,
+      setValue: jest.fn(),
+      interpolate: jest.fn(() => 0),
+    })),
+    timing: jest.fn(() => ({
+      start: jest.fn((callback) => {
+        if (callback) callback({ finished: true });
+      }),
+    })),
+  };
+  return RN;
+});
+
+// Mock for localTarotPool
 jest.mock("@/services/localTarotPool", () => ({
   getRandomLocalCardsWithExplanations: jest.fn(),
 }));
 
-// Helper data needed for mock CardStack
+// Mock for AnimatedFanCard
+// Mockt the deepest interaction component to simulate clicks
+jest.mock("@/components/CardStack/AnimatedFanCard", () => {
+  const { TouchableOpacity } = require("react-native");
+  const React = require("react");
+  const MockAnimatedFanCard = ({
+    card,
+    handleCardSelect,
+  }: {
+    card: ISelectedAndShownCard;
+    handleCardSelect: (card: ISelectedAndShownCard) => void;
+  }) => (
+    <TouchableOpacity
+      testID={`fan-card-${card.id}`}
+      onPress={() => handleCardSelect(card)}
+    ></TouchableOpacity>
+  );
+  return {
+    __esModule: true,
+    default: MockAnimatedFanCard,
+  };
+});
+// --- End of Mock for AnimatedFanCard ---
+
+// Mock for useCardSelectionAnimation
+let capturedOnCardPositioned: (() => void) | undefined;
+const mockAnimateCardSelection = jest.fn(
+  (
+    selectedCard,
+    cards,
+    currentRound,
+    drawnSlotPositions,
+    cardDimensions,
+    onComplete
+  ) => {
+    // simulate: animation completed, call onComplete and then onCardPositioned
+    if (onComplete) {
+      // important: return a state that has isSelected=true,
+      // so the logic in useCardStackLogic continues correctly
+      const finalState = { ...selectedCard, isSelected: true, showFront: true };
+      onComplete(finalState);
+    }
+    // call onCardPositioned after short delay
+    setTimeout(() => {
+      if (capturedOnCardPositioned) {
+        capturedOnCardPositioned();
+      }
+    }, 0);
+  }
+);
+
+const mockUpdateAllCardTransforms = jest.fn();
+const mockResetAnimations = jest.fn();
+const mockShowInstruction = jest.fn();
+
+// Mock the hook itself
+jest.mock("@/hooks/useCardSelectionAnimation", () => ({
+  useCardSelectionAnimation: jest.fn((onCardPositionedCallback) => {
+    capturedOnCardPositioned = onCardPositionedCallback; // Callback speichern
+    return {
+      animateCardSelection: mockAnimateCardSelection,
+      updateAllCardTransforms: mockUpdateAllCardTransforms,
+      resetAnimations: mockResetAnimations,
+      showInstruction: mockShowInstruction,
+      cardTransforms: { value: {} }, // Mock Shared Value
+      instructionOpacity: { value: 0 }, // Mock Shared Value
+    };
+  }),
+  __esModule: true,
+}));
+
+// NEW: Mock for useScrollEndDetection
+jest.mock("@/hooks/useScrollEndDetection", () => ({
+  useScrollEndDetection: jest.fn(() => ({
+    hasScrolledToEnd: true, // ensure button is always shown
+    handleScroll: jest.fn(),
+  })),
+}));
+
+// --- Mock-Data (adjust/reduce if needed) ---
 const mockCard1: ISelectedAndShownCard = {
   id: "1",
   name: "Card 1",
   image: "img1.png",
   explanation: "Expl 1",
+  isSelected: false,
+  showFront: false,
   onNextCard: jest.fn(),
 };
-
-// --- Angepasster CardStack Mock ---
-jest.mock("@/components/CardStack", () => {
-  // const ReactNative = jest.requireActual("react-native"); // <--- DIESE ZEILE ENTFERNEN
-  // const { Text, TouchableOpacity, View } = ReactNative; // <--- DIESE ZEILE ENTFERNEN
-  // Stattdessen: Importiere React und nutze die Komponenten direkt (sie werden gemockt)
-  const React = require("react"); // Stelle sicher, dass React verfügbar ist
-  // Annahme: View, Text, TouchableOpacity sind in jest.setup.js gemockt
-
-  const MockCardStack = ({
-    onCardSelect,
-  }: {
-    onCardSelect: (card: ISelectedAndShownCard, index: number) => void;
-  }) => (
-    // Verwende View, Text, TouchableOpacity direkt. Jest löst sie zu den Mocks auf.
-    <View testID="mock-card-stack">
-      <Text>Minimal CardStack Mock</Text>
-      <TouchableOpacity
-        testID="simulate-select-btn"
-        onPress={() => onCardSelect(mockCard1, 0)}
-      >
-        <Text>Simuliere Kartenauswahl</Text>
-      </TouchableOpacity>
-    </View>
-  );
-  MockCardStack.displayName = "MockCardStack";
-  return MockCardStack;
-});
-
-// --- Angepasster DrawnCardsDisplay Mock ---
-jest.mock("@/components/DrawnCardsDisplay", () => {
-  // const ReactNative = jest.requireActual("react-native"); // <--- ENTFERNEN
-  // const { View, Text, TouchableOpacity } = ReactNative; // <--- ENTFERNEN
-  const React = require("react");
-
-  const MockDrawnCardsDisplay = ({ onDismiss }: { onDismiss: () => void }) => (
-    <View testID="mock-drawn-cards">
-      <Text>Mock Drawn Cards</Text>
-      <TouchableOpacity testID="dismiss-explanation-btn" onPress={onDismiss}>
-        <Text>Dismiss Explanation</Text>
-      </TouchableOpacity>
-    </View>
-  );
-  MockDrawnCardsDisplay.displayName = "MockDrawnCardsDisplay";
-  return MockDrawnCardsDisplay;
-});
-
-// --- Angepasster SummaryView Mock ---
-jest.mock("@/components/SummaryView", () => {
-  // const ReactNative = jest.requireActual("react-native"); // <--- ENTFERNEN
-  // const { View, Text, TouchableOpacity } = ReactNative; // <--- ENTFERNEN
-  const React = require("react");
-
-  const MockSummaryView = ({ onDismiss }: { onDismiss: () => void }) => (
-    <View testID="mock-summary-view">
-      <Text>Mock Summary View</Text>
-      <TouchableOpacity testID="dismiss-summary-btn" onPress={onDismiss}>
-        <Text>Dismiss Summary</Text>
-      </TouchableOpacity>
-    </View>
-  );
-  MockSummaryView.displayName = "MockSummaryView";
-  return MockSummaryView;
-});
-
-const mockGetRandomLocalCards = jest.requireMock("@/services/localTarotPool")
-  .getRandomLocalCardsWithExplanations as jest.Mock;
-
-// Keep other mock data as well
 const mockCard2: ISelectedAndShownCard = {
   id: "2",
   name: "Card 2",
   image: "img2.png",
   explanation: "Expl 2",
+  isSelected: false,
+  showFront: false,
   onNextCard: jest.fn(),
 };
 const mockCard3: ISelectedAndShownCard = {
@@ -102,179 +140,297 @@ const mockCard3: ISelectedAndShownCard = {
   name: "Card 3",
   image: "img3.png",
   explanation: "Expl 3",
+  isSelected: false,
+  showFront: false,
   onNextCard: jest.fn(),
 };
 const mockPredeterminedCards = [mockCard1, mockCard2, mockCard3];
 
-describe("<ThreeCardsScreen />", () => {
+// Alias for Service-Mock
+const mockGetRandomCards = jest.requireMock("@/services/localTarotPool")
+  .getRandomLocalCardsWithExplanations as jest.Mock;
+
+// --- Global Fetch Mock ---
+global.fetch = jest.fn();
+const mockFetch = global.fetch as jest.Mock;
+
+// --- Render Helper with Provider ---
+const renderWithProvider = (ui: React.ReactElement, options?: any) => {
+  return render(<CardStackProvider>{ui}</CardStackProvider>, options);
+};
+
+// Helper function to select a card and dismiss the explanation
+const selectCardAndDismissExplanation = async (
+  {
+    getByText,
+    findByTestId,
+    queryByText,
+    findByText,
+  }: ReturnType<typeof renderWithProvider>,
+  cardId: string,
+  cardName: string
+) => {
+  const cardToSelect = await findByTestId(`fan-card-${cardId}`);
+  await act(async () => {
+    fireEvent.press(cardToSelect);
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  });
+  await findByText("Schliessen");
+
+  const dismissExplanationButton = getByText("Schliessen");
+  await act(async () => {
+    fireEvent.press(dismissExplanationButton);
+    await new Promise((resolve) => setTimeout(resolve, 310));
+  });
+  // wait until DrawnCardsDisplay is gone (check on button and optional name)
+  await waitFor(() => expect(queryByText("Schliessen")).toBeNull());
+  await waitFor(() => expect(queryByText(cardName)).toBeNull()); // keep the check on the name here
+  await findByText("Bitte Karte wählen...");
+};
+
+describe("<ThreeCardsContent /> Integration", () => {
+  const originalApiUrl = process.env.EXPO_PUBLIC_API_URL;
+
   beforeEach(() => {
-    mockGetRandomLocalCards.mockClear();
-    mockGetRandomLocalCards.mockResolvedValue([...mockPredeterminedCards]);
+    // Set environment variable for test
+    process.env.EXPO_PUBLIC_API_URL = "http://mock-api.com";
+
+    // Reset Fetch Mock and define responses
+    mockFetch.mockClear();
+    mockFetch.mockImplementation(async (url, options) => {
+      const urlString = typeof url === "string" ? url : url.toString();
+      // Mock for Summary
+      if (urlString.endsWith("/tarot/summary") && options?.method === "POST") {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            summary: "Dies ist eine Test-Zusammenfassung.",
+          }),
+        });
+      }
+      // Mock for saveReadingSummary (called in background)
+      if (
+        urlString.endsWith("/tarot/reading-summary") &&
+        options?.method === "POST"
+      ) {
+        return Promise.resolve({
+          ok: true,
+          status: 200,
+          json: async () => ({ success: true, message: "Reading saved" }),
+        });
+      }
+      // Standard answer for other callss (or throw error)
+      return Promise.resolve({
+        ok: false,
+        status: 404,
+        json: async () => ({ error: "Not Found" }),
+      });
+    });
+
+    // Reset other mocks
+    jest
+      .requireMock("@/services/localTarotPool")
+      .getRandomLocalCardsWithExplanations.mockClear()
+      .mockResolvedValue([...mockPredeterminedCards]);
+
+    // ... (Reset AnimationHook mocks etc.) ...
+    mockAnimateCardSelection.mockClear();
+    mockUpdateAllCardTransforms.mockClear();
+    mockResetAnimations.mockClear();
+    mockShowInstruction.mockClear();
+    capturedOnCardPositioned = undefined;
+    (AnimationHook.useCardSelectionAnimation as jest.Mock).mockImplementation(
+      (onCardPositionedCallback) => {
+        capturedOnCardPositioned = onCardPositionedCallback;
+        return {
+          animateCardSelection: mockAnimateCardSelection,
+          updateAllCardTransforms: mockUpdateAllCardTransforms,
+          resetAnimations: mockResetAnimations,
+          showInstruction: mockShowInstruction,
+          cardTransforms: { value: {} },
+          instructionOpacity: { value: 0 },
+        };
+      }
+    );
   });
 
   afterEach(() => {
+    // Stelle die ursprüngliche Umgebungsvariable wieder her
+    process.env.EXPO_PUBLIC_API_URL = originalApiUrl;
     jest.useRealTimers();
   });
 
-  test("simple addition", () => {
-    expect(1 + 1).toBe(2);
-  });
+  // --- Tests ---
 
   it("should render the Start button initially", () => {
-    const { getByText } = render(<ThreeCardsScreen />);
+    // use wrapper
+    const { getByText, queryByText, queryByTestId } = renderWithProvider(
+      <ThreeCardsContent />
+    );
     expect(getByText("Start")).toBeTruthy();
+    // check if cards/instruction are not rendered
+    expect(queryByText("Bitte Karte wählen...")).toBeNull();
+    expect(queryByTestId("fan-card-1")).toBeNull();
   });
 
-  it("should call getRandomLocalCards and show CardStackView on Start press", async () => {
-    const { getByText, findByTestId, queryByText } = render(
-      <ThreeCardsScreen />
-    );
-    await act(async () => {
-      fireEvent.press(getByText("Start"));
-      await Promise.resolve();
-    });
+  it("should show loading, then cards and instruction on Start press", async () => {
+    const { getByText, findByText, queryByText, findByTestId } =
+      renderWithProvider(<ThreeCardsContent />);
 
-    const cardStack = await findByTestId("mock-card-stack");
-    expect(cardStack).toBeTruthy();
+    fireEvent.press(getByText("Start"));
+
+    // check if loading state is shown (can be short, hence findByText)
+    expect(await findByText("Lade Karten...")).toBeTruthy();
+    expect(await findByText("Bitte Karte wählen...")).toBeTruthy();
+
+    // check if cards are rendered (over TestID from mock)
+    expect(await findByTestId("fan-card-1")).toBeTruthy();
+    expect(await findByTestId("fan-card-2")).toBeTruthy();
+    expect(await findByTestId("fan-card-3")).toBeTruthy();
     expect(queryByText("Start")).toBeNull();
-    expect(mockGetRandomLocalCards).toHaveBeenCalledTimes(1);
+    expect(mockGetRandomCards).toHaveBeenCalledTimes(1);
   });
 
-  it("should show DrawnCardsDisplay after a card is selected and positioned", async () => {
-    const { getByText, findByTestId, getByTestId } = render(
-      <ThreeCardsScreen />
-    );
+  // --- Test for card selection -> DrawnCardsDisplay ---
+  it("should show DrawnCardsDisplay after a card is selected", async () => {
+    const {
+      getByText,
+      findByTestId,
+      findByText,
+      queryByText: queryInstructionText,
+      queryByTestId,
+    } = renderWithProvider(<ThreeCardsContent />);
+
+    // 1. Start Session & warte auf Karten
+    fireEvent.press(getByText("Start"));
+    const cardToSelect = await findByTestId("fan-card-1");
     await act(async () => {
-      fireEvent.press(getByText("Start"));
-      await Promise.resolve();
+      fireEvent.press(cardToSelect);
+      await new Promise((resolve) => setTimeout(resolve, 10));
     });
 
-    await findByTestId("mock-card-stack");
-    await act(async () => {
-      // Make sure the mock passes data consistent with expected signature
-      fireEvent.press(getByTestId("simulate-select-btn"));
-      await Promise.resolve();
-    });
-
-    const drawnDisplay = await findByTestId("mock-drawn-cards");
-    expect(drawnDisplay).toBeTruthy();
+    expect(await findByText("Schliessen")).toBeTruthy();
+    expect(queryInstructionText("Bitte Karte wählen...")).toBeNull();
+    expect(queryByTestId("fan-card-2")).toBeNull();
   });
 
-  it("should hide DrawnCardsDisplay on dismiss", async () => {
-    jest.useFakeTimers();
-    const { getByText, findByTestId, getByTestId, queryByTestId } = render(
-      <ThreeCardsScreen />
-    );
+  // --- Test for DrawnCardsDisplay Dismiss ---
+  it("should hide DrawnCardsDisplay and show CardStack again on dismiss", async () => {
+    const {
+      getByText,
+      findByTestId,
+      findByText: findByTextAsync,
+      queryByText,
+    } = renderWithProvider(<ThreeCardsContent />);
+    const { waitFor } = require("@testing-library/react-native");
+
+    fireEvent.press(getByText("Start"));
+    const cardToSelect = await findByTestId("fan-card-1");
     await act(async () => {
-      fireEvent.press(getByText("Start"));
-      await Promise.resolve();
+      fireEvent.press(cardToSelect);
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    });
+    await findByTextAsync("Schliessen");
+
+    const dismissButton = getByText("Schliessen");
+
+    await act(async () => {
+      fireEvent.press(dismissButton);
+      await new Promise((resolve) => setTimeout(resolve, 310));
     });
 
-    await findByTestId("mock-card-stack");
-    await act(async () => {
-      fireEvent.press(getByTestId("simulate-select-btn"));
-      await Promise.resolve();
-    });
-    await findByTestId("mock-drawn-cards");
+    await waitFor(() => expect(queryByText("Schliessen")).toBeNull());
+    await waitFor(() => expect(queryByText(mockCard1.name)).toBeNull());
 
-    await act(async () => {
-      fireEvent.press(getByTestId("dismiss-explanation-btn"));
-      await jest.advanceTimersByTimeAsync(300);
-    });
-
-    await waitFor(() => expect(queryByTestId("mock-drawn-cards")).toBeNull());
-    jest.useRealTimers();
+    expect(await findByTextAsync("Bitte Karte wählen...")).toBeTruthy();
+    expect(await findByTestId("fan-card-2")).toBeTruthy();
+    expect(await findByTestId("fan-card-3")).toBeTruthy();
   });
 
-  it("should show SummaryView when 3 cards are selected", async () => {
-    jest.useFakeTimers();
-    const { getByText, getByTestId, findByTestId, queryByTestId } = render(
-      <ThreeCardsScreen />
+  // --- Test for SummaryView ---
+  it("should show SummaryView after the third card is selected", async () => {
+    const renderResult = renderWithProvider(<ThreeCardsContent />);
+    const {
+      getByText,
+      findByTestId,
+      findByText: findByTextAsync,
+      queryByText,
+      queryByTestId,
+    } = renderResult;
+
+    // 1. start session
+    fireEvent.press(getByText("Start"));
+    await findByTextAsync("Bitte Karte wählen...");
+
+    // 2. select first card and dismiss explanation
+    await selectCardAndDismissExplanation(
+      renderResult,
+      mockCard1.id,
+      mockCard1.name
     );
+
+    // 3. select second card and dismiss explanation
+    await selectCardAndDismissExplanation(
+      renderResult,
+      mockCard2.id,
+      mockCard2.name
+    );
+
+    // 4. select third card (then SummaryView should be shown)
+    const thirdCardToSelect = await findByTestId(`fan-card-${mockCard3.id}`);
     await act(async () => {
-      fireEvent.press(getByText("Start"));
-      await Promise.resolve();
+      fireEvent.press(thirdCardToSelect);
+      await new Promise((resolve) => setTimeout(resolve, 10));
     });
 
-    const pressSimulate = async () => {
-      // Ensure stack exists before trying to press button
-      await findByTestId("mock-card-stack");
-      fireEvent.press(getByTestId("simulate-select-btn"));
-      await Promise.resolve();
-      await findByTestId("mock-drawn-cards");
-      fireEvent.press(getByTestId("dismiss-explanation-btn"));
-      await jest.advanceTimersByTimeAsync(300);
-      await waitFor(() => expect(queryByTestId("mock-drawn-cards")).toBeNull());
-    };
+    expect(await findByTextAsync("Deine Kartenlegung")).toBeTruthy();
 
-    // Wait for stack initially
-    await findByTestId("mock-card-stack");
-    await act(async () => {
-      await pressSimulate();
-    }); // Round 1
-    await act(async () => {
-      await pressSimulate();
-    }); // Round 2
-
-    // Round 3 -> Summary
-    await act(async () => {
-      // Ensure stack exists before trying to press button (might have been removed temporarily)
-      await findByTestId("mock-card-stack");
-      fireEvent.press(getByTestId("simulate-select-btn"));
-      await Promise.resolve();
-    });
-
-    const summaryView = await findByTestId("mock-summary-view");
-    expect(summaryView).toBeTruthy();
-    jest.useRealTimers();
+    // optional: check if cardstack is gone
+    expect(queryByText("Bitte Karte wählen...")).toBeNull();
+    expect(queryByTestId(`fan-card-${mockCard1.id}`)).toBeNull();
   });
 
-  it("should reset state when summary is dismissed", async () => {
-    jest.useFakeTimers();
-    const { getByText, getByTestId, findByTestId, queryByTestId } = render(
-      <ThreeCardsScreen />
+  // --- last test: reset to initial state when SummaryView is dismissed ---
+  it("should reset to initial state when SummaryView is dismissed", async () => {
+    const renderResult = renderWithProvider(<ThreeCardsContent />);
+    const { getByText, findByTestId, findByText, queryByText, queryByTestId } =
+      renderResult;
+
+    // 1. Kompletter Durchlauf bis zur SummaryView
+    fireEvent.press(getByText("Start"));
+    await findByText("Bitte Karte wählen...");
+    await selectCardAndDismissExplanation(
+      renderResult,
+      mockCard1.id,
+      mockCard1.name
     );
+    await selectCardAndDismissExplanation(
+      renderResult,
+      mockCard2.id,
+      mockCard2.name
+    );
+    const thirdCardToSelect = await findByTestId(`fan-card-${mockCard3.id}`);
     await act(async () => {
-      fireEvent.press(getByText("Start"));
-      await Promise.resolve();
+      fireEvent.press(thirdCardToSelect);
+      await new Promise((resolve) => setTimeout(resolve, 10));
     });
 
-    const pressSimulate = async () => {
-      // Ensure stack exists before trying to press button
-      await findByTestId("mock-card-stack");
-      fireEvent.press(getByTestId("simulate-select-btn"));
-      await Promise.resolve();
-      await findByTestId("mock-drawn-cards");
-      fireEvent.press(getByTestId("dismiss-explanation-btn"));
-      await jest.advanceTimersByTimeAsync(300);
-      await waitFor(() => expect(queryByTestId("mock-drawn-cards")).toBeNull());
-    };
+    expect(await findByText("Deine Kartenlegung")).toBeTruthy();
+    expect(
+      await findByText("Dies ist eine Test-Zusammenfassung.")
+    ).toBeTruthy();
 
-    // Wait for stack initially
-    await findByTestId("mock-card-stack");
-    await act(async () => {
-      await pressSimulate();
-    }); // Round 1
-    await act(async () => {
-      await pressSimulate();
-    }); // Round 2
+    const dismissSummaryButton = getByText("Neue Legung beginnen");
 
-    // Round 3 -> Summary
     await act(async () => {
-      // Ensure stack exists before trying to press button
-      await findByTestId("mock-card-stack");
-      fireEvent.press(getByTestId("simulate-select-btn"));
-      await Promise.resolve();
+      fireEvent.press(dismissSummaryButton);
     });
 
-    await findByTestId("mock-summary-view");
-    // Dismiss summary
-    await act(async () => {
-      fireEvent.press(getByTestId("dismiss-summary-btn"));
-      await Promise.resolve(); // Allow state update for reset
-    });
-
-    await waitFor(() => expect(getByText("Start")).toBeTruthy());
-    jest.useRealTimers();
+    expect(await findByText("Start")).toBeTruthy();
+    expect(queryByText("Deine Kartenlegung")).toBeNull();
+    expect(queryByText("Neue Legung beginnen")).toBeNull();
+    expect(queryByText("Dies ist eine Test-Zusammenfassung.")).toBeNull();
+    expect(queryByTestId(`fan-card-${mockCard1.id}`)).toBeNull();
   });
 });

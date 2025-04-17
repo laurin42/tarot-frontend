@@ -1,5 +1,4 @@
-import React from 'react-native';
-import { PixelRatio } from 'react-native';
+import { PixelRatio } from 'react-native'; // Import PixelRatio
 /* global jest, setTimeout, clearTimeout */
 
 // --- Polyfills ---
@@ -31,6 +30,23 @@ jest.spyOn(PixelRatio, 'get').mockImplementation(mockGet);
 jest.spyOn(PixelRatio, 'getFontScale').mockImplementation(() => 1); // Standard FontScale
 jest.spyOn(PixelRatio, 'getPixelSizeForLayoutSize').mockImplementation((layoutSize) => layoutSize);
 jest.spyOn(PixelRatio, 'roundToNearestPixel').mockImplementation((layoutSize) => Math.round(layoutSize));
+
+// --- Mock specific react-native functions/hooks ---
+// We mock react-native here to specifically override useColorScheme
+// while letting jest-expo handle the rest of the module's mocks.
+jest.mock('react-native', () => {
+    const RN = jest.requireActual('react-native');
+
+    // Override useColorScheme
+    RN.useColorScheme = jest.fn(() => 'light');
+
+    // If other specific mocks are needed later for 'react-native' itself,
+    // they can be added here.
+
+    // Return the modified RN object
+    return RN;
+});
+// --- End Mock specific react-native functions/hooks ---
 
 // --- Mock react-native Animated ---
 jest.mock('react-native/Libraries/Animated/Animated', () => {
@@ -84,10 +100,12 @@ jest.mock('react-native-reanimated', () => {
 
 // --- Mock TouchableOpacity ---
 jest.mock('react-native/Libraries/Components/Touchable/TouchableOpacity', () => {
+    const React = require('react');
+
     const MockTouchableOpacity = (props) => {
-        // Mock implementation: Render children, handle onPress
         return React.createElement('TouchableOpacity', props, props.children);
     };
+    MockTouchableOpacity.displayName = 'TouchableOpacity';
     return MockTouchableOpacity;
 });
 

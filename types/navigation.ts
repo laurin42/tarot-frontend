@@ -20,8 +20,8 @@ export function toValidRoute(route: Route): Href {
  */
 export const APP_ROUTES = {
   TABS: {
-    THREECARDS: "/(tabs)/threecards" as Route,
-    DAILYCARD: "/(tabs)/dailycard" as Route,
+    THREECARDS: "/(tabs)/threeCards" as Route,
+    DAILYCARD: "/(tabs)/dailyCard" as Route,
     PROFILE: "/(tabs)/profile" as Route,
   },
   AUTH: "/(auth)" as Route,

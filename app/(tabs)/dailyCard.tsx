@@ -1,159 +1,150 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   useColorScheme,
+  ActivityIndicator,
 } from "react-native";
 import TarotCard from "@/components/TarotCard";
-import { tarotCards } from "@/constants/tarotCards";
-import { storage } from "../../utils/storage";
 import { Colors } from "@/constants/colors";
+import { useDailyCard } from "@/hooks/useDailyCard";
 
 export default function DailyCardScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
-  const [card, setCard] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [explanation, setExplanation] = useState("");
-  const [isDrawn, setIsDrawn] = useState(false);
 
-  // Prüfe, ob heute bereits eine Tageskarte gezogen wurde
-  useEffect(() => {
-    async function checkDailyCard() {
-      try {
-        const storedData = await storage.getItem("dailyCardData");
-        if (storedData) {
-          const parsedData = JSON.parse(storedData);
-          const today = new Date().toDateString();
+  const { card, explanation, loading, error, isDrawn, drawDailyCard } =
+    useDailyCard();
 
-          if (parsedData.date === today) {
-            setCard(parsedData.card);
-            setExplanation(parsedData.explanation);
-            setIsDrawn(true);
-          }
-        }
-      } catch (error) {
-        console.error("Fehler beim Laden der Tageskarte:", error);
-      }
-    }
+  if (error) {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <Text style={styles.title}>Deine Tageskarte</Text>
+        <View style={styles.centeredContent}>
+          <Text style={styles.errorText}>{error}</Text>
+          <TouchableOpacity
+            style={styles.drawButton}
+            onPress={drawDailyCard}
+            disabled={loading}
+            testID="retry-button"
+            accessibilityState={{ disabled: loading }}
+          >
+            <Text style={styles.buttonText}>
+              {loading ? "Lade..." : "Erneut versuchen"}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
 
-    checkDailyCard();
-  }, []);
-
-  const drawDailyCard = async () => {
-    setLoading(true);
-    try {
-      // Zufällige Karte auswählen
-      const randomCard =
-        tarotCards[Math.floor(Math.random() * tarotCards.length)];
-      setCard(randomCard);
-
-      // Hole Erklärung vom Server
-      // const token = await storage.getItem("userToken"); // Entferne Token-Logik
-      // console.log("Token aus Storage:", token); // Entferne Log
-      const response = await fetch(
-        `${process.env.EXPO_PUBLIC_API_URL}/tarot/cards/${encodeURIComponent(
-          randomCard.name
-        )}`
-        // Entferne Headers-Objekt komplett, wenn kein Token mehr benötigt wird
-        // {
-        //  headers: token ? { Authorization: `Bearer ${token}` } : {},
-        // }
-      );
-
-      if (!response.ok) throw new Error("Fehler beim Laden der Kartendetails");
-
-      const data = await response.json();
-      setExplanation(data.explanation);
-
-      // Speichere Tageskarte lokal
-      const today = new Date().toDateString();
-      await storage.setItem(
-        "dailyCardData",
-        JSON.stringify({
-          date: today,
-          card: randomCard,
-          explanation: data.explanation,
-        })
-      );
-
-      setIsDrawn(true);
-    } catch (error) {
-      console.error("Fehler beim Ziehen der Tageskarte:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (loading && !isDrawn) {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <Text style={styles.title}>Deine Tageskarte</Text>
+        <View style={styles.centeredContent}>
+          <ActivityIndicator
+            size="large"
+            color={colors.tint}
+            testID="loading-indicator"
+          />
+          <Text style={[styles.infoText, { color: colors.text }]}>
+            Prüfe heutige Karte...
+          </Text>
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
       <Text style={styles.title}>Deine Tageskarte</Text>
 
       {!isDrawn ? (
-        <TouchableOpacity
-          style={styles.drawButton}
-          onPress={drawDailyCard}
-          disabled={loading}
-        >
-          <Text style={styles.buttonText}>
-            {loading ? "Ziehe Karte..." : "Tageskarte ziehen"}
+        <View style={styles.centeredContent}>
+          <Text
+            style={[styles.infoText, { color: colors.text, marginBottom: 30 }]}
+          >
+            Du hast heute noch keine Tageskarte gezogen.
           </Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.drawButton}
+            onPress={drawDailyCard}
+            disabled={loading}
+            testID="draw-card-button"
+            accessibilityState={{ disabled: loading }}
+          >
+            <Text style={styles.buttonText}>
+              {loading ? "Ziehe Karte..." : "Tageskarte ziehen"}
+            </Text>
+          </TouchableOpacity>
+        </View>
       ) : (
         <View style={styles.cardContainer}>
-          <Text style={styles.cardName}>{card?.name}</Text>
-          <View style={styles.cardWrapper}>
-            {card && card.name && (
-              <TarotCard
-                name={card.name}
-                image={card?.image}
-                isShown={true}
-                style={{ width: 160, height: 256 }}
-              />
-            )}
-          </View>
-          <Text style={styles.explanation}>{explanation}</Text>
+          {card && (
+            <>
+              <Text style={styles.cardName}>{card.name}</Text>
+              <View style={styles.cardWrapper}>
+                <TarotCard
+                  card={card}
+                  animatedStyle={{ width: 160, height: 256 }}
+                />
+              </View>
+              <Text style={styles.explanation}>{explanation}</Text>
+            </>
+          )}
         </View>
       )}
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    alignItems: "center",
+  },
+  centeredContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
   },
   title: {
     color: "#A78BFA",
     fontSize: 28,
     fontWeight: "bold",
     marginVertical: 24,
+    textAlign: "center",
   },
   drawButton: {
     backgroundColor: "rgba(249, 115, 22, 0.9)",
     paddingVertical: 16,
     paddingHorizontal: 32,
     borderRadius: 8,
-    marginTop: 40,
+    marginTop: 20,
   },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
   },
   cardContainer: {
     borderRadius: 16,
     padding: 16,
-    marginVertical: 16,
     alignItems: "center",
+    width: "90%",
   },
   cardName: {
     color: "#A78BFA",
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 24,
+    textAlign: "center",
   },
   cardWrapper: {
     width: 160,
@@ -166,6 +157,7 @@ const styles = StyleSheet.create({
     shadowRadius: 20,
     elevation: 8,
     borderRadius: 16,
+    marginBottom: 20,
   },
   explanation: {
     color: "#F3F4F6",
@@ -173,6 +165,17 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     textAlign: "center",
     marginTop: 24,
-    padding: 16,
+    paddingHorizontal: 10,
+  },
+  errorText: {
+    color: "red",
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  infoText: {
+    fontSize: 16,
+    textAlign: "center",
+    marginBottom: 10,
   },
 });

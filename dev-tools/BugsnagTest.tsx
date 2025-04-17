@@ -44,14 +44,13 @@ export default function BugsnagTest() {
   };
 
   const handleUncaughtError = () => {
-    // Diese Fehler wird von der ErrorBoundary abgefangen
-    throw new Error("Unbehandelter Test-Fehler");
+    // This error is caught by the ErrorBoundary
+    throw new Error("Unhandled test error");
   };
 
   const handlePromiseRejection = () => {
     setIsLoading(true);
-    // Füge einen setTimeout hinzu, damit die Statusmeldung angezeigt wird,
-    // bevor die Promise-Rejection den JavaScript-Thread blockiert
+    // Add a setTimeout to display the status message before the Promise-Rejection blocks the JavaScript thread
     setTestStatus("Promise-Rejection wird ausgelöst...");
     setTimeout(() => {
       Promise.reject(new Error("Test Promise-Rejection"));
@@ -65,7 +64,7 @@ export default function BugsnagTest() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="1. Manuellen Fehler senden"
+          title="1. Send manual error"
           onPress={handleManualError}
           color="#4CAF50"
           disabled={isLoading}
@@ -74,7 +73,7 @@ export default function BugsnagTest() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="2. Breadcrumb erstellen"
+          title="2. Create breadcrumb"
           onPress={handleBreadcrumb}
           color="#2196F3"
           disabled={isLoading}
@@ -83,7 +82,7 @@ export default function BugsnagTest() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="3. Unbehandelten Fehler auslösen"
+          title="3. Trigger unhandled error"
           onPress={handleUncaughtError}
           color="#F44336"
           disabled={isLoading}
@@ -92,7 +91,7 @@ export default function BugsnagTest() {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="4. Promise-Rejection auslösen"
+          title="4. Trigger Promise-Rejection"
           onPress={handlePromiseRejection}
           color="#FF9800"
           disabled={isLoading}
@@ -109,14 +108,14 @@ export default function BugsnagTest() {
         <Text style={styles.infoText}>
           API-Key:{" "}
           {process.env.EXPO_PUBLIC_BUGSNAG_API_KEY?.substring(0, 5) ||
-            "nicht gesetzt"}
+            "not set"}
           ...
         </Text>
         <Text style={styles.infoText}>
-          Environment: {process.env.EXPO_PUBLIC_ENVIRONMENT || "nicht gesetzt"}
+          Environment: {process.env.EXPO_PUBLIC_ENVIRONMENT || "not set"}
         </Text>
         <Text style={styles.infoText}>
-          Bugsnag initialisiert: {bugsnagService.isStarted() ? "Ja" : "Nein"}
+          Bugsnag initialized: {bugsnagService.isStarted() ? "Yes" : "No"}
         </Text>
       </View>
     </View>

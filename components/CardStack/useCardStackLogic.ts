@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ISelectedAndShownCard } from "@/constants/tarotCards";
 import {
   useCardSelectionAnimation,
@@ -12,21 +12,10 @@ interface CardStackLogicParams {
   drawnSlotPositions: { x: number; y: number }[];
   cardDimensions: { width: number; height: number };
   spreadAngle: number;
-  onCardSelect: (card: ISelectedAndShownCard) => void;
   onCardPositioned?: () => void;
   containerDimensions: { width: number; height: number };
+  selectCard: (card: ISelectedAndShownCard) => void;
 }
-
-// Create dummy card matching required ISelectedAndShownCard fields
-const createDummyCard = (id: string): ISelectedAndShownCard => ({
-  id,
-  name: "Card Back",
-  image: undefined,
-  onNextCard: () => {},
-  showFront: false,
-  isSelected: false,
-  explanation: undefined,
-});
 
 export const useCardStackLogic = ({
   predeterminedCards,
@@ -35,9 +24,9 @@ export const useCardStackLogic = ({
   drawnSlotPositions,
   cardDimensions,
   spreadAngle,
-  onCardSelect,
   onCardPositioned,
   containerDimensions,
+  selectCard,
 }: CardStackLogicParams) => {
   const [cards, setCards] = useState<ISelectedAndShownCard[]>([]);
   // const [showInstruction, setShowInstruction] = useState(false); // Removed state
@@ -74,7 +63,7 @@ export const useCardStackLogic = ({
         cardDimensions
       );
       // Use the animation hook's method to show instruction
-      if (!isCardSelected) { // Only show instruction if no card is selected/animating
+      if (!isCardSelected && !animatingToPosition) { // Only show instruction if no card is selected/animating
           cardAnimation.showInstruction();
       }
     }
@@ -86,6 +75,7 @@ export const useCardStackLogic = ({
     spreadAngle,
     cardAnimation,
     isCardSelected, // Add dependency to re-evaluate showing instruction
+    animatingToPosition, // Add dependency to re-evaluate showing instruction
     containerDimensions,
   ]);
 
@@ -97,7 +87,7 @@ export const useCardStackLogic = ({
          console.log(`[handleCardSelect] Selection blocked: sessionStarted=${sessionStarted}, dummy=${selectedCard.id.startsWith("dummy-")}, isSelected=${isCardSelected}, animating=${animatingToPosition}`);
         return;
       }
-      console.log("[handleCardSelect] Selecting card:", selectedCard.id);
+      console.log("[handleCardSelect] Animating card selection:", selectedCard.id);
 
       setIsCardSelected(true); // Set flag immediately
       setAnimatingToPosition(true); // Indicate animation start
@@ -110,8 +100,8 @@ export const useCardStackLogic = ({
         drawnSlotPositions,
         cardDimensions,
         (finalCardState) => {
-          console.log("[handleCardSelect] Animation complete for card:", finalCardState.id);
-          onCardSelect(finalCardState); // Call original callback
+          console.log("[handleCardSelect] Animation complete, calling context selectCard for:", finalCardState.id);
+          selectCard(finalCardState); // Call original callback
           // Keep isCardSelected true, but allow new animations *after* this one completes fully
           setAnimatingToPosition(false);
           // Don't reset isCardSelected here, let the parent component manage rounds/reset
@@ -123,21 +113,25 @@ export const useCardStackLogic = ({
       isCardSelected,
       animatingToPosition, // Add dependency
       cards,
-      currentRound,
-      drawnSlotPositions,
-      cardDimensions,
+      currentRound, // Add dependency
+      drawnSlotPositions, // Add dependency
+      cardDimensions, // Add dependency
       cardAnimation,
-      onCardSelect,
+      selectCard, // Add dependency
     ]
   );
 
+  // --- Berechne den booleschen Wert für die Anzeige der Instruktion ---
+  const shouldShowInstruction = sessionStarted && cards.length > 0 && !isCardSelected && !animatingToPosition;
+
+
   return {
     cards,
-    showInstruction: !isCardSelected, // Compute based on isCardSelected 
-    isCardSelected, // Still needed to show drawn cards view
-    animatingToPosition, // Expose this if needed by parent
+    showInstruction: shouldShowInstruction,
+    isCardSelected,
+    animatingToPosition,
     cardTransforms: cardAnimation.cardTransforms,
-    instructionOpacity: cardAnimation.instructionOpacity, // Pass this down for the text
+    instructionOpacity: cardAnimation.instructionOpacity,
     handleCardSelect,
   };
 };

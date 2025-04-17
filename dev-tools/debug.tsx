@@ -4,7 +4,6 @@ import BugsnagTest from "@/dev-tools/bugsnagTest";
 import { bugsnagService } from "@/services/bugsnag";
 
 export default function DebugScreen() {
-  // Wir können hier überprüfen, ob Bugsnag initialisiert wurde
   const isBugsnagStarted = bugsnagService.isStarted();
 
   return (
@@ -12,9 +11,7 @@ export default function DebugScreen() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Debug & Test</Text>
         {!isBugsnagStarted && (
-          <Text style={styles.warningText}>
-            Bugsnag ist nicht initialisiert!
-          </Text>
+          <Text style={styles.warningText}>Bugsnag is not initialized!</Text>
         )}
       </View>
       <BugsnagTest />

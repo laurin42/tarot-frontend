@@ -1,35 +1,31 @@
 import React, { memo, useState } from "react";
-import {
-  View,
-  Text,
-  Dimensions,
-  StyleSheet,
-  LayoutChangeEvent,
-} from "react-native";
+import { View, Dimensions, StyleSheet, LayoutChangeEvent } from "react-native";
 import Animated from "react-native-reanimated";
-import { ISelectedAndShownCard } from "@/constants/tarotCards";
-import { layoutStyles, textStyles } from "@/styles/styles";
+import { textStyles } from "@/styles/styles";
+import { useCardStack } from "@/context/CardStackContext";
 import { useCardStackLogic } from "./useCardStackLogic";
 import AnimatedFanCard from "./AnimatedFanCard";
-// import CardInstruction from "./CardInstruction";
-// import CardIndicator from "./CardIndicator";
 
 interface CardStackViewProps {
-  onCardSelect: (card: ISelectedAndShownCard) => void;
-  sessionStarted: boolean;
-  cardDimensions: { width: number; height: number };
   drawnSlotPositions: { x: number; y: number }[];
-  currentRound: number;
-  predeterminedCards: ISelectedAndShownCard[];
   onCardPositioned?: () => void;
 }
 
 const CardStackView = memo((props: CardStackViewProps) => {
+  const { drawnSlotPositions, onCardPositioned } = props;
+
+  const {
+    sessionStarted,
+    predeterminedCards,
+    currentRound,
+    selectCard,
+    cardDimensions,
+  } = useCardStack();
+
   const spreadAngle = 60;
-  // Initialize containerDimensions with estimated values
   const [containerDimensions, setContainerDimensions] = useState({
     width: Dimensions.get("window").width,
-    height: 300, // Initial estimate
+    height: 300,
   });
 
   const handleLayout = (event: LayoutChangeEvent) => {
@@ -45,35 +41,43 @@ const CardStackView = memo((props: CardStackViewProps) => {
     instructionOpacity,
     handleCardSelect,
   } = useCardStackLogic({
-    ...props,
+    sessionStarted,
+    predeterminedCards,
+    currentRound,
+    selectCard,
+    cardDimensions,
+    drawnSlotPositions,
+    onCardPositioned,
     spreadAngle,
     containerDimensions,
   });
 
   return (
     <View style={styles.container} onLayout={handleLayout}>
-      {cards.map((card) => (
-        <AnimatedFanCard
-          key={card.id}
-          card={card}
-          cardTransforms={cardTransforms}
-          sessionStarted={props.sessionStarted}
-          handleCardSelect={handleCardSelect}
-          cardDimensions={props.cardDimensions}
-          containerDimensions={containerDimensions}
-        />
-      ))}
-
       {showInstruction && (
-        <Animated.Text
-          style={[
-            textStyles.body,
-            styles.instructionText,
-            { opacity: instructionOpacity },
-          ]}
-        >
-          Bitte Karte wählen...
-        </Animated.Text>
+        <>
+          {cards.map((card) => (
+            <AnimatedFanCard
+              key={card.id}
+              card={card}
+              cardTransforms={cardTransforms}
+              sessionStarted={sessionStarted}
+              cardDimensions={cardDimensions}
+              handleCardSelect={handleCardSelect}
+              containerDimensions={containerDimensions}
+            />
+          ))}
+
+          <Animated.Text
+            style={[
+              textStyles.body,
+              styles.instructionText,
+              { opacity: instructionOpacity },
+            ]}
+          >
+            Bitte Karte wählen...
+          </Animated.Text>
+        </>
       )}
     </View>
   );
@@ -84,13 +88,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     position: "relative",
-    justifyContent: "center", // Center content vertically
-    alignItems: "center", // Center content horizontally
-    // --- Remove DEBUG STYLES --- //
-    // backgroundColor: "rgba(0, 255, 0, 0.3)",
-    // borderWidth: 2,
-    // borderColor: "green",
-    // --- END DEBUG STYLES --- //
+    justifyContent: "center",
+    alignItems: "center",
   },
   instructionText: {
     position: "absolute",

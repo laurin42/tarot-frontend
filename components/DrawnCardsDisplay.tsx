@@ -1,25 +1,17 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
-  Platform,
   ScrollView,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
   Pressable,
 } from "react-native";
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  interpolate,
-  Extrapolate,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { TapGestureHandler, State } from "react-native-gesture-handler";
 import TarotCard from "./TarotCard";
 import { ISelectedAndShownCard } from "@/constants/tarotCards";
+import { useCardFlipAnimation } from "@/hooks/useCardFlipAnimation";
 import { componentStyles, glowEffects, textStyles } from "@/styles";
 import { typography } from "@/styles/theme";
 import { colors } from "@/styles/theme";
@@ -39,80 +31,16 @@ export default function DrawnCardsDisplay({
   const currentCard =
     selectedCards.length > 0 ? selectedCards[selectedCards.length - 1] : null;
 
-  // Reanimated shared value for flip state (0 = front, 1 = back)
-  const flipProgress = useSharedValue(0);
+  const { frontAnimatedStyle, backAnimatedStyle, handleFlip } =
+    useCardFlipAnimation();
 
-  // Animated style for the front face
-  const frontAnimatedStyle = useAnimatedStyle(() => {
-    const rotate = interpolate(
-      flipProgress.value,
-      [0, 1],
-      [0, 180],
-      Extrapolate.CLAMP
-    );
-    const opacity = interpolate(
-      flipProgress.value,
-      [0, 0.5, 0.5, 1],
-      [1, 1, 0, 0],
-      Extrapolate.CLAMP
-    );
-    return {
-      opacity,
-      transform: [{ rotateY: `${rotate}deg` }],
-    };
-  });
-
-  // Animated style for the back face
-  const backAnimatedStyle = useAnimatedStyle(() => {
-    const rotate = interpolate(
-      flipProgress.value,
-      [0, 1],
-      [180, 360],
-      Extrapolate.CLAMP
-    );
-    const opacity = interpolate(
-      flipProgress.value,
-      [0, 0.5, 0.5, 1],
-      [0, 0, 1, 1],
-      Extrapolate.CLAMP
-    );
-    return {
-      opacity,
-      transform: [{ rotateY: `${rotate}deg` }],
-    };
-  });
-
-  // Lokaler State für Button-Opazität
-  const [buttonOpacity, setButtonOpacity] = useState(0.3);
-
-  // Für Scroll-Positionsberechnung
-  const scrollContainerHeight = useRef(0);
-  const scrollContentHeight = useRef(0);
-
-  // Event-Handler
-  function handleScroll(e: NativeSyntheticEvent<NativeScrollEvent>) {
-    const offsetY = e.nativeEvent.contentOffset.y;
-    const visibleHeight = scrollContainerHeight.current;
-    const totalHeight = scrollContentHeight.current - visibleHeight;
-
-    // Fortschritt von 0 bis 1:
-    const progress = totalHeight > 0 ? Math.min(offsetY / totalHeight, 1) : 0;
-
-    // Beispiel: Opazität linear von 0.3 (oben) bis 0.9 (unten)
-    const newOpacity = 0.3 + progress * 0.6;
-    setButtonOpacity(newOpacity);
-  }
-
-  // Gesture handler event
   const onGestureEvent = useCallback(
     (event: any) => {
       if (event.nativeEvent.state === State.END) {
-        flipProgress.value = withTiming(flipProgress.value === 0 ? 1 : 0, {
-          duration: 600, // Adjust duration as needed
-        });
+        handleFlip();
       }
     },
-    [flipProgress]
+    [handleFlip]
   );
 
   return (
@@ -120,7 +48,7 @@ export default function DrawnCardsDisplay({
       <Animated.View style={styles.overlay}>
         <Pressable
           style={[componentStyles.modalContainer, styles.containerOverrides]}
-          onPress={(e) => e.stopPropagation()} // Prevent taps inside modal from bubbling up to TapGestureHandler
+          onPress={(e) => e.stopPropagation()}
         >
           <View style={styles.cardInteractionArea}>
             {currentCard && (
@@ -139,10 +67,8 @@ export default function DrawnCardsDisplay({
                     ]}
                   >
                     <TarotCard
-                      name={currentCard.name}
-                      image={currentCard.image}
-                      isShown={true}
-                      style={styles.cardOverrides} // Use overrides for 100% size
+                      card={currentCard}
+                      animatedStyle={styles.cardOverrides}
                     />
                     {/* TODO: Add a hint icon/text */}
                   </Animated.View>
@@ -173,11 +99,7 @@ export default function DrawnCardsDisplay({
 
           <TouchableOpacity
             onPress={onDismiss}
-            style={[
-              componentStyles.buttonFullWidth,
-              styles.buttonOverrides,
-              // Consider visual style for button
-            ]}
+            style={[componentStyles.buttonFullWidth, styles.buttonOverrides]}
           >
             <Text style={typography.button}>Schliessen</Text>
           </TouchableOpacity>
@@ -204,17 +126,9 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
   },
   cardInteractionArea: {
-    // New view to contain card content, allows button to be outside tappable area
     flex: 1,
     width: "100%",
     alignItems: "center",
-    // Remove marginBottom from scrollView to let this container manage space
-    // marginBottom: 10,
-  },
-  scrollView: {
-    // Remove this style - not used directly anymore
-    // flex: 1,
-    // marginBottom: 10,
   },
   cardContainer: {
     marginBottom: 24,
@@ -277,5 +191,4 @@ const styles = StyleSheet.create({
   explanationScrollView: {
     width: "100%",
   },
-  // ... buttonOverrides ...
 });
